@@ -24,6 +24,8 @@ public class Main extends Application {
 
         Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
+        //PlayList playList = new PlayList(movie);
+
 
 
     }
