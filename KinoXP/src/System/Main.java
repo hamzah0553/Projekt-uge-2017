@@ -23,7 +23,10 @@ public class Main extends Application {
 
 
 
-        PlayList playList = new PlayList(movie);
+       // PlayList playList = new PlayList(movie);
+
+        CreateMovies createMovies = new CreateMovies();
+
 
 
     }
