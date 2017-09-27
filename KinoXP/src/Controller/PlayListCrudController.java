@@ -18,7 +18,6 @@ public class PlayListCrudController
 
         Play play = new Play();
 
-        play.setDate(gui.getDate().toString());
 
     }
 }

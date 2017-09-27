@@ -30,6 +30,7 @@ public class PlaylistDAO extends DataWrapper {
 
             while (rs.next()) {
                 Play play = new Play();
+                play.setId(rs.getInt("playtime_id"));
                 String date = rs.getDate("start_date").toString();
                 play.setDate(date.substring(date.length()-2,date.length())+"/"+date.substring(date.length()-5,date.length()-3));
                 play.setTime(rs.getTime("start_date").toString());
@@ -57,13 +58,14 @@ public class PlaylistDAO extends DataWrapper {
             try {
                 Statement st = conn.createStatement();
 
-                String query = "INSERT INTO `tandbud_project2`.`movie_playtimes` (`movie_id`, `hall_id`, `start_date`)" +
+                String query = "INSERT INTO `tandbud_project2`.`movie_playtimes` (`movie_id`, `hall_id`,`start_date`)" +
                         " VALUES (?,?,?);";
 
 
                 PreparedStatement preparedStmt = conn.prepareStatement(query);
+
                 preparedStmt.setInt(1, play.getMovie().getId());
-                preparedStmt.setInt(2,0);
+                preparedStmt.setInt(2,1);
                 preparedStmt.setString(3, play.getDate() + " " + play.getTime()+":00");
 
 
