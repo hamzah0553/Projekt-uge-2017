@@ -3,6 +3,7 @@ package System;
 
 public class Controller {
 
+
     protected Model model;
 
     public Controller(Model model)
@@ -10,4 +11,7 @@ public class Controller {
         super();
         this.model = model;
     }
+
+
+
 }

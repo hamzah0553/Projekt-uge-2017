@@ -21,7 +21,7 @@ public class Customer
     {
 
         Connector connector = Connector.getInstance();
-        conn = connector.getConn();
+        conn = connector.getConnection();
 
     }
 

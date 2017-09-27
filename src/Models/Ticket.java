@@ -54,7 +54,7 @@ public class Ticket {
             do {
 
                 wt.append("Movie title: " + ticket.ticketDate + ',' + " row number: " + ticket.rowNr + ',' + " Seat number: "
-                        + ticket.seatId + '.' + "\r\n");
+                 + ticket.seatId + '.' + "\r\n");
                 wt.append("Your order number is " + "[insert order number from database here]");
                 wt.write("------------------------------" + "\r\n");
                 ticketnr++;
@@ -68,5 +68,7 @@ public class Ticket {
         }
 
     }
+
+
 
 }

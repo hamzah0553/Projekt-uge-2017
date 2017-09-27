@@ -27,7 +27,7 @@ public class Seat
 
         Connector connector = Connector.getInstance();
 
-        conn = connector.getConn();
+        conn = connector.getConnection();
 
         this.row = row;
         this.column = column;

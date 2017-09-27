@@ -18,7 +18,7 @@ public class Order
     {
 
         Connector connector = Connector.getInstance();
-        conn = connector.getConn();
+        conn = connector.getConnection();
 
     }
 

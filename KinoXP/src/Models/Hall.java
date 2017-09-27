@@ -29,7 +29,7 @@ public class Hall
         this.hallID = hallID;
 
         Connector connector = Connector.getInstance();
-        conn = connector.getConn();
+        conn = connector.getConnection();
 
         String query = "SELECT hall_name, hall_seats_row, hall_seats_column FROM tandbud_project2.hall where hall_id = ?";
         try

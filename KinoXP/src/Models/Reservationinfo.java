@@ -1,3 +1,5 @@
+package Models;
+
 import Models.Customer;
 
 public class Reservationinfo {
