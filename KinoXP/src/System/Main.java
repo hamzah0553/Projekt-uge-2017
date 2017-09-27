@@ -26,7 +26,10 @@ public class Main extends Application {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         //PlayList playList = new PlayList(movie);
+=======
+>>>>>>> 4a341b25cc6bcdadb2c7bbacae7c37ff669b2e42
 =======
 >>>>>>> 4a341b25cc6bcdadb2c7bbacae7c37ff669b2e42
 =======
