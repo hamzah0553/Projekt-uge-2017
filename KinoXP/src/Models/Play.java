@@ -5,6 +5,7 @@ package Models;
  */
 public class Play {
 
+    private int id;
     private String movieName;
     private String date;
     private String time;
@@ -14,6 +15,16 @@ public class Play {
     public Movie getMovie()
     {
         return movie;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public void setMovie(Movie movie)

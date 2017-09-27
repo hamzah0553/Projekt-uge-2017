@@ -95,9 +95,6 @@ public class MovieList extends View{
 
             layout.getChildren().addAll(moviesArraylist.get(i));
         }
-
         Pane pane = new Pane(layout);
-
-
       return pane;
     }}

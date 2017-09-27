@@ -23,6 +23,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class PlayList {
 
+    ArrayList<Play> plays;
+
     public PlayList(Movie movie){
         PlaylistDAO dao = new PlaylistDAO();
 
@@ -85,9 +87,7 @@ public class PlayList {
             for (int j = 0; j < times[i].size(); j++) {
                 GridPane.setConstraints(times[i].get(j), 1+i, 3 + j);
                 //times[i].get(j).setPadding(new Insets(10,10,10,10));
-                /**
-                 * VED IKKE OM METODEN handleButton() virker!!
-                 */
+
 
                 handleButton(times[i].get(j),movie);
             }
@@ -120,7 +120,7 @@ public class PlayList {
 
     private ArrayList<Button> addPlays(String date, GridPane gridPane, PlaylistDAO dao, Movie movie){
 
-        ArrayList<Play> plays = dao.getPlaylist();
+        plays = dao.getPlaylist();
 
         ArrayList<Button> buttons = new ArrayList<>();
 
@@ -142,10 +142,20 @@ public class PlayList {
 
         button.setOnAction(event -> {
 
+            int theId=0;
+
+            for (Play p : plays) {
+
+                if (p.getMovie().getName().equalsIgnoreCase(movie.getName()) && p.getTime().equalsIgnoreCase(button.getText()) ){
+                    theId= p.getId();
+
+                }
+
+            }
             System.out.println(button.getText());
             System.out.println(movie.getName());
+            System.out.println(theId);
 
-            System.out.println("yeah!");
         });
 
 

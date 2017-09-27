@@ -41,6 +41,7 @@ public class PlayListCrud extends View
 
         Label chooseHall = new Label("Select which hall");
 
+
         hall = new ChoiceBox<>();
         hall.getItems().addAll("0","1");
 
@@ -57,7 +58,7 @@ public class PlayListCrud extends View
         });
 
 
-        layout.getChildren().addAll(create,movies,date,time,times,save);
+        layout.getChildren().addAll(create,movies,chooseHall,hall,date,time,times,save);
 
         layout.setAlignment(Pos.CENTER);
         return layout;
