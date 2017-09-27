@@ -1,5 +1,7 @@
 package Models;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.Date;
 
 /**

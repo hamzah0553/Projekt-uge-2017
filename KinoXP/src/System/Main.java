@@ -1,6 +1,7 @@
 package System;
 
 import DataAccessObject.AddMovieDAO;
+import DataAccessObject.GetMoviesDAO;
 import DataAccessObject.PlaylistDAO;
 import Models.Movie;
 import javafx.application.Application;
@@ -30,6 +31,7 @@ public class Main extends Application {
 
         //PlayList playList = new PlayList(movie);
 
+        CreateMovies createMovies = new CreateMovies();
 
 
     }
@@ -37,5 +39,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+
     }
 }
