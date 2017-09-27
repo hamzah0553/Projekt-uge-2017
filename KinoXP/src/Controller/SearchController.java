@@ -1,9 +1,11 @@
 package Controller;
 
+import DataAccessObject.PlaylistDAO;
 import Models.Play;
 import System.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class SearchController extends Controller
@@ -14,9 +16,8 @@ public class SearchController extends Controller
         super(model);
     }
 
-    public ArrayList<Play> getPlays(String searchPhone)
+    public ArrayList<HashMap<String, String>> getPlays(String searchPhone)
     {
-        //return new PlaylistDAO().getPlaylist(searchPhone);
-        return null;
+        return new PlaylistDAO().getTicketInfo(searchPhone);
     }
 }

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 
+import java.util.HashMap;
+
 
 public class SearchView extends View
 {
@@ -26,7 +28,7 @@ public class SearchView extends View
     private TableView tableView;
 
     //bottom
-    private Button deleteButton;
+    private Button backButton;
 
     public SearchView(SearchController controller)
     {
@@ -39,7 +41,14 @@ public class SearchView extends View
         tableView = getReservationTable(searchWord);
         tableView.setPlaceholder(new Label("No reservations"));
 
-        setScene(tableView,null, stage);
+        tableView.setOnMouseClicked(event ->
+        {
+            System.out.println("table item clicked: " + tableView.getSelectionModel().getSelectedItem());
+        });
+
+        backButton = new Button("Back");
+
+        setScene(tableView,backButton, stage);
     }
 
 
@@ -50,28 +59,28 @@ public class SearchView extends View
         table.setEditable(false);
 
         TableColumn movieCol = new TableColumn("Movie title");
-        movieCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Movie, String>, ObservableValue>() {
+        movieCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HashMap<String,String>, String>, ObservableValue>() {
             @Override
-            public ObservableValue call(CellDataFeatures<Movie, String> param) {
-                return new ReadOnlyObjectWrapper<>(param.getValue().getName());
+            public ObservableValue call(CellDataFeatures<HashMap<String,String>, String> param) {
+                return new ReadOnlyObjectWrapper<>(param.getValue().get("movie_name"));
             }
         });
         movieCol.setMinWidth(50);
 
         TableColumn playTimeCol = new TableColumn("Playtime");
-        playTimeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Play, String>, ObservableValue>() {
+        playTimeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HashMap<String,String>, String>, ObservableValue>() {
             @Override
-            public ObservableValue call(CellDataFeatures<Play, String> param) {
-                return new ReadOnlyObjectWrapper<>(param.getValue().getDate()+ " " +param.getValue().getTime());
+            public ObservableValue call(CellDataFeatures<HashMap<String,String>, String> param) {
+                return new ReadOnlyObjectWrapper<>(param.getValue().get("start_date").toString());
             }
         });
         playTimeCol.setMinWidth(90);
 
         TableColumn reservationCol = new TableColumn("Reservation");
-        reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.toString()));
+        reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>("Show reservation"));
         reservationCol.setMinWidth(50);
 
-        ObservableList<Play> movieTimeList = FXCollections.observableArrayList(controller.getPlays(searchPhone));
+        ObservableList<HashMap<String,String>> movieTimeList = FXCollections.observableArrayList(controller.getPlays(searchPhone));
 
         //set items and columns
         table.setItems(movieTimeList);
@@ -79,11 +88,6 @@ public class SearchView extends View
 
         // setting column size to fit depending on column name
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        tableView.setOnMouseClicked(event ->
-        {
-            System.out.println("table item clicked: " + tableView.getSelectionModel().getSelectedItem());
-        });
 
         return table;
     }
