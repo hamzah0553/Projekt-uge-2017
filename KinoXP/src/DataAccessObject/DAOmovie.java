@@ -35,11 +35,9 @@ public class DAOmovie extends DataWrapper {
             System.out.println("JA TAK BABY");
 
             create = true;
-            conn.close();
             return create;
         } catch (SQLException e) {
             create = false;
-            conn.close();
             System.out.println(e.getMessage());
 
             return create;
