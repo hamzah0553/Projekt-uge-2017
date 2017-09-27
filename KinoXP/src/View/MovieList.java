@@ -1,11 +1,13 @@
 package View;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -27,7 +29,7 @@ public class MovieList extends View{
         this.window = primaryStage;
     }
 
-    public void theWindow()    {
+    public Pane theWindow()    {
 
 
         GridPane layout = new GridPane();
@@ -94,9 +96,8 @@ public class MovieList extends View{
             layout.getChildren().addAll(moviesArraylist.get(i));
         }
 
+        Pane pane = new Pane(layout);
 
-        Scene scene = new Scene(layout, 400, 500);
-        window.setScene(scene);
 
-       window.show();
+      return pane;
     }}
