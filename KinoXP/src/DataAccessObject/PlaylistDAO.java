@@ -4,10 +4,7 @@ import DataWrappers.DataWrapper;
 import Models.Movie;
 import Models.Play;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -35,10 +32,16 @@ public class PlaylistDAO extends DataWrapper {
                 Play play = new Play();
                 String date = rs.getDate("start_date").toString();
                 play.setDate(date.substring(date.length()-2,date.length())+"/"+date.substring(date.length()-5,date.length()-3));
-                play.setMovie(new Movie());
-                play.getMovie().setName(rs.getString("movie_name"));
-                play.setMovieName(rs.getString("movie_name"));
                 play.setTime(rs.getTime("start_date").toString());
+                play.setMovieName(rs.getString("movie_name"));
+
+                Movie movie = new Movie();
+                play.setMovie(movie);
+                play.getMovie().setName(rs.getString("movie_name"));
+                play.getMovie().setAge(rs.getInt("movie_age"));
+                play.getMovie().setId(rs.getInt("movie_id"));
+                play.getMovie().setLength(rs.getString("movie_length"));
+
                 plays.add(play);
             }
         } catch (SQLException e) {
@@ -52,22 +55,22 @@ public class PlaylistDAO extends DataWrapper {
 
 
             try {
-
+                Statement st = conn.createStatement();
 
                 String query = "INSERT INTO `tandbud_project2`.`movie_playtimes` (`movie_id`, `hall_id`, `start_date`)" +
                         " VALUES (?,?,?);";
 
-                /**
+
                 PreparedStatement preparedStmt = conn.prepareStatement(query);
-                preparedStmt.setString(1, play.getMo.getName());
-                preparedStmt.setString(2, member.getPhone());
-                preparedStmt.setString(3,member.getEmail());
+                preparedStmt.setInt(1, play.getMovie().getId());
+                preparedStmt.setInt(2,0);
+                preparedStmt.setString(3, play.getDate() + " " + play.getTime()+":00");
 
 
                 preparedStmt.execute();
                 st.close();
 
-                 */
+
             }catch (Exception e){
                 e.printStackTrace();
 
