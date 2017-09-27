@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -37,7 +38,8 @@ public class TrueLogin
         Label name = new Label("Username");
         GridPane.setConstraints(name,0,0);
 
-        TextField nameInput = new TextField("Username");
+        TextField nameInput = new TextField();
+        nameInput.setPromptText("Username");
         GridPane.setConstraints(nameInput,1,0);
 
         Label password = new Label("Password");
@@ -53,8 +55,8 @@ public class TrueLogin
             {
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
-                    // View view = new View(new Controller(new Model()));
-                    //view.setScene(primaryStage);
+                    View view = new View(new Controller(new Model()));
+                    view.setScene(null, setBottom(primaryStage), primaryStage);
                 }
             }catch (SQLException e) {
                 System.err.println("FAIL");
@@ -70,6 +72,21 @@ public class TrueLogin
         Scene scene = new Scene(layout,250, 250);
         window.setScene(scene);
         window.show();
+    }
 
+    public FlowPane setBottom(Stage primaryStage)
+    {
+        FlowPane flowPane = new FlowPane();
+
+        Button newMovies = new Button("add new moviet");
+        Button showSale = new Button("Stats for movies");
+
+        flowPane.getChildren().addAll(newMovies, showSale);
+        showSale.setOnAction(event -> {
+            StatsView statsView = new StatsView();
+            statsView.setScene(statsView.centerPane(), null,primaryStage);
+        });
+
+        return flowPane;
     }
 }
