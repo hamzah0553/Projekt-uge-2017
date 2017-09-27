@@ -28,9 +28,15 @@ public class AddMovieDAO extends DataWrapper {
 
              while (rs.next()){
                  Movie movie = new Movie();
+                 movie.setId(rs.getInt("movie_id"));
                  movie.setName(rs.getString("movie_name"));
+                 movie.setLength(rs.getString("movie_length"));
+                 movie.setAge(rs.getInt("movie_age"));
+                 movie.setRun(rs.getInt("movie_run"));
 
+                 movies.add(movie);
              }
+             
          }catch (SQLException e){
 
          }

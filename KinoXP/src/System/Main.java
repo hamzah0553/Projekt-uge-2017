@@ -22,7 +22,7 @@ public class Main extends Application {
 
         primaryStage.show();
 
-        Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
+      //  Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
 
     }
