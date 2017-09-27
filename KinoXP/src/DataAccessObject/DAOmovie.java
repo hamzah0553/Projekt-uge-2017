@@ -17,19 +17,22 @@ public class DAOmovie extends DataWrapper {
         this.conn = super.connection;
     }
 
-    public boolean Createmovie(String movie_name, String movie_length, int movie_age, String moive_startdate, String moive_enddate, int moive_run, int hall_ID) throws SQLException {
+    public boolean Createmovie(String movie_name, String movie_length,int movie_age, int movie_run, int hall_ID) throws SQLException {
 
         boolean create;
         try {
-            String sql = "INSERT INTO tandbud_project2.movie_description(movie_name,movie_length,movie_age,movie_stratdate,movie_enddate,movie_run,hall_ID) VALUE (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tandbud_project2.movie_description(movie_name,movie_length,movie_age,movie_run,hall_ID) " +
+                    "VALUE (?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, movie_name);
-            preparedStatement.setString(2, movie_length);    // FIXME: 27-09-2017 
+            preparedStatement.setString(2, movie_length);    // FIXME: 27-09-2017
             preparedStatement.setInt(3, movie_age);
-            preparedStatement.setString(4, moive_startdate);
-            preparedStatement.setString(5, moive_enddate);
-            preparedStatement.setInt(6, moive_run);
-            preparedStatement.setInt(7, hall_ID);
+            preparedStatement.setInt(4, movie_run);
+            preparedStatement.setInt(5, hall_ID);
+
+            preparedStatement.execute();
+
+            System.out.println("JA TAK BABY");
 
             create = true;
             conn.close();
@@ -37,6 +40,8 @@ public class DAOmovie extends DataWrapper {
         } catch (SQLException e) {
             create = false;
             conn.close();
+            System.out.println(e.getMessage());
+
             return create;
         }
 
@@ -50,6 +55,10 @@ public class DAOmovie extends DataWrapper {
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, movie_id);
+
+            preparedStatement.execute();
+
+            System.out.println("SLET VIRKER");
             delete = true;
             conn.close();                                                          // FIXME: 27-09-2017 
             return delete;
@@ -57,29 +66,6 @@ public class DAOmovie extends DataWrapper {
             delete = false;
             conn.close();
             return delete;
-        }
-
-    }
-
-    public boolean update(String movie_name, String movie_length, int movie_age, int moive_run, int hall_ID) throws SQLException {
-
-        boolean update;
-        try {
-            String sql = "UPDATE tandbud_project2.movie_description SET movie_name = ?,movie_length = ?; movie_age=?,movie_run= ?,hall_ID=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, movie_name);
-            preparedStatement.setString(2, movie_length);
-            preparedStatement.setInt(3, movie_age);
-            preparedStatement.setInt(4, moive_run);                     // FIXME: 27-09-2017 
-            preparedStatement.setInt(5, hall_ID);
-
-            update = true;
-            conn.close();
-            return update;
-        } catch (SQLException e) {
-            update = false;
-            conn.close();
-            return update;
         }
 
     }

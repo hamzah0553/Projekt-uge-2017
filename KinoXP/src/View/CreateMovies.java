@@ -1,11 +1,15 @@
 package View;
 
+import DataAccessObject.DAOmovie;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 public class CreateMovies {
 
@@ -17,6 +21,9 @@ public class CreateMovies {
     private TextField movieLength = new TextField();
     private TextField movieAge = new TextField();
     private TextField movieRun = new TextField();
+
+     DAOmovie daOmovie = new DAOmovie();
+
 
     public CreateMovies() {
 
@@ -36,6 +43,8 @@ public class CreateMovies {
 
         addMovieLabel.setText("Add a movie to the database: ");
         theaterIDInput.setPromptText("Input theater ID ");
+
+
 
         movieNameInput.setPromptText("Input movie name");
         movieLength.setPromptText("Input movie length");
@@ -70,17 +79,39 @@ public class CreateMovies {
         window.show();
 
 
-        //clears form
         addMovieButton.setOnAction(event -> {
-            theaterIDInput.clear();
-            movieNameInput.clear();
-            movieLength.clear();
-            movieAge.clear();
-            movieRun.clear();
+            try {
+
+                daOmovie.Createmovie(movieNameInput.getText(),movieLength.getText(), Integer.parseInt(movieAge.getText()), Integer.parseInt(movieRun.getText()), Integer.parseInt(theaterIDInput.getText()));
+                System.out.println("fine..");
+
+                theaterIDInput.clear();
+                movieNameInput.clear();
+                movieLength.clear();
+                movieAge.clear();
+                movieRun.clear();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("error");
+            }
         });
 
+        //clears form
+        /*
+        addMovieButton.setOnAction(event -> {
 
-        deleteMovieButton.setOnAction(event -> {
+        });*/
+
+
+        deleteMovieButton.setOnAction((ActionEvent event) -> {
+
+            try {
+                daOmovie.Delete(Integer.parseInt(deleteField.getText()));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
             deleteField.clear();
         });
 
