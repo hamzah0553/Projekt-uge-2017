@@ -17,19 +17,17 @@ public class DAOmovie extends DataWrapper {
         this.conn = super.connection;
     }
 
-    public boolean Createmovie(String movie_name, String movie_length,int movie_age,String moive_startdate,String moive_enddate,int moive_run,int hall_ID) throws SQLException {
+    public boolean Createmovie(String movie_name, String movie_length,int movie_age,int moive_run,int hall_ID) throws SQLException {
 
         boolean create;
         try {
-            String sql = "INSERT INTO tandbud_project2.movie_description(movie_name,movie_length,movie_age,movie_stratdate,movie_enddate,movie_run,hall_ID) VALUE (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tandbud_project2.movie_description(movie_name,movie_length,movie_enddate,movie_run,hall_ID) VALUE (?,?,?,?,?,?,?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, movie_name);
             preparedStatement.setString(2, movie_length);
             preparedStatement.setInt(3, movie_age);
-            preparedStatement.setString(4, moive_startdate);
-            preparedStatement.setString(5, moive_enddate);
-            preparedStatement.setInt(6, moive_run);
-            preparedStatement.setInt(7, hall_ID);
+            preparedStatement.setInt(4, moive_run);
+            preparedStatement.setInt(5, hall_ID);
 
             create = true;
             conn.close();
@@ -41,29 +39,44 @@ public class DAOmovie extends DataWrapper {
         }
 
     }
-    public boolean Delete(int movie_id) throws SQLException{
+    public boolean Delete(int movie_id) throws SQLException {
 
         boolean delete;
-        try{
-            String sql="DELETE FROM tandbud_project2.movie_description WHERE Movie_id= ?";
+        try {
+            String sql = "DELETE FROM tandbud_project2.movie_description WHERE Movie_id= ?";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1,movie_id);
-            delete=true;
+            preparedStatement.setInt(1, movie_id);
+            delete = true;
             conn.close();
             return delete;
-        }catch (SQLException e)
-         delete=false;
-        conn.close();
-        return delete;
+        } catch (SQLException e) {
+            delete = false;
+            conn.close();
+            return delete;
 
 
+        }
     }
-    public boolean update(String movie_name, String movie_length,int movie_age,String moive_startdate,String moive_enddate,int moive_run,int hall_ID ) throws SQLException{
+    public boolean update(String movie_name, String movie_length,int movie_age,int moive_run,int hall_ID ) throws SQLException{
 
         boolean update;
         try{
-            String sql
+            String sql="UPDATE tandbud_project2.movie_description SET movie_name = ?,movie_length = ?,movie_age = ?,movie_run = ?,hall_ID=?";
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1,movie_name);
+            preparedStatement.setString(2,movie_length);
+            preparedStatement.setInt(3,movie_age);
+            preparedStatement.setInt(4,moive_run);
+            preparedStatement.setInt(5,hall_ID);
+            update=true;
+            conn.close();
+            return update;
+        }catch (SQLException e){
+            update=false;
+            conn.close();
+            return update;
         }
     }
 
