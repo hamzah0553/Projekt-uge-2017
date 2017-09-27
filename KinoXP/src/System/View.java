@@ -16,6 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import View.*;
+import Controller.*;
+
 public class View {
 
     protected Controller controller;
@@ -58,9 +61,15 @@ public class View {
                     "-fx-background-color:#1fc714;"
             );
 
+            TextField searchBar = getSearchBar();
+
             VBox searchBox = new VBox(20);
             searchBox.setAlignment(Pos.CENTER);
-            searchBox.getChildren().addAll(searchLabel, getSearchBar(), searchButton);
+            searchBox.getChildren().addAll(searchLabel, searchBar, searchButton);
+
+            searchButton.setOnAction(event1 -> {
+                new SearchView(new SearchController(controller.model)).setSearchView(searchBar.getText(), stage);
+            });
 
             Scene searchScene = new Scene(searchBox, 300, 200);
             stage.setScene(searchScene);

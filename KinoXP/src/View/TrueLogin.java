@@ -1,27 +1,17 @@
 package View;
 
-        import DataAccessObject.PlaylistDAO;
-        import Models.Movie;
-        import Models.Play;
+        import DataAccessObject.AddMovieDAO;
         import javafx.geometry.Insets;
-        import javafx.geometry.Pos;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
         import javafx.scene.control.Label;
         import javafx.scene.layout.*;
         import javafx.stage.Stage;
 
-
 import DataAccessObject.LoginDAO;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import javafx.stage.*;
 import System.View;
 import System.Controller;
 import System.Model;
@@ -49,7 +39,8 @@ public class TrueLogin
         Label name = new Label("Username");
         GridPane.setConstraints(name,0,0);
 
-        TextField nameInput = new TextField("Username");
+        TextField nameInput = new TextField();
+        nameInput.setPromptText("username");
         GridPane.setConstraints(nameInput,1,0);
 
         Label password = new Label("Password");
@@ -65,10 +56,8 @@ public class TrueLogin
             {
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
-
-                    movieList.theWindow();
-                    //View view = new View(new Controller(new Model()));
-                    //view.setScene(primaryStage);
+                    View view = new View(new Controller(new Model()));
+                    view.setScene(movieList.theWindow(),setBottom(primaryStage) , primaryStage);
                 }
             }catch (SQLException e) {
                 System.err.println("FAIL");
@@ -85,5 +74,37 @@ public class TrueLogin
         window.setScene(scene);
         window.show();
 
+    }
+
+    public FlowPane setBottom(Stage primaryStage)
+    {
+        FlowPane flowPane = new FlowPane();
+
+        Button newPlay = new Button("Ny Spilletid");
+        Button showSale = new Button("Stats for film");
+        Button newMovie = new Button("Ny film");
+
+        flowPane.setHgap(5.0);
+
+        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
+        newPlay.setOnAction(event -> {
+                PlayListCrud playListCrud = new PlayListCrud(primaryStage);
+                playListCrud.setScene(playListCrud.layout(), null, primaryStage);
+            });
+
+        showSale.setOnAction(event -> {
+            StatsView statsView = new StatsView();
+            statsView.setScene(statsView.centerPane(), null,primaryStage);
+        });
+
+        newMovie.setOnAction(event -> {
+            AddMovieDAO dao = new AddMovieDAO();
+            dao.getMovies();
+            CreateMovies createMovies = new CreateMovies(primaryStage);
+        });
+
+
+        return flowPane;
     }
 }

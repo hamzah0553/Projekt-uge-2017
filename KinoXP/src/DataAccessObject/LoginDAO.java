@@ -34,7 +34,6 @@ public class LoginDAO extends DataWrapper
             login = true;
             rs.close();
             preparedStatement.close();
-            conn.close();
         }
         else
         {

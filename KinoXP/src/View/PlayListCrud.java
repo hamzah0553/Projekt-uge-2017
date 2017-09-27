@@ -78,7 +78,7 @@ public class PlayListCrud extends View
 
     public String getDate()
     {
-        return date.toString();
+        return date.getValue().toString();
     }
 
 
