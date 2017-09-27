@@ -1,5 +1,17 @@
 package View;
 
+        import DataAccessObject.PlaylistDAO;
+        import Models.Movie;
+        import Models.Play;
+        import javafx.geometry.Insets;
+        import javafx.geometry.Pos;
+        import javafx.scene.Scene;
+        import javafx.scene.control.Button;
+        import javafx.scene.control.Label;
+        import javafx.scene.layout.*;
+        import javafx.stage.Stage;
+
+
 import DataAccessObject.LoginDAO;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -23,7 +35,7 @@ public class TrueLogin
     public TrueLogin(Stage primaryStage){
 
         LoginDAO loginDAO = new LoginDAO();
-        MovieList movieList = new MovieList();
+        MovieList movieList = new MovieList(primaryStage);
         this.window = primaryStage;
 
         window.setTitle("Window title");
@@ -54,7 +66,7 @@ public class TrueLogin
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
 
-                    movieList.theWindow(nameInput.getText());
+                    movieList.theWindow();
                     //View view = new View(new Controller(new Model()));
                     //view.setScene(primaryStage);
                 }

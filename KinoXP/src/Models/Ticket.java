@@ -12,11 +12,8 @@ import java.util.Date;
 public class Ticket {
 
     private int seatId;
-
     private int rowNr;
-
     private String ticketDate;
-
     private String movieTitle;
 
 
