@@ -2,9 +2,7 @@ package View;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,8 +16,6 @@ public class CreateMovies {
     private TextField movieNameInput = new TextField();
     private TextField movieLength = new TextField();
     private TextField movieAge = new TextField();
-    private TextField movieStartDate = new TextField();
-    private TextField movieEndDate = new TextField();
     private TextField movieRun = new TextField();
 
     public CreateMovies() {
@@ -30,6 +26,7 @@ public class CreateMovies {
 
         BorderPane borderPane = new BorderPane();
         HBox hBoxTop = new HBox();
+        HBox hBoxCenter = new HBox();
         VBox vBox = new VBox();
 
 
@@ -46,12 +43,11 @@ public class CreateMovies {
         movieNameInput.setPromptText("Input movie name");
         movieLength.setPromptText("Input movie length");
         movieAge.setPromptText("Input movie age");
-        movieStartDate.setPromptText("Input movie start date");
-        movieEndDate.setPromptText("Input movie end date");
         movieRun.setPromptText("input if movie runs");
 
 
-        hBoxTop.getChildren().addAll(addMovieLabel, theaterIDInput,movieNameInput,movieLength,movieAge,movieStartDate,movieEndDate,movieRun, addMovieButton);
+        hBoxTop.getChildren().addAll(addMovieLabel, theaterIDInput,movieNameInput,
+                movieLength,movieAge,movieRun, addMovieButton);
 
 
         hBoxTop.setSpacing(10);
@@ -73,11 +69,15 @@ public class CreateMovies {
             movieNameInput.clear();
             movieLength.clear();
             movieAge.clear();
-            movieStartDate.clear();
-            movieEndDate.clear();
             movieRun.clear();
         });
 
+
+        TableView tableView = new TableView();
+
+
+
+        hBoxCenter.getChildren().add(tableView);
 
 
     }
