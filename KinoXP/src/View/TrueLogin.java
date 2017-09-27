@@ -9,7 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
+import javafx.stage.*;
 import System.View;
 import System.Controller;
 import System.Model;
@@ -23,7 +23,7 @@ public class TrueLogin
     public TrueLogin(Stage primaryStage){
 
         LoginDAO loginDAO = new LoginDAO();
-
+        MovieList movieList = new MovieList();
         this.window = primaryStage;
 
         window.setTitle("Window title");
@@ -53,7 +53,9 @@ public class TrueLogin
             {
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
-                    // View view = new View(new Controller(new Model()));
+
+                    movieList.theWindow(nameInput.getText());
+                    //View view = new View(new Controller(new Model()));
                     //view.setScene(primaryStage);
                 }
             }catch (SQLException e) {
