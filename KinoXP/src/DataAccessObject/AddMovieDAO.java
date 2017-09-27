@@ -36,7 +36,7 @@ public class AddMovieDAO extends DataWrapper {
 
                  movies.add(movie);
              }
-             
+
          }catch (SQLException e){
 
          }
