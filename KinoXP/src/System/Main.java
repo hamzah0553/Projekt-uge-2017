@@ -25,7 +25,7 @@ public class Main extends Application {
         AddMovieDAO dao = new AddMovieDAO();
         dao.getMovies();
 
-        Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
+        //Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
 
         //PlayList playList = new PlayList(movie);
