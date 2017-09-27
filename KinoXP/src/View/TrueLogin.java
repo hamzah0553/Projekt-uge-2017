@@ -1,5 +1,6 @@
 package View;
 
+        import DataAccessObject.AddMovieDAO;
         import javafx.geometry.Insets;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
@@ -79,18 +80,30 @@ public class TrueLogin
     {
         FlowPane flowPane = new FlowPane();
 
-        Button newMovies = new Button("Ny Spilletid");
-        Button showSale = new Button("Stats for movies");
+        Button newPlay = new Button("Ny Spilletid");
+        Button showSale = new Button("Stats for film");
+        Button newMovie = new Button("Ny film");
 
-        flowPane.getChildren().addAll(newMovies, showSale);
-        newMovies.setOnAction(event -> {
+        flowPane.setHgap(5.0);
+
+        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
+        newPlay.setOnAction(event -> {
                 PlayListCrud playListCrud = new PlayListCrud(primaryStage);
                 playListCrud.setScene(playListCrud.layout(), null, primaryStage);
             });
+
         showSale.setOnAction(event -> {
             StatsView statsView = new StatsView();
             statsView.setScene(statsView.centerPane(), null,primaryStage);
         });
+
+        newMovie.setOnAction(event -> {
+            AddMovieDAO dao = new AddMovieDAO();
+            dao.getMovies();
+            CreateMovies createMovies = new CreateMovies(primaryStage);
+        });
+
 
         return flowPane;
     }

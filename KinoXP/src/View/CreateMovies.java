@@ -39,10 +39,10 @@ public class CreateMovies {
     final ObservableList<TableInformation> data = FXCollections.observableArrayList();
 
 //TODO: Clean this method up, if there's time
-    public CreateMovies() {
+    public CreateMovies(Stage primaryStage) {
 
-        Stage window = new Stage();
-        window.setTitle("CRUD Movies");
+
+        primaryStage.setTitle("CRUD Movies");
 
 
         BorderPane borderPane = new BorderPane();
@@ -122,8 +122,8 @@ public class CreateMovies {
         Scene scene = new Scene(borderPane);
 
 
-        window.setScene(scene);
-        window.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
 
         // TODO: Move the actions on buttons to another class(?)
@@ -168,12 +168,5 @@ public class CreateMovies {
 
             deleteField.clear();
         });
-
-
     }
-
-
-
-
-
 }

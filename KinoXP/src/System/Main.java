@@ -23,23 +23,14 @@ public class Main extends Application {
         new TrueLogin(primaryStage);
 
         primaryStage.show();
-        AddMovieDAO dao = new AddMovieDAO();
-        dao.getMovies();
 
         //Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
-
         //PlayList playList = new PlayList(movie);
-
-        CreateMovies createMovies = new CreateMovies();
-
-
     }
-
 
     public static void main(String[] args) {
         launch(args);
-
 
     }
 }
