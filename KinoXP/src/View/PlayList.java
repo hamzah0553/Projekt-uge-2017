@@ -70,7 +70,6 @@ public class PlayList {
             days[i] = new Label(day);
             dates[i] = new Label(today);
             days[i].setStyle("-fx-font-weight: bold;");
-            days[i].setStyle("-fx-font-weight: bold;");
 
 
             dayAndDate[i].getChildren().addAll(days[i],dates[i]);
