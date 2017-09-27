@@ -1,11 +1,13 @@
 package View;
 
+import Models.Movie;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,8 +31,7 @@ public class MovieList extends View{
         this.window = primaryStage;
     }
 
-    public Pane theWindow()    {
-
+    public ScrollPane theWindow()    {
 
         GridPane layout = new GridPane();
         window.setTitle("Movies");
@@ -88,6 +89,11 @@ public class MovieList extends View{
             moviesArraylist.get(i).setMinWidth(108);
             moviesArraylist.get(i).setMaxWidth(108);
 
+            moviesArraylist.get(i).setOnAction(event -> {
+                PlayList playList = new PlayList(new Movie(1, "batman", "120", 15, 5), window);
+
+            });
+
             int vertical = i/3;
             int horizontal = i%3;
 
@@ -95,6 +101,7 @@ public class MovieList extends View{
 
             layout.getChildren().addAll(moviesArraylist.get(i));
         }
-        Pane pane = new Pane(layout);
+        ScrollPane pane = new ScrollPane(layout);
+
       return pane;
     }}
