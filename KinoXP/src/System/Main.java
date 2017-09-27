@@ -19,11 +19,11 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(new Pane(), 300, 275));
         new TrueLogin(primaryStage);
+
         primaryStage.show();
 
         Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
-        PlayList playList = new PlayList(movie);
 
 
     }

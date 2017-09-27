@@ -26,7 +26,9 @@ public class View {
         this.controller = controller;
     }
 
-    public void setScene(Node top, Node center, Node bottom, Stage primaryStage)
+    public View (){}
+
+    public void setScene(Node center, Node bottom, Stage primaryStage)
     {
         final Label phoneLabel = new Label("Search phone number");
         final Menu menuOptions = new Menu("Options");
