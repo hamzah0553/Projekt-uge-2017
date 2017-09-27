@@ -1,5 +1,6 @@
 package System;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
@@ -42,6 +43,7 @@ public class View {
 
         //actions for menu
         logOut.setOnAction(event->{
+            Platform.exit();
             System.out.println("LOG OUT NOW!"); //TODO LATER
         });
 
@@ -100,23 +102,17 @@ public class View {
         searchBar.setStyle("-fx-alignment: center");
 
         /** limit to numbers only */
-        searchBar.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    searchBar.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                searchBar.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
 
         /** limit to 8 digits */
-        searchBar.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-                if (searchBar.getText().length() > 8) {
-                    String s = searchBar.getText().substring(0, 8);
-                    searchBar.setText(s);
-                }
+        searchBar.textProperty().addListener((ov, oldValue, newValue) -> {
+            if (searchBar.getText().length() > 8) {
+                String s = searchBar.getText().substring(0, 8);
+                searchBar.setText(s);
             }
         });
 
