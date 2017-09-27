@@ -14,7 +14,12 @@ public class Movie
     private Date enddate;
     private int run;
 
-    public Movie(String name,String length,int age,Date startdate,Date enddate,int run){
+
+    public Movie()
+    {
+    }
+
+    public Movie(String name, String length, int age, Date startdate, Date enddate, int run){
         this.name=name;
         this.length=length;
         this.age=age;

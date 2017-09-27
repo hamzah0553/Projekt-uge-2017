@@ -9,6 +9,18 @@ public class Play {
     private String date;
     private String time;
 
+    private Movie movie;
+
+    public Movie getMovie()
+    {
+        return movie;
+    }
+
+    public void setMovie(Movie movie)
+    {
+        this.movie = movie;
+    }
+
     public String getMovieName() {
         return movieName;
     }
