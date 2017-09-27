@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(new Pane(), 300, 275));
-        new Login(primaryStage);
+        new TrueLogin(primaryStage);
         primaryStage.show();
 
         Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
