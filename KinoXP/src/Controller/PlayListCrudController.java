@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Play;
 import View.PlayListCrud;
 
 /**
@@ -13,4 +14,11 @@ public class PlayListCrudController
     }
 
 
+    public void createPlay(){
+
+        Play play = new Play();
+
+        play.setDate(gui.getDate().toString());
+
+    }
 }

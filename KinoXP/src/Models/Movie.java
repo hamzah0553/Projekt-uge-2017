@@ -7,11 +7,10 @@ import java.util.Date;
  */
 public class Movie
 {
+    private int id;
     private String name;
     private String length;
     private int age;
-    private Date startdate;
-    private Date enddate;
     private int run;
 
 
@@ -19,12 +18,22 @@ public class Movie
     {
     }
 
-    public Movie(String name, String length, int age, Date startdate, Date enddate, int run){
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public Movie(int id, String name, String length, int age, int run){
+        this.id = id;
         this.name=name;
         this.length=length;
         this.age=age;
-        this.startdate=startdate;
-        this.enddate=enddate;
+
         this.run=run;
     }
 
@@ -42,22 +51,6 @@ public class Movie
 
     public int getAge() {
         return age;
-    }
-
-    public Date getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
     }
 
     public String getLength() {
