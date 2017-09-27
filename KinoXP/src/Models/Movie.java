@@ -10,17 +10,27 @@ public class Movie
     private String name;
     private String length;
     private int age;
-    private Date startdate;
-    private Date enddate;
+    private String startdate;
+    private String enddate;
     private int run;
+    private int hallID;
 
-    public Movie(String name,String length,int age,Date startdate,Date enddate,int run){
+    public Movie(String name,String length,int age,String startdate, String enddate,int run,int hallIn){
         this.name=name;
         this.length=length;
         this.age=age;
         this.startdate=startdate;
         this.enddate=enddate;
         this.run=run;
+        this.hallID=hallIn;
+    }
+
+    public int getHallIn() {
+        return hallID;
+    }
+
+    public void setHallIn(int hallIn) {
+        this.hallId = hallIn;
     }
 
     public String getName() {
@@ -39,19 +49,19 @@ public class Movie
         return age;
     }
 
-    public Date getStartdate() {
+    public String getStartdate() {
         return startdate;
     }
 
-    public void setStartdate(Date startdate) {
+    public void setStartdate(String startdate) {
         this.startdate = startdate;
     }
 
-    public Date getEnddate() {
+    public String getEnddate() {
         return enddate;
     }
 
-    public void setEnddate(Date enddate) {
+    public void setEnddate(String enddate) {
         this.enddate = enddate;
     }
 
