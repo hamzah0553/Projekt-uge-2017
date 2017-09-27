@@ -95,6 +95,7 @@ public class MovieList extends View{
         }
 
 
+
         Scene scene = new Scene(layout, 400, 500);
         window.setScene(scene);
 
