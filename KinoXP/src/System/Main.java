@@ -1,5 +1,6 @@
 package System;
 
+import DataAccessObject.AddMovieDAO;
 import DataAccessObject.PlaylistDAO;
 import Models.Movie;
 import javafx.application.Application;
@@ -21,6 +22,8 @@ public class Main extends Application {
         new TrueLogin(primaryStage);
 
         primaryStage.show();
+        AddMovieDAO dao = new AddMovieDAO();
+        dao.getMovies();
 
       //  Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
