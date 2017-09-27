@@ -5,12 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CreateMovies {
 
     private Button addMovieButton = new Button("Tilføj film!");
+    private Button deleteMovieButton = new Button("Slet film!");
 
     private TextField theaterIDInput = new TextField();
     private TextField movieNameInput = new TextField();
@@ -27,15 +27,12 @@ public class CreateMovies {
         BorderPane borderPane = new BorderPane();
         HBox hBoxTop = new HBox();
         HBox hBoxCenter = new HBox();
-        VBox vBox = new VBox();
-
-
 
 
         Label addMovieLabel = new Label();
         Label deleteLabel = new Label();
 
-        borderPane.setMinSize(1500, 700);
+        borderPane.setMinSize(500, 500);
 
         addMovieLabel.setText("Add a movie to the database: ");
         theaterIDInput.setPromptText("Input theater ID ");
@@ -53,8 +50,18 @@ public class CreateMovies {
         hBoxTop.setSpacing(10);
         hBoxTop.setPadding(new Insets(10,10,10,10));
 
+        deleteLabel.setText("Delete movie from database: ");
+        TextField deleteField = new TextField();
+
+        deleteField.setPromptText("Input ID of movie");
+        hBoxCenter.setPadding(new Insets(10,10,10,10));
+        hBoxCenter.setSpacing(10);
+
+        hBoxCenter.getChildren().addAll(deleteLabel,deleteField, deleteMovieButton);
+
 
         borderPane.setTop(hBoxTop);
+        borderPane.setCenter(hBoxCenter);
 
         Scene scene = new Scene(borderPane);
 
@@ -73,11 +80,14 @@ public class CreateMovies {
         });
 
 
-        TableView tableView = new TableView();
+        deleteMovieButton.setOnAction(event -> {
+            deleteField.clear();
+        });
 
 
 
-        hBoxCenter.getChildren().add(tableView);
+
+
 
 
     }
