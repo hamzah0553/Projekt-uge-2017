@@ -21,11 +21,9 @@ public class Main extends Application {
         new TrueLogin(primaryStage);
         primaryStage.show();
 
-     //   Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);
 
-//        PlayList playList = new PlayList(movie);
 
-        CreateMovies createMovies = new CreateMovies();
+        PlayList playList = new PlayList(movie);
 
 
     }

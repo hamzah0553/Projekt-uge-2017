@@ -29,9 +29,9 @@ public class Movie
         return hallID;
     }
 
-//    public void setHallIn(int hallIn) {
-//        this.hallId = hallIn;
-//    }
+    public void setHallIn(int hallIn) {
+        this.hallId = hallIn;
+    }
 
     public String getName() {
         return name;

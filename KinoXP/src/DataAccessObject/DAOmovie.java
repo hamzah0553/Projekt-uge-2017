@@ -52,20 +52,19 @@ public class DAOmovie extends DataWrapper {
             delete=true;
             conn.close();
             return delete;
-        }catch (SQLException e) {
-            delete = false;
-            conn.close();
-            return delete;
-        }
+        }catch (SQLException e)
+         delete=false;
+        conn.close();
+        return delete;
 
 
     }
-//    public boolean update(String movie_name, String movie_length,int movie_age,String moive_startdate,String moive_enddate,int moive_run,int hall_ID ) throws SQLException{
-//
-////        boolean update;
-////        try{
-////            String sql
-////        }
-//    }
+    public boolean update(String movie_name, String movie_length,int movie_age,String moive_startdate,String moive_enddate,int moive_run,int hall_ID ) throws SQLException{
+
+        boolean update;
+        try{
+            String sql
+        }
+    }
 
 }
