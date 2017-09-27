@@ -51,7 +51,7 @@ public class DAOmovie extends DataWrapper {
 
         boolean delete;
         try {
-            String sql = "DELETE FROM tandbud_project2.movie_description WHERE Movie_id= ?";
+            String sql = "UPDATE `tandbud_project2`.`movie_description` SET `movie_run`='0' WHERE `movie_id`=?;";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, movie_id);
