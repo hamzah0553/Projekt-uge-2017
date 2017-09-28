@@ -1,39 +1,23 @@
 package View;
 
-        import DataAccessObject.DAOmovie;
-        import DataAccessObject.FetchMovieListDAO;
-        import javafx.event.ActionEvent;
-        import DataAccessObject.GetMoviesDAO;
-        import Models.Movie;
-        import javafx.application.Platform;
-        import javafx.concurrent.Task;
-        import javafx.geometry.Insets;
-        import javafx.geometry.Pos;
-        import javafx.scene.*;
-        import javafx.scene.Cursor;
-        import javafx.scene.control.*;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.Label;
-        import javafx.scene.input.KeyCode;
-
-        import javafx.scene.control.TextField;
-        import javafx.scene.effect.ColorAdjust;
-        import javafx.scene.effect.GaussianBlur;
-
-        import javafx.scene.layout.*;
-        import javafx.stage.Stage;
-
 import DataAccessObject.LoginDAO;
-        import javafx.scene.layout.GridPane;
-import System.View;
 import System.Controller;
 import System.Model;
+import System.View;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-        import javax.swing.*;
-        import java.awt.*;
-        import java.io.IOException;
-        import java.sql.SQLException;
-        import java.util.ArrayList;
+import java.sql.SQLException;
 
 public class TrueLogin
 {
@@ -70,6 +54,7 @@ public class TrueLogin
         Button button = new Button("Login");
 
         passInput.setOnKeyReleased(event1 -> {
+
             try {
                 if (event1.getCode() == KeyCode.ENTER && loginDAO.validate(nameInput.getText(),passInput.getText())){
                     View view = new View(new Controller(new Model()));
@@ -118,7 +103,6 @@ public class TrueLogin
 
 
         Scene scene = new Scene(layout,350, 230);
-
         scene.getStylesheets().add("css/style.css");
 
 

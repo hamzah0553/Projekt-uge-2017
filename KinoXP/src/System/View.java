@@ -158,7 +158,7 @@ public class View {
             searchBox.getChildren().addAll(searchLabel, searchBar, searchButton);
 
             searchButton.setOnAction(event1 -> {
-                new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage);
+                new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage, primaryStage);
             });
 
             Scene searchScene = new Scene(searchBox, 300, 200, Color.WHITE);
