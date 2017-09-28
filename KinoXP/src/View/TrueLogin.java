@@ -33,7 +33,7 @@ public class TrueLogin
         window.setTitle("Login");
 
         GridPane layout = new GridPane();
-        layout.setPadding(new Insets(20,10,10,10));
+        layout.setPadding(new Insets(30,10,10,10));
 
         layout.setVgap(8);
         layout.setHgap(5);
@@ -65,13 +65,11 @@ public class TrueLogin
         });
 
         passInput.getStyleClass().add("input");
-
         button.getStyleClass().add("btn");
         button.getStyleClass().add("btn-xl");
         button.getStyleClass().add("full-width");
 
         button.setMaxWidth(Double.MAX_VALUE);
-
 
         GridPane.setConstraints(button,0,2);
 
