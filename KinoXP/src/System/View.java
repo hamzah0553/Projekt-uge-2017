@@ -128,7 +128,7 @@ public class View {
         TextField searchBar = new TextField();
         searchBar.setMaxWidth(145);
         searchBar.setPrefHeight(45);
-        searchBar.setPromptText("Enter phone...");
+        searchBar.setPromptText("Telefon nummer..");
 
         searchBar.setStyle("-fx-alignment: center");
 

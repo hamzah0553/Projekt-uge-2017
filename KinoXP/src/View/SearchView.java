@@ -61,18 +61,18 @@ public class SearchView extends View
         table.setStyle("-fx-background-color: #ffffff");
         table.setEditable(false);
 
-        TableColumn movieCol = new TableColumn("Movie title");
+        TableColumn movieCol = new TableColumn("Film");
         movieCol.setCellValueFactory((Callback<CellDataFeatures<HashMap<String, String>, String>, ObservableValue>)
                 param -> new ReadOnlyObjectWrapper<>(param.getValue().get("movie_name")));
         movieCol.setMinWidth(50);
 
-        TableColumn playTimeCol = new TableColumn("Playtime");
+        TableColumn playTimeCol = new TableColumn("Spilletid");
         playTimeCol.setCellValueFactory((Callback<CellDataFeatures<HashMap<String, String>, String>, ObservableValue>)
                 param -> new ReadOnlyObjectWrapper<>(param.getValue().get("start_date").toString()));
         playTimeCol.setMinWidth(90);
 
         TableColumn reservationCol = new TableColumn("Reservation");
-        reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>("Show reservation"));
+        reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>("Vis oplysninger"));
         reservationCol.setMinWidth(50);
 
         ObservableList<HashMap<String,String>> movieTimeList = FXCollections.observableArrayList(controller.getPlays(searchPhone));
