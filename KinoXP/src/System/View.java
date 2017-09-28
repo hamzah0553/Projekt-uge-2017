@@ -6,13 +6,17 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -44,15 +48,29 @@ public class View {
 
     public void setScene(Node center, Node bottom, Stage primaryStage)
     {
+        BorderPane borderPane = new BorderPane();
+        FlowPane flowPane = new FlowPane();
+
+        final Label backLabel = new Label();
+        Image backIMG = new Image("/img/back.png");
+        ImageView backView = new ImageView(backIMG);
+
+        backView.setFitWidth(30);
+        backView.setFitHeight(30);
+
+        backLabel.setGraphic(backView);
 
 
-        final Label backLabel = new Label("Tilbage");
 
         final Label movieMovie = new Label("Forestillinger");
 
         final Label phoneLabel = new Label("Søg telefon nr.");
+
         final Menu menuOptions = new Menu("Indstillinger");
         final MenuItem logOut = new MenuItem("Log ud");
+
+
+
 
         final Menu menuBack = new Menu();
         menuBack.setGraphic(backLabel);
@@ -80,12 +98,21 @@ public class View {
             });
 
             menuAdmin.getItems().addAll(createUser, manageUser);
-            menuBar.getMenus().addAll(menuBack, menuMovie, menuOptions, menuSearchPhone, menuAdmin);
+            menuBar.getMenus().addAll(menuMovie, menuOptions, menuSearchPhone, menuAdmin);
         }else
         {
-            menuBar.getMenus().addAll(menuBack, menuMovie, menuOptions, menuSearchPhone);
+            menuBar.getMenus().addAll(menuMovie, menuOptions, menuSearchPhone);
         }
 
+        MenuBar barBack = new MenuBar(menuBack);
+
+        borderPane.setCenter(menuBar);
+        borderPane.setLeft(barBack);
+
+
+        borderPane.setAlignment(menuBar, Pos.CENTER);
+
+        barBack.getStyleClass().add("menu");
         menuBar.getStyleClass().add("menu");
 
         backLabel.getStyleClass().add("mlabel");
@@ -144,8 +171,7 @@ public class View {
         //set layout
         BorderPane layout = new BorderPane();
 
-
-        layout.setTop(menuBar);
+        layout.setTop(borderPane);
 
 
 
@@ -172,6 +198,11 @@ public class View {
         primaryStage.setMinHeight(700);
         primaryStage.setMinWidth(1000);
         primaryStage.setScene(mainScene);
+
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX((screenBounds.getWidth() - 1000) / 2);
+        primaryStage.setY((screenBounds.getHeight() - 700) / 2);
+
         primaryStage.show();
     }
 
