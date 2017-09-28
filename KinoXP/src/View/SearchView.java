@@ -122,7 +122,7 @@ public class SearchView extends View
                 gridPane.setHgap(20);
 
                 Scene ticketInfo = new Scene(gridPane, 300, 400, Color.WHITE);
-                newStage.setScene(ticketInfo);
+                primaryStage.setScene(ticketInfo);
             }
 
         });
