@@ -5,17 +5,12 @@ import Models.Movie;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import System.View;
 
@@ -44,8 +39,14 @@ public class MovieList extends View{
         ArrayList<ImageView> imageViews = new ArrayList<>();
         ArrayList<Button> buttons = new ArrayList<>();
 
+        System.out.println(movies.size());
+
+        int count = 0;
+
         for (int i = 0; i < movies.size(); i++) {
-            imageViews.add(new ImageView(new Image("/img/batman.jpg", true)));
+
+            int t = i + 1;
+            imageViews.add(new ImageView(new Image("/img/" + t  + ".jpg", true)));
 
             Button button = new Button(movies.get(i).getName());
 
@@ -53,8 +54,7 @@ public class MovieList extends View{
 
             buttons.add(button);
 
-
-
+            count++;
             imageViews.get(i).setFitHeight(380);
             imageViews.get(i).setFitWidth(230);
 
@@ -95,8 +95,10 @@ public class MovieList extends View{
                 buttonColumn = 0;
             }
 
+            int finalI = i;
             buttons.get(i).setOnAction(event -> {
-                PlayList playList = new PlayList(new Movie(1, "Batman", "120", 25, 1), window);
+
+                PlayList playList = new PlayList(movies.get(finalI), window);
             });
 
         }
