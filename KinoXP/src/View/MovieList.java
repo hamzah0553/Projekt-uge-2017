@@ -119,61 +119,11 @@ public class MovieList extends View{
         pane.setFitToHeight(true);
         pane.setFitToWidth(true);
 
-
         return pane;
     }
-
-    public FlowPane setBottom(Stage primaryStage)
+    public ArrayList<Movie> getMovieList()
     {
-        FlowPane flowPane = new FlowPane();
-
-        Button newPlay = new Button("Opret Spilletid");
-        Button showSale = new Button("Statistikker");
-        Button newMovie = new Button("Opret film");
-
-        newPlay.getStyleClass().add("btn");
-        newPlay.getStyleClass().add("non");
-
-
-
-        showSale.getStyleClass().add("btn");
-        showSale.getStyleClass().add("non");
-
-        newMovie.getStyleClass().add("btn");
-        newMovie.getStyleClass().add("non");
-
-        flowPane.setAlignment(Pos.CENTER);
-
-        //flowPane.setStyle("-fx-background-color: white");
-
-        flowPane.getStyleClass().add("bottomPane");
-
-        flowPane.setHgap(5.0);
-
-        flowPane.getStylesheets().add("css/style.css");
-
-        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
-
-        newPlay.setOnAction(event ->
-        {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage,movieList);
-            playListCrud.setScene(playListCrud.layout(), null, primaryStage);
-        });
-
-        showSale.setOnAction(event ->
-        {
-            StatsView statsView = new StatsView();
-            statsView.setScene(statsView.centerPane(), null, primaryStage);
-        });
-
-        newMovie.setOnAction(event ->
-        {
-            FetchMovieListDAO dao = new FetchMovieListDAO();
-            dao.getMovies();
-            CreateMovies createMovies = new CreateMovies(primaryStage);
-        });
-
-
-        return flowPane;
+        return movieList;
     }
+
 }

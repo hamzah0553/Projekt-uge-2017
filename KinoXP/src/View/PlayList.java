@@ -81,6 +81,9 @@ public class PlayList extends View {
             dayAndDate[i].setPadding(new Insets(10,10,10,10));
 
             GridPane.setConstraints(dayAndDate[i],i+1,2);
+            gridPane.setAlignment(Pos.TOP_CENTER);
+            gridPane.setHgap(25);
+            gridPane.setVgap(25);
 
             times[i] = addPlays(today,gridPane,dao,movie);
         }
@@ -88,6 +91,7 @@ public class PlayList extends View {
         for (int i = 0; i <times.length ; i++) {
 
             for (int j = 0; j < times[i].size(); j++) {
+
                 GridPane.setConstraints(times[i].get(j), 1+i, 3 + j);
                 //times[i].get(j).setPadding(new Insets(10,10,10,10));
 
@@ -105,7 +109,7 @@ public class PlayList extends View {
 
         }
 
-        setScene(gridPane, null, primaryStage);
+        setScene(gridPane, setBottom(primaryStage), primaryStage);
     }
 
 

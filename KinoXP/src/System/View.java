@@ -1,5 +1,6 @@
 package System;
 
+import DataAccessObject.FetchMovieListDAO;
 import Models.Movie;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -31,6 +32,7 @@ public class View {
 
     private Scene mainScene;
     private boolean adminLogIn;
+    MovieList view;
 
     public View(Controller controller)
     {
@@ -119,7 +121,7 @@ public class View {
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
-            MovieList view = new MovieList(primaryStage);
+            view = new MovieList(primaryStage);
             view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);            //TODO: how to back?
         });
 
@@ -231,6 +233,60 @@ public class View {
         });
 
         return searchBar;
+    }
+
+    public FlowPane setBottom(Stage primaryStage)
+    {
+        FlowPane flowPane = new FlowPane();
+
+        Button newPlay = new Button("Opret Spilletid");
+        Button showSale = new Button("Statistikker");
+        Button newMovie = new Button("Opret film");
+
+        newPlay.getStyleClass().add("btn");
+        newPlay.getStyleClass().add("non");
+
+
+
+        showSale.getStyleClass().add("btn");
+        showSale.getStyleClass().add("non");
+
+        newMovie.getStyleClass().add("btn");
+        newMovie.getStyleClass().add("non");
+
+        flowPane.setAlignment(Pos.CENTER);
+
+        //flowPane.setStyle("-fx-background-color: white");
+
+        flowPane.getStyleClass().add("bottomPane");
+
+        flowPane.setHgap(5.0);
+
+        flowPane.getStylesheets().add("css/style.css");
+
+        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
+        newPlay.setOnAction(event ->
+        {
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage,view.getMovieList());
+            playListCrud.setScene(playListCrud.layout(), null, primaryStage);
+        });
+
+        showSale.setOnAction(event ->
+        {
+            StatsView statsView = new StatsView();
+            statsView.setScene(statsView.centerPane(), null, primaryStage);
+        });
+
+        newMovie.setOnAction(event ->
+        {
+            FetchMovieListDAO dao = new FetchMovieListDAO();
+            dao.getMovies();
+            CreateMovies createMovies = new CreateMovies(primaryStage);
+        });
+
+
+        return flowPane;
     }
 
 }
