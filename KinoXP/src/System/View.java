@@ -285,7 +285,7 @@ public class View {
 
         newPlay.setOnAction(event ->
         {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage, view.getMovieList());
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage, TrueLogin.movieList.getMovieList());
             playListCrud.setScene(playListCrud.layout(), null, primaryStage);
         });
 
