@@ -30,6 +30,14 @@ body {
 
 }
 
+.linkButton:hover
+{
+
+    -fx-text-fill: #a2a2a2;
+    -fx-cursor: pointer;
+
+}
+
 /* VARIABLE DEFINITIONS: Only these 4 variables have to be adjusted, the rest is copy-paste */
 * {
     -fx-my-menu-color: #fff;                  /* Change according to your needs */
