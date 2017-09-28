@@ -37,7 +37,6 @@ public class Login extends View
         window.setTitle("Reservation");
 
         GridPane layout = new GridPane();
-
         layout.setPadding(new Insets(10,10,10,10));
 
         layout.setVgap(8);
@@ -81,42 +80,38 @@ public class Login extends View
 
                     button.setStyle("-fx-border-color: #2ecc71; -fx-border-width: 1px; -fx-background-color: #2ecc71");
 
-                    button.setOnAction(new EventHandler<ActionEvent>()
-                    {
-                        @Override public void handle(ActionEvent e)
+                    button.setOnAction(e -> {
+
+                        if(!seat.checkIfClicked())
                         {
 
-                            if(!seat.checkIfClicked())
+                            seatsChosen.add(seat);
+                            button.setStyle("-fx-border-color: #e67e22; -fx-border-width: 1px; -fx-background-color: #e67e22");
+
+                        } else {
+
+                            //remove it from our arraylist..
+                            for(int i1 = 0; seatsChosen.size() > i1; i1++)
                             {
 
-                                seatsChosen.add(seat);
-                                button.setStyle("-fx-border-color: #e67e22; -fx-border-width: 1px; -fx-background-color: #e67e22");
-
-                            } else {
-
-                                //remove it from our arraylist..
-                                for(int i = 0; seatsChosen.size() > i; i++)
+                                if(seatsChosen.get(i1).getRow() == seat.getRow()
+                                        && seatsChosen.get(i1).getColumn() == seat.getColumn())
                                 {
 
-                                    if(seatsChosen.get(i).getRow() == seat.getRow()
-                                            && seatsChosen.get(i).getColumn() == seat.getColumn())
-                                    {
-
-                                        seatsChosen.remove(i);
-                                        break;
-
-                                    }
+                                    seatsChosen.remove(i1);
+                                    break;
 
                                 }
 
-                                //set button style..
-                                button.setStyle("-fx-border-color: #2ecc71; -fx-border-width: 1px; -fx-background-color: #2ecc71");
-
                             }
 
-                            seat.updateHasBeenClicked();
+                            //set button style..
+                            button.setStyle("-fx-border-color: #2ecc71; -fx-border-width: 1px; -fx-background-color: #2ecc71");
 
                         }
+
+                        seat.updateHasBeenClicked();
+
                     });
 
                 } else {
@@ -219,57 +214,52 @@ public class Login extends View
         HBox hBox = new HBox();
         Button buttonRes = new Button("Reserver billetter");
         //clicked on "reserver billetter"
-        buttonRes.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent e) {
+        buttonRes.setOnAction(e -> {
 
 
-                final Stage dialog = new Stage();
-                dialog.initModality(Modality.APPLICATION_MODAL);
-                dialog.initOwner(window);
-                VBox dialogVbox = new VBox(20);
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(window);
+            VBox dialogVbox = new VBox(20);
 
-                TextField phoneInput = new TextField();
-                phoneInput.setPromptText("Telefon nr på kunden");
+            TextField phoneInput = new TextField();
+            phoneInput.setPromptText("Telefon nr på kunden");
 
-                TextField emailInput = new TextField();
-                emailInput.setPromptText("Email på kunden");
+            TextField emailInput = new TextField();
+            emailInput.setPromptText("Email på kunden");
 
-                Label messageLabel = new Label();
+            Label messageLabel = new Label();
 
-                Button createReservationButton = new Button("Opret reservation");
+            Button createReservationButton = new Button("Opret reservation");
 
-                dialogVbox.getChildren().addAll(phoneInput, emailInput, createReservationButton, messageLabel);
-                dialogVbox.setPadding(new Insets(25, 25, 0, 25));
-                dialogVbox.setAlignment(Pos.CENTER);
+            dialogVbox.getChildren().addAll(phoneInput, emailInput, createReservationButton, messageLabel);
+            dialogVbox.setPadding(new Insets(25, 25, 0, 25));
+            dialogVbox.setAlignment(Pos.CENTER);
 
-                //clicked on the dialog create reservation...
-                createReservationButton.setOnAction(event -> {
-                    ReservationController reservationController = new ReservationController();
+            //clicked on the dialog create reservation...
+            createReservationButton.setOnAction(event -> {
+                ReservationController reservationController = new ReservationController();
 
-                    String responseMessage = reservationController.validateReservation(
-                            Integer.parseInt(phoneInput.getText()), emailInput.getText());
+                String responseMessage = reservationController.validateReservation(
+                        Integer.parseInt(phoneInput.getText()), emailInput.getText());
 
-                    //validate..
-                    if(responseMessage.equals("OK"))
-                    {
+                //validate..
+                if(responseMessage.equals("OK"))
+                {
 
-                        reservationController.setSeatsChosen(seatsChosen);
-                        reservationController.createReservation();
-                        messageLabel.setText("Kundens billet er nu reserveret.");
-                        dialogVbox.getChildren().removeAll(phoneInput, emailInput, createReservationButton);
+                    reservationController.setSeatsChosen(seatsChosen);
+                    reservationController.createReservation();
+                    messageLabel.setText("Kundens billet er nu reserveret.");
+                    dialogVbox.getChildren().removeAll(phoneInput, emailInput, createReservationButton);
 
-                    } else {
-                        messageLabel.setText("Fejl: " + responseMessage);
-                    }
-                });
+                } else {
+                    messageLabel.setText("Fejl: " + responseMessage);
+                }
+            });
 
-                Scene dialogScene = new Scene(dialogVbox, 300, 200);
-                dialog.setScene(dialogScene);
-                dialog.show();
-            }
-
+            Scene dialogScene = new Scene(dialogVbox, 300, 200);
+            dialog.setScene(dialogScene);
+            dialog.show();
         });
 
         GridPane pane = new GridPane();
