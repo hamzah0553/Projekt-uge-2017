@@ -3,6 +3,7 @@ package View;
 import DataAccessObject.FetchMovieListDAO;
 import Models.Movie;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
@@ -27,7 +28,8 @@ public class MovieList extends View{
         this.window = primaryStage;
     }
 
-    public Pane theWindow()    {
+    public Pane theWindow()
+    {
 
 
         GridPane layout = new GridPane();
@@ -51,8 +53,6 @@ public class MovieList extends View{
             if (m.getRun()==1)
             buttons.add(new Button(m.getName()));
         }
-
-
 
         GridPane.setConstraints(head,0,0);
 
@@ -84,7 +84,9 @@ public class MovieList extends View{
 
             layout.getChildren().addAll(buttons.get(i));
         }
+
         Pane pane = new Pane(layout);
+
       return pane;
     }
 
@@ -92,11 +94,30 @@ public class MovieList extends View{
     {
         FlowPane flowPane = new FlowPane();
 
-        Button newPlay = new Button("Ny Spilletid");
-        Button showSale = new Button("Stats for film");
-        Button newMovie = new Button("Ny film");
+        Button newPlay = new Button("Opret Spilletid");
+        Button showSale = new Button("Statistikker");
+        Button newMovie = new Button("Opret film");
+
+        newPlay.getStyleClass().add("btn");
+        newPlay.getStyleClass().add("non");
+
+
+
+        showSale.getStyleClass().add("btn");
+        showSale.getStyleClass().add("non");
+
+        newMovie.getStyleClass().add("btn");
+        newMovie.getStyleClass().add("non");
+
+        flowPane.setAlignment(Pos.CENTER);
+
+        //flowPane.setStyle("-fx-background-color: white");
+
+        flowPane.getStyleClass().add("bottomPane");
 
         flowPane.setHgap(5.0);
+
+        flowPane.getStylesheets().add("css/style.css");
 
         flowPane.getChildren().addAll(newPlay, showSale, newMovie);
 
