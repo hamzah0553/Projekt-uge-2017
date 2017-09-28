@@ -35,20 +35,27 @@ public class View {
 
     public void setScene(Node center, Node bottom, Stage primaryStage)
     {
-        final Label phoneLabel = new Label("Search phone number");
-        final Menu menuOptions = new Menu("Options");
-        final MenuItem logOut = new MenuItem("Log out");
+        final Label backLabel = new Label("Tilbage");
+        final Label phoneLabel = new Label("Søg telefon nr.");
+        final Menu menuOptions = new Menu("Indstillinger");
+        final MenuItem logOut = new MenuItem("Log ud");
+
+        final Menu menuBack = new Menu();
+        menuBack.setGraphic(backLabel);
         final Menu menuSearchPhone = new Menu();
         menuSearchPhone.setGraphic(phoneLabel);
 
         menuOptions.getItems().addAll(logOut);
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menuOptions, menuSearchPhone);
+        menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone);
 
         //actions for menu
+        backLabel.setOnMouseClicked(event -> {
+            //TODO: how to back?
+        });
+
         logOut.setOnAction(event->{
             Platform.exit();
-            System.out.println("LOG OUT NOW!"); //TODO LATER
         });
 
         phoneLabel.setOnMouseClicked(event->{
@@ -57,7 +64,7 @@ public class View {
             stage.initOwner(primaryStage);
 
             Label searchLabel = new Label("Find reservation");
-            Button searchButton = new Button("Search");
+            Button searchButton = new Button("Søg tlf. nr.");
             searchButton.setStyle(
                     "-fx-background-color:#1fc714;"
             );
