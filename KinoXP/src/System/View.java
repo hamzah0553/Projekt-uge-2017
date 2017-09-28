@@ -1,5 +1,6 @@
 package System;
 
+import Models.Movie;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,6 +20,8 @@ import Controller.*;
 
 public class View {
 
+    View previousWindow;
+
     protected Controller controller;
 
     private Scene mainScene;
@@ -29,7 +32,9 @@ public class View {
         this.controller = controller;
     }
 
-    public View (){}
+    public View (){//View previousWindow){
+      //  this.previousWindow = previousWindow;
+    }
 
     public void setAdmin(boolean adminLogIn)
     {
@@ -70,7 +75,8 @@ public class View {
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
-            //TODO: how to back?
+            MovieList view = new MovieList(primaryStage);
+            view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);            //TODO: how to back?
         });
 
         logOut.setOnAction(event->{
