@@ -64,10 +64,11 @@ public class View {
             stage.initOwner(primaryStage);
 
             Label searchLabel = new Label("Find reservation");
-            Button searchButton = new Button("Søg tlf. nr.");
-            searchButton.setStyle(
-                    "-fx-background-color:#1fc714;"
-            );
+
+            Button searchButton = new Button("Søg");
+            searchButton.getStyleClass().add("btn");
+            searchButton.getStyleClass().add("btn-xl");
+            searchButton.getStyleClass().add("full-width");
 
             TextField searchBar = getSearchBar();
 
@@ -82,9 +83,11 @@ public class View {
                 }
             });
 
-            Scene searchScene = new Scene(searchBox, 300, 200);
+            Scene searchScene = new Scene(searchBox, 300, 200, Color.WHITE);
             stage.setScene(searchScene);
+            searchScene.getStylesheets().add("css/style.css");
             stage.show();
+
         });
 
         //set layout

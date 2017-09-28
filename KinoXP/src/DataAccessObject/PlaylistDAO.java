@@ -44,6 +44,8 @@ public class PlaylistDAO extends DataWrapper {
                         "\n" +
                         "WHERE customer_phonenumber LIKE '%" + phone + "%'";
 
+        System.out.println(query);
+
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             ResultSet rs = getResultSet(preparedStatement);
