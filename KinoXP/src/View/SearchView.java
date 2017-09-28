@@ -49,9 +49,7 @@ public class SearchView extends View
         backButton = new Button("Back");
 
         MovieList movieList = new MovieList(stage);
-        backButton.setOnAction(event-> {
-            setScene(movieList.theWindow(), movieList.setBottom(stage), stage);
-        });
+        backButton.setOnAction(event-> setScene(movieList.theWindow(), movieList.setBottom(stage), stage));
 
         setScene(tableView,backButton, stage);
     }
