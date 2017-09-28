@@ -1,17 +1,14 @@
 package View;
 
+import DataAccessObject.FetchMovieListDAO;
+import Models.Movie;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import System.View;
 
@@ -43,25 +40,16 @@ public class MovieList extends View{
         Label head = new Label("Movies:");
         head.setFont(Font.font ("Verdana", 20));
 
-        ArrayList<Button> moviesArraylist = new ArrayList();
-        moviesArraylist.add(new Button("batman1"));
-        moviesArraylist.add(new Button("batman2"));
-        moviesArraylist.add(new Button("batman3"));
-        moviesArraylist.add(new Button("batman4"));
-        moviesArraylist.add(new Button("batman5"));
-        moviesArraylist.add(new Button("batman6"));
-        moviesArraylist.add(new Button("batman7"));
-        moviesArraylist.add(new Button("batwoman"));
-        moviesArraylist.add(new Button("batman8"));
-        moviesArraylist.add(new Button("batman9"));
-        moviesArraylist.add(new Button("batman10"));
-        moviesArraylist.add(new Button("batman11"));
-        moviesArraylist.add(new Button("batman12"));
-        moviesArraylist.add(new Button("batman13"));
-        moviesArraylist.add(new Button("batman14"));
-        moviesArraylist.add(new Button("superman"));
-        moviesArraylist.add(new Button("batman VS spuerman"));
-        moviesArraylist.add(new Button("the man"));
+        FetchMovieListDAO dao = new FetchMovieListDAO();
+        ArrayList<Button> buttons= new ArrayList();
+        ArrayList<Movie> movies = dao.getMovies();
+
+        for (Movie m :
+                 movies) {
+
+            if (m.getRun()==1)
+            buttons.add(new Button(m.getName()));
+        }
 
 
 
@@ -81,19 +69,19 @@ public class MovieList extends View{
         sc.setValue(50);
 
 
-        for (int i = 0; i < moviesArraylist.size() ; i++) {
+        for (int i = 0; i < buttons.size() ; i++) {
 
-            moviesArraylist.get(i).setMinHeight(160);
-            moviesArraylist.get(i).setMaxHeight(160);
-            moviesArraylist.get(i).setMinWidth(108);
-            moviesArraylist.get(i).setMaxWidth(108);
+            buttons.get(i).setMinHeight(160);
+            buttons.get(i).setMaxHeight(160);
+            buttons.get(i).setMinWidth(108);
+            buttons.get(i).setMaxWidth(108);
 
             int vertical = i/3;
             int horizontal = i%3;
 
-            GridPane.setConstraints(moviesArraylist.get(i), horizontal,vertical);
+            GridPane.setConstraints(buttons.get(i), horizontal,vertical);
 
-            layout.getChildren().addAll(moviesArraylist.get(i));
+            layout.getChildren().addAll(buttons.get(i));
         }
         Pane pane = new Pane(layout);
       return pane;

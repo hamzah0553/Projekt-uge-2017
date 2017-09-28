@@ -1,6 +1,6 @@
 package View;
 
-        import DataAccessObject.AddMovieDAO;
+        import DataAccessObject.FetchMovieListDAO;
         import javafx.geometry.Insets;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
@@ -99,7 +99,7 @@ public class TrueLogin
         });
 
         newMovie.setOnAction(event -> {
-            AddMovieDAO dao = new AddMovieDAO();
+            FetchMovieListDAO dao = new FetchMovieListDAO();
             dao.getMovies();
             CreateMovies createMovies = new CreateMovies(primaryStage);
         });
