@@ -257,6 +257,8 @@ public class View {
         Button newPlay = new Button("Opret Spilletid");
         Button showSale = new Button("Statistikker");
         Button newMovie = new Button("Opret film");
+        Button back = new Button("back");
+
 
         newPlay.getStyleClass().add("btn");
         newPlay.getStyleClass().add("non");
@@ -280,6 +282,7 @@ public class View {
         flowPane.getStylesheets().add("css/style.css");
 
         flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
 
         newPlay.setOnAction(event ->
         {
