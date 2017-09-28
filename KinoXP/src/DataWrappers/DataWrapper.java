@@ -36,7 +36,7 @@ public class DataWrapper
     }
 
     /** Method for "create/update/delete" using prep. statement */
-    public void executeUpdate(PreparedStatement preparedStatement)
+    public void update(PreparedStatement preparedStatement)
     {
         try
         {

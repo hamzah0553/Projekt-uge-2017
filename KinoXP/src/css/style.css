@@ -25,8 +25,25 @@ body {
     -fx-padding: 20px;
     -fx-font-size: 16px;
     -fx-padding-left: 0px;
-
     -fx-font-weight: bold;
+
+}
+
+.headerPane
+{
+
+    -fx-background-color: #fff;
+    -fx-border-color: #F0F0F0;
+    -fx-border-width-bottom: 1px;
+    -fx-border-style: solid;
+
+}
+
+.linkButton:hover
+{
+
+    -fx-text-fill: #a2a2a2;
+    -fx-cursor: pointer;
 
 }
 
@@ -44,10 +61,10 @@ body {
     -fx-background-color: #fff;
 
 
-    -fx-border-color: #F0F0F0;
+    //-fx-border-color: #F0F0F0;
 
-    -fx-border-width-bottom: 1px;
-    -fx-border-style: solid;
+    //-fx-border-width-bottom: 1px;
+    //-fx-border-style: solid;
 
 }
 
@@ -91,6 +108,7 @@ body {
 .menu-bar > .container > .menu-button:showing {
     -fx-background-color: -fx-my-menu-color-highlighted;
 }
+
 
 /*** Top-level menu's label (selected / hovered) ***/
 .menu-bar > .container > .menu-button:hover > .label,
@@ -275,4 +293,11 @@ body {
 .full-width
 {
     -fx-min-width: 100%;
+}
+
+.menu-item .menu .icon
+{
+
+    -fx-background-color: #fff !important;
+
 }

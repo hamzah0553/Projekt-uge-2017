@@ -61,7 +61,7 @@ public class MovieList extends View{
         }
 
         gridPane.setHgap(5);
-        gridPane.setVgap(0);
+        gridPane.setVgap(5);
 
         window.setTitle("Movies");
         movieList = movies;

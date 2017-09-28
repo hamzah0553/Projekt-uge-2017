@@ -5,6 +5,14 @@ import Models.Movie;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import Controller.SearchController;
+import View.MovieList;
+import View.SearchView;
+import View.TrueLogin;
+import View.PlayListCrud;
+import View.CreateMovies;
+import View.StatsView;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -13,16 +21,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-
-import View.*;
-import Controller.*;
 
 public class View {
 
@@ -62,11 +68,9 @@ public class View {
 
         backLabel.setGraphic(backView);
 
-
-
         final Label movieMovie = new Label("Forestillinger");
 
-        final Label phoneLabel = new Label("Søg telefon nr.");
+        final Label phoneLabel = new Label("Find reservation");
 
         final Menu menuOptions = new Menu("Indstillinger");
         final MenuItem logOut = new MenuItem("Log ud");
@@ -76,8 +80,6 @@ public class View {
 
         final Menu menuBack = new Menu();
         menuBack.setGraphic(backLabel);
-
-       // Imag image = new Image(getClass().getResourceAsStream("labels.jpg"));
 
         final Menu menuMovie = new Menu();
         menuMovie.setGraphic(movieMovie);
@@ -108,16 +110,29 @@ public class View {
 
         MenuBar barBack = new MenuBar(menuBack);
 
+
+        borderPane.setStyle("-fx-background-color: white");
+
         borderPane.setCenter(menuBar);
         borderPane.setLeft(barBack);
 
-
+        borderPane.getStyleClass().add("headerPane");
         borderPane.setAlignment(menuBar, Pos.CENTER);
 
         barBack.getStyleClass().add("menu");
         menuBar.getStyleClass().add("menu");
 
-        backLabel.getStyleClass().add("mlabel");
+
+        //...
+
+        menuBack.setStyle("-fx-background-color: #fff !important; -fx-cursor: pointer;");
+
+
+        menuBack.getStyleClass().add("icon");
+        backLabel.getStyleClass().add("icon");
+
+        System.out.println(menuBack.getStyleClass());
+
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {

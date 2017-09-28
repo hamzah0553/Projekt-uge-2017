@@ -34,6 +34,11 @@ public class SearchView extends View
     //center
     private TableView tableView;
 
+
+    //TODO: HALP
+    private String chosenPhone;
+    private boolean itemSelected = false;
+
     public SearchView(SearchController controller)
     {
         super();
@@ -45,10 +50,23 @@ public class SearchView extends View
         tableView = getReservationTable(searchWord);
         tableView.setPlaceholder(new Label("No reservations"));
 
-        setScene(tableView,null, stage);
+        Button deleteButton = new Button("Slet");
+
+        deleteButton.setOnAction(event -> {
+            if(itemSelected) controller.deleteOrder(chosenPhone);
+        });
+
+        setScene(tableView,deleteButton, stage);
 
         tableView.setOnMouseClicked(event ->
         {
+            if(event.getClickCount() == 1)  //TODO: DELETE NOT WORKING
+            {
+                HashMap<String, String> item = (HashMap<String, String>) tableView.getSelectionModel().getSelectedItem();
+                setChosenPhone(item.get("customer_phonenumber"));
+                itemSelected = true;
+            }
+
             if(event.getClickCount() == 2)
             {
                 System.out.println("table item clicked: " + tableView.getSelectionModel().getSelectedItem());
@@ -135,5 +153,10 @@ public class SearchView extends View
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         return table;
+    }
+
+    public void setChosenPhone(String chosenPhone)
+    {
+        this.chosenPhone = chosenPhone;
     }
 }
