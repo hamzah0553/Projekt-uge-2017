@@ -24,6 +24,7 @@ public class View {
     protected Controller controller;
 
     private Scene mainScene;
+    private SearchView searchView;
 
     public View(Controller controller)
     {
@@ -68,7 +69,10 @@ public class View {
             searchBox.getChildren().addAll(searchLabel, searchBar, searchButton);
 
             searchButton.setOnAction(event1 -> {
-                new SearchView(new SearchController(controller.model)).setSearchView(searchBar.getText(), stage);
+                if(searchView == null)
+                {
+                    new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage);
+                }
             });
 
             Scene searchScene = new Scene(searchBox, 300, 200);

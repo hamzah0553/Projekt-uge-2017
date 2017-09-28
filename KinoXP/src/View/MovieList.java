@@ -1,5 +1,6 @@
 package View;
 
+import DataAccessObject.AddMovieDAO;
 import Models.Movie;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -104,4 +106,37 @@ public class MovieList extends View{
         ScrollPane pane = new ScrollPane(layout);
 
       return pane;
-    }}
+    }
+
+    public FlowPane setBottom(Stage primaryStage)
+    {
+        FlowPane flowPane = new FlowPane();
+
+        Button newPlay = new Button("Ny Spilletid");
+        Button showSale = new Button("Stats for film");
+        Button newMovie = new Button("Ny film");
+
+        flowPane.setHgap(5.0);
+
+        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
+        newPlay.setOnAction(event -> {
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage);
+            playListCrud.setScene(playListCrud.layout(), null, primaryStage);
+        });
+
+        showSale.setOnAction(event -> {
+            StatsView statsView = new StatsView();
+            statsView.setScene(statsView.centerPane(), null,primaryStage);
+        });
+
+        newMovie.setOnAction(event -> {
+            AddMovieDAO dao = new AddMovieDAO();
+            dao.getMovies();
+            CreateMovies createMovies = new CreateMovies(primaryStage);
+        });
+
+
+        return flowPane;
+    }
+}
