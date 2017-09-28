@@ -9,10 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -53,6 +50,9 @@ public class TrueLogin
         GridPane.setConstraints(passInput,0,1);
         Button button = new Button("Login");
 
+        Label labelError = new Label("");
+        GridPane.setConstraints(labelError,0,3);
+
         passInput.setOnKeyReleased(event1 -> {
 
             try {
@@ -75,6 +75,8 @@ public class TrueLogin
                     view.setAdmin(loginDAO.isAdmin(nameInput.getText(), passInput.getText()));
                     view.setScene(movieList.theWindow(), movieList.setBottom(primaryStage) , primaryStage);
                 }
+
+
             }catch (SQLException e) {
                 System.err.println("FAIL");
 
@@ -92,7 +94,8 @@ public class TrueLogin
 
         GridPane.setConstraints(button,0,2);
 
-        layout.getChildren().addAll(nameInput,passInput,button);
+
+        layout.getChildren().addAll(nameInput,passInput,button, labelError);
 
         layout.setStyle("-fx-background-color: white");
 
@@ -160,6 +163,8 @@ public class TrueLogin
 
 
                 }
+                else {
+                    labelError.setText("Wrong password");}
             }catch (SQLException e) {
                 System.err.println("FAIL");
 
