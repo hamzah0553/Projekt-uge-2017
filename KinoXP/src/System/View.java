@@ -3,14 +3,12 @@ package System;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -58,21 +56,31 @@ public class View {
             Platform.exit();
         });
 
-        phoneLabel.setOnMouseClicked(event->{
+        phoneLabel.setOnMouseClicked(event->
+        {
             final Stage stage = new Stage();
+
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(primaryStage);
 
-            Label searchLabel = new Label("Find reservation");
+            Label searchLabel = new Label("Indtast telefon nr:");
 
             Button searchButton = new Button("Søg");
             searchButton.getStyleClass().add("btn");
             searchButton.getStyleClass().add("btn-xl");
             searchButton.getStyleClass().add("full-width");
+            searchButton.setMaxWidth(Double.MAX_VALUE);
 
             TextField searchBar = getSearchBar();
 
+            searchBar.setMaxWidth(Double.MAX_VALUE);
+
             VBox searchBox = new VBox(20);
+
+            searchBox.setStyle("-fx-background-color: white");
+
+            searchBox.setPadding(new Insets(30,10,10,10));
+
             searchBox.setAlignment(Pos.CENTER);
             searchBox.getChildren().addAll(searchLabel, searchBar, searchButton);
 
