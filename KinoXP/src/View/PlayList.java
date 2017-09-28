@@ -3,6 +3,7 @@ package View;
 import DataAccessObject.PlaylistDAO;
 import Models.Movie;
 import Models.Play;
+import System.View;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,14 +19,17 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+
 /**
  * Created by den udvalgte on 26-09-2017.
  */
-public class PlayList {
+public class PlayList extends View {
 
     ArrayList<Play> plays;
+    Stage stage;
 
-    public PlayList(Movie movie){
+    public PlayList(Movie movie, Stage primaryStage){
+        stage = primaryStage;
         PlaylistDAO dao = new PlaylistDAO();
 
         ArrayList<Button> [] times = new ArrayList[7];
@@ -36,7 +40,6 @@ public class PlayList {
 
         VBox[] dayAndDate = new VBox[7];
 
-        Stage window = new Stage();
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(15,15,15,15));
 
@@ -104,8 +107,8 @@ public class PlayList {
 
 
         Scene scene = new Scene(gridPane, 650, 400);
-        window.setScene(scene);
-        window.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
     }
 
@@ -152,6 +155,7 @@ public class PlayList {
                 }
 
             }
+            Login login = new Login(stage);
             System.out.println(button.getText());
             System.out.println(movie.getName());
             System.out.println(theId);
