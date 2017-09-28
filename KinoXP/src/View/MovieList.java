@@ -41,7 +41,7 @@ public class MovieList extends View{
         head.setFont(Font.font ("Verdana", 20));
 
         FetchMovieListDAO dao = new FetchMovieListDAO();
-        ArrayList<Button> buttons= new ArrayList();
+        ArrayList<Button> buttons = new ArrayList();
         ArrayList<Movie> movies = dao.getMovies();
 
         for (Movie m :
