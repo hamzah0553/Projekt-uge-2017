@@ -59,15 +59,7 @@ public class PlayList extends View {
             long dayTemp = TimeUnit.DAYS.toMillis(1);
             Date date = new Date(System.currentTimeMillis()+(dayTemp*i));
             today = getDate(i,date);
-            /**
-             long dayTemp = TimeUnit.DAYS.toMillis(1);
-             date = new Date(System.currentTimeMillis()+(dayTemp*i));
-             today = date.toString();
-             today = today.substring(5,today.length());
-             today = today.replace("-","/");
-             today = today.substring(today.length()-2,today.length()) + "/"+ today.substring(0,2);
 
-             */
 
             day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
             dayAndDate[i] = new VBox(5);
@@ -104,6 +96,7 @@ public class PlayList extends View {
             gridPane.getChildren().addAll(times[i]);
 
         }
+
 
         setScene(gridPane, null, primaryStage);
     }
