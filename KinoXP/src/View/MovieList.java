@@ -54,6 +54,7 @@ public class MovieList extends View{
 
 
 
+
         GridPane.setConstraints(head,0,0);
 
 

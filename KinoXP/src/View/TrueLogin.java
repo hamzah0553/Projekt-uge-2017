@@ -1,11 +1,13 @@
 package View;
 
         import DataAccessObject.FetchMovieListDAO;
+        import javafx.event.ActionEvent;
         import javafx.geometry.Insets;
         import javafx.geometry.Pos;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
         import javafx.scene.control.Label;
+        import javafx.scene.input.KeyCode;
         import javafx.scene.layout.*;
         import javafx.stage.Stage;
 
@@ -50,7 +52,19 @@ public class TrueLogin
         passInput.setPromptText("Adgangskode");
         GridPane.setConstraints(passInput,0,1);
         Button button = new Button("Login");
-        button.setOnAction(event -> {
+
+        passInput.setOnKeyReleased(event1 -> {
+            try {
+                if (event1.getCode() == KeyCode.ENTER && loginDAO.validate(nameInput.getText(),passInput.getText())){
+                    View view = new View(new Controller(new Model()));
+                    view.setScene(movieList.theWindow(), movieList.setBottom(primaryStage) , primaryStage);
+                }
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+                System.out.println("lol");
+            }
+        });
+        button.setOnAction((ActionEvent event) -> {
             //TODO: move to model later
             try
             {
@@ -61,6 +75,8 @@ public class TrueLogin
                 }
             }catch (SQLException e) {
                 System.err.println("FAIL");
+
+
             }
         });
 
@@ -92,4 +108,7 @@ public class TrueLogin
     }
 
 
-}
+ }
+
+
+
