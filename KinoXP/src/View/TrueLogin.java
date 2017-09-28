@@ -57,6 +57,7 @@ public class TrueLogin
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
                     View view = new View(new Controller(new Model()));
+                    view.setAdmin(loginDAO.isAdmin(nameInput.getText(), passInput.getText()));
                     view.setScene(movieList.theWindow(), movieList.setBottom(primaryStage) , primaryStage);
                 }
             }catch (SQLException e) {

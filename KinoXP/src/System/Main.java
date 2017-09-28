@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("KINO XP");
         primaryStage.setScene(new Scene(new Pane(), 300, 275));
         new TrueLogin(primaryStage);
 

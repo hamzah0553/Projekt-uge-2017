@@ -22,7 +22,7 @@ public class View {
     protected Controller controller;
 
     private Scene mainScene;
-    private SearchView searchView;
+    private boolean adminLogIn;
 
     public View(Controller controller)
     {
@@ -30,6 +30,11 @@ public class View {
     }
 
     public View (){}
+
+    public void setAdmin(boolean adminLogIn)
+    {
+        this.adminLogIn = adminLogIn;
+    }
 
     public void setScene(Node center, Node bottom, Stage primaryStage)
     {
@@ -45,7 +50,23 @@ public class View {
 
         menuOptions.getItems().addAll(logOut);
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone);
+
+        if(adminLogIn){
+            Menu menuAdmin = new Menu("Admin");
+            MenuItem createUser = new MenuItem("Opret login");
+            MenuItem manageUser = new MenuItem("Se medarbejder liste");
+
+            //actions for items
+            createUser.setOnAction(event -> {
+                
+            });
+
+            menuAdmin.getItems().addAll(createUser, manageUser);
+            menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone, menuAdmin);
+        }else
+        {
+            menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone);
+        }
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
@@ -53,7 +74,9 @@ public class View {
         });
 
         logOut.setOnAction(event->{
-            Platform.exit();
+            primaryStage.close();
+            Stage newStage = new Stage();
+            new TrueLogin(newStage);
         });
 
         phoneLabel.setOnMouseClicked(event->
@@ -85,10 +108,7 @@ public class View {
             searchBox.getChildren().addAll(searchLabel, searchBar, searchButton);
 
             searchButton.setOnAction(event1 -> {
-                if(searchView == null)
-                {
-                    new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage);
-                }
+                new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage);
             });
 
             Scene searchScene = new Scene(searchBox, 300, 200, Color.WHITE);
