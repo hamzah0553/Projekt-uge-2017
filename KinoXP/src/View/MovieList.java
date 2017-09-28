@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -85,4 +86,40 @@ public class MovieList extends View{
         }
         Pane pane = new Pane(layout);
       return pane;
-    }}
+    }
+
+    public FlowPane setBottom(Stage primaryStage)
+    {
+        FlowPane flowPane = new FlowPane();
+
+        Button newPlay = new Button("Ny Spilletid");
+        Button showSale = new Button("Stats for film");
+        Button newMovie = new Button("Ny film");
+
+        flowPane.setHgap(5.0);
+
+        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
+        newPlay.setOnAction(event ->
+        {
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage);
+            playListCrud.setScene(playListCrud.layout(), null, primaryStage);
+        });
+
+        showSale.setOnAction(event ->
+        {
+            StatsView statsView = new StatsView();
+            statsView.setScene(statsView.centerPane(), null, primaryStage);
+        });
+
+        newMovie.setOnAction(event ->
+        {
+            FetchMovieListDAO dao = new FetchMovieListDAO();
+            dao.getMovies();
+            CreateMovies createMovies = new CreateMovies(primaryStage);
+        });
+
+
+        return flowPane;
+    }
+}

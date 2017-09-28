@@ -57,7 +57,7 @@ public class TrueLogin
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
                     View view = new View(new Controller(new Model()));
-                    view.setScene(movieList.theWindow(),setBottom(primaryStage) , primaryStage);
+                    view.setScene(movieList.theWindow(), movieList.setBottom(primaryStage) , primaryStage);
                 }
             }catch (SQLException e) {
                 System.err.println("FAIL");
@@ -76,35 +76,5 @@ public class TrueLogin
 
     }
 
-    public FlowPane setBottom(Stage primaryStage)
-    {
-        FlowPane flowPane = new FlowPane();
 
-        Button newPlay = new Button("Ny Spilletid");
-        Button showSale = new Button("Stats for film");
-        Button newMovie = new Button("Ny film");
-
-        flowPane.setHgap(5.0);
-
-        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
-
-        newPlay.setOnAction(event -> {
-                PlayListCrud playListCrud = new PlayListCrud(primaryStage);
-                playListCrud.setScene(playListCrud.layout(), null, primaryStage);
-            });
-
-        showSale.setOnAction(event -> {
-            StatsView statsView = new StatsView();
-            statsView.setScene(statsView.centerPane(), null,primaryStage);
-        });
-
-        newMovie.setOnAction(event -> {
-            FetchMovieListDAO dao = new FetchMovieListDAO();
-            dao.getMovies();
-            CreateMovies createMovies = new CreateMovies(primaryStage);
-        });
-
-
-        return flowPane;
-    }
 }
