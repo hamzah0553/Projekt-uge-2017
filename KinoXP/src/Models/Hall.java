@@ -3,6 +3,7 @@ package Models;
 import DataAccessObject.Connector;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Hall
 {
@@ -18,6 +19,14 @@ public class Hall
     private int seats_row;
 
     private int seats_column;
+
+    private String hallName;
+
+
+
+    public Hall (){
+
+    }
 
     /**
      *
@@ -42,7 +51,7 @@ public class Hall
 
             if (rs.first())
             {
-
+                hallName = rs.getString(1);
                 seats_row = rs.getInt(2);
                 seats_column = rs.getInt(3);
 
@@ -54,6 +63,40 @@ public class Hall
         }
 
 
+    }
+
+    public ArrayList<Hall> getHalls (){
+        ArrayList<Hall> halls = new ArrayList<>();
+        Connector connector = Connector.getInstance();
+        conn = connector.getConnection();
+        String query = "SELECT * FROM tandbud_project2.hall";
+        try
+        {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.first())
+            {
+                Hall hall = new Hall();
+                hallID = rs.getInt("hall_id");
+                hallName = rs.getString("hall_name");
+                seats_row = rs.getInt("hall_seats_row");
+                seats_column = rs.getInt("hall_seats_column");
+                halls.add(hall);
+            }
+
+        } catch (SQLException e)
+        {
+            System.out.println("?");
+            System.out.println(e.getMessage());
+        }
+        return halls;
+    }
+
+    public int getHallID()
+    {
+        return hallID;
     }
 
     /**
