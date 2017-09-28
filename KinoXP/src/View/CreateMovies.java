@@ -157,7 +157,7 @@ public class CreateMovies {
             CreateMovieController createMovieController = new CreateMovieController();
             //Validates the information
             if (createMovieController.validateMovieCreation(Integer.parseInt(theaterIDInput.getText()),movieNameInput.getText(),
-                    Integer.parseInt(movieLength.getText()), Integer.parseInt(movieAge.getText()), Integer.parseInt(movieRun.getText())) == "ok") {
+                    Integer.parseInt(movieLength.getText()), Integer.parseInt(movieAge.getText()), Integer.parseInt(movieRun.getText())).equalsIgnoreCase("ok")) {
 
                 //starting the chain of child nodes that need to create the movie enty to the database
                 createMovieController.createMovie();

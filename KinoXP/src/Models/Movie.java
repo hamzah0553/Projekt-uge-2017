@@ -82,10 +82,14 @@ public class Movie
     }
 
 
+    //Adding the movie to the database
+
     public void addMovie (int hall_id, String movie_name, String movie_length, int movie_run, int movie_age) {
 
+        //New dataacces objekt
         DAOmovie newMovie = new DAOmovie();
 
+        //try catch for the dataacces objekt.
         try {
             newMovie.Createmovie(movie_name, movie_length, movie_age, movie_run, hall_id);
         } catch (SQLException e) {
