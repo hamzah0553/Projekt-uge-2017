@@ -21,6 +21,7 @@ import java.util.ArrayList;
  */
 public class MovieList extends View{
     Stage window;
+    ArrayList<Movie> movieList;
 
     public MovieList(Stage primaryStage){
         super();
@@ -44,6 +45,7 @@ public class MovieList extends View{
         FetchMovieListDAO dao = new FetchMovieListDAO();
         ArrayList<Button> buttons = new ArrayList();
         ArrayList<Movie> movies = dao.getMovies();
+        movieList = movies;
 
         for (Movie m :
                  movies) {
@@ -102,7 +104,7 @@ public class MovieList extends View{
 
         newPlay.setOnAction(event ->
         {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage);
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage,movieList);
             playListCrud.setScene(playListCrud.layout(), null, primaryStage);
         });
 
