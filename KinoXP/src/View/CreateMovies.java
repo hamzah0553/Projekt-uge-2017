@@ -1,5 +1,6 @@
 package View;
 
+import Controller.CreateMovieController;
 import DataAccessObject.DAOmovie;
 import DataAccessObject.GetMoviesDAO;
 import Models.TableInformation;
@@ -149,12 +150,26 @@ public class CreateMovies {
 
 
         // TODO: Move the actions on buttons to another class(?)
-        addMovieButton.setOnAction(event -> {
-            try {
+        addMovieButton.setOnAction(event ->  {
 
-                //adds the data inputted to the database
-                daOmovie.Createmovie(movieNameInput.getText(),movieLength.getText(), Integer.parseInt(movieAge.getText()),
-                        Integer.parseInt(movieRun.getText()), Integer.parseInt(theaterIDInput.getText()));
+
+                //take the data to be validated by controller
+            CreateMovieController createMovieController = new CreateMovieController();
+            //Validates the information
+            if (createMovieController.validateMovieCreation(Integer.parseInt(theaterIDInput.getText()),movieNameInput.getText(),
+                    Integer.parseInt(movieLength.getText()), Integer.parseInt(movieAge.getText()), Integer.parseInt(movieRun.getText())) == "ok") {
+
+                //starting the chain of child nodes that need to create the movie enty to the database
+                createMovieController.createMovie();
+
+            } else {
+
+                //consumes the event in case that the data coulden't be properely validated
+                event.consume();
+            }
+
+
+
 
                 //Shows "YES" or "NO" if you insert 0/1 in movie runs
                 if (movieRun.getText().equalsIgnoreCase("0")) {
@@ -181,10 +196,10 @@ public class CreateMovies {
                 movieAge.clear();
                 movieRun.clear();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("error");
-            }
+
+
+
+
         });
 
         //TODO: Update tableview, when movie gets deleted
@@ -197,6 +212,20 @@ public class CreateMovies {
             }
 
             deleteField.clear();
+        });
+
+        updateButton.setOnAction(event -> {
+            try {
+                daOmovie.Update(Integer.parseInt(updateID.getText()),Integer.parseInt(updateHall.getText())
+                        ,updateMovieName.getText(),updateMovieLength.getText(),Integer.parseInt(updateMovieAge.getText()));
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            updateID.clear();
+            updateHall.clear();
+            updateMovieName.clear();
+            updateMovieLength.clear();
+            updateMovieAge.clear();
         });
     }
 

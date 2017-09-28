@@ -1,7 +1,11 @@
 package Models;
 
-import javafx.beans.property.SimpleStringProperty;
+import DataAccessObject.Connector;
+import DataAccessObject.DAOmovie;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 /**
@@ -9,6 +13,10 @@ import java.util.Date;
  */
 public class Movie
 {
+
+    Statement st;
+    Connection conn;
+
     private int id;
     private String name;
     private String length;
@@ -18,6 +26,8 @@ public class Movie
 
     public Movie()
     {
+        Connector connector = Connector.getInstance();
+        conn = connector.getConnection();
     }
 
     public int getId()
@@ -70,4 +80,21 @@ public class Movie
     public int getRun() {
         return run;
     }
+
+
+    public void addMovie (int hall_id, String movie_name, String movie_length, int movie_run, int movie_age) {
+
+        DAOmovie newMovie = new DAOmovie();
+
+        try {
+            newMovie.Createmovie(movie_name, movie_length, movie_age, movie_run, hall_id);
+        } catch (SQLException e) {
+            System.out.println("Something went wrong");
+        }
+
+
+    }
+
 }
+
+
