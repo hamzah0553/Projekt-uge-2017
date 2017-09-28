@@ -164,7 +164,7 @@ public class TrueLogin
 
                 }
                 else {
-                    labelError.setText("Wrong password");}
+                    labelError.setText("Wrong password.Please try again");}
             }catch (SQLException e) {
                 System.err.println("FAIL");
 
