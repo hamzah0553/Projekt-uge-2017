@@ -54,7 +54,7 @@ public class TrueLogin
         Button button = new Button("Login");
 
         passInput.setOnKeyReleased(event1 -> {
-            
+
             try {
                 if (event1.getCode() == KeyCode.ENTER && loginDAO.validate(nameInput.getText(),passInput.getText())){
                     View view = new View(new Controller(new Model()));
@@ -103,7 +103,6 @@ public class TrueLogin
 
 
         Scene scene = new Scene(layout,350, 230);
-
         scene.getStylesheets().add("css/style.css");
 
 
