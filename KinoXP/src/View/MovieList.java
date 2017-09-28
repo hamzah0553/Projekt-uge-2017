@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -33,79 +35,70 @@ public class MovieList extends View{
         this.window = primaryStage;
     }
 
-    public ScrollPane theWindow()    {
+    public ScrollPane theWindow()
+    {
+        GridPane gridPane = new GridPane();
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        ArrayList<Button> buttons = new ArrayList<>();
 
-        GridPane layout = new GridPane();
-        window.setTitle("Movies");
-
-        layout.setPadding(new Insets(2,10,10,10));
-        layout.setVgap(8);
-        layout.setHgap(8);
-
-
-        Label head = new Label("Movies:");
-        head.setFont(Font.font ("Verdana", 20));
-
-        ArrayList<Button> moviesArraylist = new ArrayList();
-        moviesArraylist.add(new Button("batman1"));
-        moviesArraylist.add(new Button("batman2"));
-        moviesArraylist.add(new Button("batman3"));
-        moviesArraylist.add(new Button("batman4"));
-        moviesArraylist.add(new Button("batman5"));
-        moviesArraylist.add(new Button("batman6"));
-        moviesArraylist.add(new Button("batman7"));
-        moviesArraylist.add(new Button("batwoman"));
-        moviesArraylist.add(new Button("batman8"));
-        moviesArraylist.add(new Button("batman9"));
-        moviesArraylist.add(new Button("batman10"));
-        moviesArraylist.add(new Button("batman11"));
-        moviesArraylist.add(new Button("batman12"));
-        moviesArraylist.add(new Button("batman13"));
-        moviesArraylist.add(new Button("batman14"));
-        moviesArraylist.add(new Button("superman"));
-        moviesArraylist.add(new Button("batman VS spuerman"));
-        moviesArraylist.add(new Button("the man"));
-
-
-
-        GridPane.setConstraints(head,0,0);
-
-
-        Button button_return = new Button("Return");
-        GridPane.setConstraints(button_return,0,1);
-
-        button_return.setOnAction(e->window.close());
-
-//        layout.getChildren().addAll();
-
-        ScrollBar sc = new ScrollBar();
-        sc.setMin(0);
-        sc.setMax(100);
-        sc.setValue(50);
-
-
-        for (int i = 0; i < moviesArraylist.size() ; i++) {
-
-            moviesArraylist.get(i).setMinHeight(160);
-            moviesArraylist.get(i).setMaxHeight(160);
-            moviesArraylist.get(i).setMinWidth(108);
-            moviesArraylist.get(i).setMaxWidth(108);
-
-            moviesArraylist.get(i).setOnAction(event -> {
-                PlayList playList = new PlayList(new Movie(1, "batman", "120", 15, 5), window);
-
-            });
-
-            int vertical = i/3;
-            int horizontal = i%3;
-
-            GridPane.setConstraints(moviesArraylist.get(i), horizontal,vertical);
-
-            layout.getChildren().addAll(moviesArraylist.get(i));
+        for (int i = 0; i < 10; i++)
+        {
+            imageViews.add(new ImageView(new Image("https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg")));
+            buttons.add(new Button("Find spilletider"));
+            imageViews.get(i).setFitHeight(480);
+            imageViews.get(i).setFitWidth(252);
         }
-        ScrollPane pane = new ScrollPane(layout);
 
-      return pane;
+        gridPane.setHgap(25);
+        gridPane.setVgap(15);
+
+
+        int row = 0;
+        int column = 0;
+
+        int movieRow = 1;
+        int movieColumn = 0;
+
+        for (int i = 0; i < 10; i++)
+        {
+            gridPane.add(imageViews.get(i), column, row);
+
+            column++;
+
+            if(column == 3)
+            {
+               row = row + 2;
+               column = 0;
+            }
+
+            gridPane.add(buttons.get(i), movieColumn, movieRow);
+
+            movieColumn++;
+
+            if(movieColumn == 3)
+            {
+                movieRow = movieRow + 2;
+                movieColumn = 0;
+            }
+            buttons.get(i).setOnAction(event -> {
+                PlayList playList = new PlayList(new Movie(1, "Batman", "120", 25, 1), window);
+            });
+        }
+
+        gridPane.setAlignment(Pos.CENTER);
+
+
+        ScrollPane pane = new ScrollPane(gridPane);
+
+        pane.setPadding(new Insets(25, 0, 25, 0));
+
+        pane.setFitToHeight(true);
+        pane.setFitToWidth(true);
+
+        pane.setHvalue(0.5);
+        pane.setVvalue(0.5);
+
+        return pane;
     }
 
     public FlowPane setBottom(Stage primaryStage)
