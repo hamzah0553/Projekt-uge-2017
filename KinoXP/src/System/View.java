@@ -1,9 +1,18 @@
 package System;
 
+import DataAccessObject.FetchMovieListDAO;
 import Models.Movie;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import Controller.SearchController;
+import View.MovieList;
+import View.SearchView;
+import View.TrueLogin;
+import View.PlayListCrud;
+import View.CreateMovies;
+import View.StatsView;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -12,16 +21,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-
-import View.*;
-import Controller.*;
 
 public class View {
 
@@ -31,6 +38,7 @@ public class View {
 
     private Scene mainScene;
     private boolean adminLogIn;
+    MovieList view;
 
     public View(Controller controller)
     {
@@ -55,16 +63,14 @@ public class View {
         Image backIMG = new Image("/img/back.png");
         ImageView backView = new ImageView(backIMG);
 
-        backView.setFitWidth(30);
-        backView.setFitHeight(30);
+        backView.setFitWidth(26);
+        backView.setFitHeight(26);
 
         backLabel.setGraphic(backView);
 
-
-
         final Label movieMovie = new Label("Forestillinger");
 
-        final Label phoneLabel = new Label("Søg telefon nr.");
+        final Label phoneLabel = new Label("Find reservation");
 
         final Menu menuOptions = new Menu("Indstillinger");
         final MenuItem logOut = new MenuItem("Log ud");
@@ -74,8 +80,6 @@ public class View {
 
         final Menu menuBack = new Menu();
         menuBack.setGraphic(backLabel);
-
-       // Imag image = new Image(getClass().getResourceAsStream("labels.jpg"));
 
         final Menu menuMovie = new Menu();
         menuMovie.setGraphic(movieMovie);
@@ -106,20 +110,33 @@ public class View {
 
         MenuBar barBack = new MenuBar(menuBack);
 
+
+        borderPane.setStyle("-fx-background-color: white");
+
         borderPane.setCenter(menuBar);
         borderPane.setLeft(barBack);
 
-
+        borderPane.getStyleClass().add("headerPane");
         borderPane.setAlignment(menuBar, Pos.CENTER);
 
         barBack.getStyleClass().add("menu");
         menuBar.getStyleClass().add("menu");
 
-        backLabel.getStyleClass().add("mlabel");
+
+        //...
+
+        menuBack.setStyle("-fx-background-color: #fff !important; -fx-cursor: pointer;");
+
+
+        menuBack.getStyleClass().add("icon");
+        backLabel.getStyleClass().add("icon");
+
+        System.out.println(menuBack.getStyleClass());
+
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
-            MovieList view = new MovieList(primaryStage);
+            view = new MovieList(primaryStage);
             view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);            //TODO: how to back?
         });
 
@@ -231,6 +248,60 @@ public class View {
         });
 
         return searchBar;
+    }
+
+    public FlowPane setBottom(Stage primaryStage)
+    {
+        FlowPane flowPane = new FlowPane();
+
+        Button newPlay = new Button("Opret Spilletid");
+        Button showSale = new Button("Statistikker");
+        Button newMovie = new Button("Opret film");
+
+        newPlay.getStyleClass().add("btn");
+        newPlay.getStyleClass().add("non");
+
+
+
+        showSale.getStyleClass().add("btn");
+        showSale.getStyleClass().add("non");
+
+        newMovie.getStyleClass().add("btn");
+        newMovie.getStyleClass().add("non");
+
+        flowPane.setAlignment(Pos.CENTER);
+
+        //flowPane.setStyle("-fx-background-color: white");
+
+        flowPane.getStyleClass().add("bottomPane");
+
+        flowPane.setHgap(5.0);
+
+        flowPane.getStylesheets().add("css/style.css");
+
+        flowPane.getChildren().addAll(newPlay, showSale, newMovie);
+
+        newPlay.setOnAction(event ->
+        {
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage,view.getMovieList());
+            playListCrud.setScene(playListCrud.layout(), null, primaryStage);
+        });
+
+        showSale.setOnAction(event ->
+        {
+            StatsView statsView = new StatsView();
+            statsView.setScene(statsView.centerPane(), null, primaryStage);
+        });
+
+        newMovie.setOnAction(event ->
+        {
+            FetchMovieListDAO dao = new FetchMovieListDAO();
+            dao.getMovies();
+            CreateMovies createMovies = new CreateMovies(primaryStage);
+        });
+
+
+        return flowPane;
     }
 
 }

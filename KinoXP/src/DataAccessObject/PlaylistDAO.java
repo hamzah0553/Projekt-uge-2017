@@ -18,6 +18,25 @@ public class PlaylistDAO extends DataWrapper {
         this.conn = super.connection;
     }
 
+    public void removeOrder(String orderID)
+    {
+        String query = "UPDATE `order` SET deleted = ? WHERE order_id = ?";
+
+        PreparedStatement preparedStatement;
+        try
+        {
+            preparedStatement = conn.prepareStatement(query);
+
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setString(2, orderID);
+
+            update(preparedStatement);
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<HashMap<String, String>> getTicketInfo(String phone)
     {
         HashMap<String, String> rows = new HashMap<>();
