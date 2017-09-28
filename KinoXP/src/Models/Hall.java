@@ -91,6 +91,10 @@ public class Hall
             System.out.println("?");
             System.out.println(e.getMessage());
         }
+
+        for (Hall h : halls) {
+            System.out.println(h.getHallID());
+        }
         return halls;
     }
 

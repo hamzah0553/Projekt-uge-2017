@@ -25,6 +25,8 @@ public class PlayListCrud extends View
     ArrayList<Hall> halls;
     ArrayList<Movie> movieList;
 
+
+
     public PlayListCrud(Stage primaryStage, ArrayList<Movie> movieList)
                         //ArrayList<Hall> halls, ArrayList<Movie> movieList ){
     {
@@ -40,9 +42,7 @@ public class PlayListCrud extends View
         setScene(layout(),new Button("Gå væk!"),primaryStage);
 
 
-        //for (Movie m : this.movieList ) {
-          //  System.out.println(m.getName() + "????");
-        //}
+
 
     }
 
@@ -51,7 +51,8 @@ public class PlayListCrud extends View
 
         VBox layout = new VBox(10);
 
-        Label create = new Label("Create new playing of a movie!\nSelect movie");
+        Label create = new Label("Opret ny spilletid");
+        Label mov = new Label("Vælg hvilken film");
         create.setStyle("-fx-font-weight: bold;");
 
         movies = new ChoiceBox<>();
@@ -62,7 +63,7 @@ public class PlayListCrud extends View
             }
         }
 
-        Label chooseHall = new Label("Select which hall");
+        Label chooseHall = new Label("Vælg hvilken hal");
 
 
         hall = new ChoiceBox<>();
@@ -70,7 +71,7 @@ public class PlayListCrud extends View
             hall.getItems().add(h.getHallID()+"");
         }
 
-        Label time = new Label("Select date and time");
+        Label time = new Label("Vælg tid og dato");
 
        DatePicker date = new DatePicker();
         date.setOnAction(event ->{
@@ -80,7 +81,7 @@ public class PlayListCrud extends View
         times = new ChoiceBox<>();
         times.getItems().addAll("09:00","12:30","16:00","19:30","23:00");
 
-        Button save = new Button("Save");
+        Button save = new Button("Gem");
         save.setOnAction(event -> {
             selectedMovie = movies.getValue().toString();
             selectedTime = times.getValue().toString();
@@ -88,7 +89,7 @@ public class PlayListCrud extends View
         });
 
 
-        layout.getChildren().addAll(create,movies,chooseHall,hall,date,time,times,save);
+        layout.getChildren().addAll(create,mov,movies,chooseHall,hall,date,time,times,save);
 
         layout.setAlignment(Pos.CENTER);
         return layout;
@@ -122,4 +123,7 @@ public class PlayListCrud extends View
     {
         return selectedTime;
     }
+
+
+
 }

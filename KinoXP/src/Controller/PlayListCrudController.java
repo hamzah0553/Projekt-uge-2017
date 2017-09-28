@@ -16,23 +16,32 @@ public class PlayListCrudController
     }
 
 
-    public void createPlay(){
+    public void createPlay()
+    {
+
+        try
+        {
 
 
-        Movie movie = null;
-        for (Movie m : gui.getMovieList()) {
-            if (m.getName().equalsIgnoreCase(gui.getSelectedMovie())){
-                System.out.println("HIT!: " + m);
-                movie = m;
+            Movie movie = null;
+            for (Movie m : gui.getMovieList())
+            {
+                if (m.getName().equalsIgnoreCase(gui.getSelectedMovie()))
+                {
+                    System.out.println("HIT!: " + m);
+                    movie = m;
+                }
             }
+
+            PlaylistDAO dao = new PlaylistDAO();
+            Play play = new Play();
+            play.setMovie(movie);
+            play.setDate(gui.getDate());
+            play.setTime(gui.getSelectedTime());
+            dao.createPlay(play);
+
+
+        }catch (Exception e){
         }
-
-        PlaylistDAO dao = new PlaylistDAO();
-        Play play = new Play();
-        play.setMovie(movie);
-        play.setDate(gui.getDate());
-        play.setTime(gui.getSelectedTime());
-        dao.createPlay(play);
-
     }
 }
