@@ -13,9 +13,19 @@ body {
     -fx-padding: 12px;
     -fx-text-fill: #fff;
 
+}
 
+.linkButton
+{
 
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: pointer;
+    -fx-padding: 20px;
+    -fx-font-size: 16px;
+    -fx-padding-left: 0px;
 
+    -fx-font-weight: bold;
 
 }
 

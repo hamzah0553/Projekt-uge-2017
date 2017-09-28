@@ -46,24 +46,29 @@ public class MovieList extends View{
 
         for (int i = 0; i < movies.size(); i++) {
             imageViews.add(new ImageView(new Image("/img/batman.jpg", true)));
-            buttons.add(new Button(movies.get(i).getName()));
-            imageViews.get(i).setFitHeight(455);
-            imageViews.get(i).setFitWidth(238.875);
+
+            Button button = new Button(movies.get(i).getName());
+
+            button.getStyleClass().add("linkButton");
+
+            buttons.add(button);
+
+
+
+            imageViews.get(i).setFitHeight(380);
+            imageViews.get(i).setFitWidth(230);
 
         }
 
-        gridPane.setHgap(25);
-        gridPane.setVgap(15);
+        gridPane.setHgap(5);
+        gridPane.setVgap(0);
 
         window.setTitle("Movies");
         movieList = movies;
 
-
         int row = 0;
         int column = 0;
 
-        int nameRow = 1;
-        int nameColumn = 0;
         int buttonRow = 2;
         int buttonColumn = 0;
 
@@ -102,10 +107,12 @@ public class MovieList extends View{
 
         ScrollPane pane = new ScrollPane(gridPane);
 
+        pane.getStylesheets().add("css/style.css");
+
         pane.setStyle("-fx-background-color: white");
 
 
-        pane.setPadding(new Insets(25, 0, 25, 0));
+        pane.setPadding(new Insets(0, 0, 0, 0));
 
         pane.setFitToHeight(true);
         pane.setFitToWidth(true);
