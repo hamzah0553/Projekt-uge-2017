@@ -133,7 +133,6 @@ public class View {
 
         System.out.println(menuBack.getStyleClass());
 
-
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
             view = new MovieList(primaryStage);
@@ -283,7 +282,7 @@ public class View {
 
         newPlay.setOnAction(event ->
         {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage,view.getMovieList());
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage, TrueLogin.movieList.getMovieList());
             playListCrud.setScene(playListCrud.layout(), null, primaryStage);
         });
 

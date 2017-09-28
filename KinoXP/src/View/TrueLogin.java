@@ -19,6 +19,7 @@ import java.sql.SQLException;
 public class TrueLogin
 {
     Stage window;
+   public static MovieList movieList;
 
     ProgressBar prgbProgress;
 
@@ -27,7 +28,7 @@ public class TrueLogin
         LoginDAO loginDAO = new LoginDAO();
 
 
-        MovieList movieList = new MovieList(primaryStage);
+        movieList = new MovieList(primaryStage);
         this.window = primaryStage;
 
         window.setTitle("Login");
