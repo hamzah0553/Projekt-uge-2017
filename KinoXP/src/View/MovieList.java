@@ -15,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import System.View;
 
@@ -34,14 +35,18 @@ public class MovieList extends View{
 
     public ScrollPane theWindow()
     {
+
+        FetchMovieListDAO dao = new FetchMovieListDAO();
+        ArrayList<Movie> movies = dao.getMovies();
+
         GridPane gridPane = new GridPane();
         ArrayList<ImageView> imageViews = new ArrayList<>();
         ArrayList<Button> buttons = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < movies.size(); i++)
         {
             imageViews.add(new ImageView(new Image("https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg")));
-            buttons.add(new Button("Find spilletider"));
+            buttons.add(new Button(movies.get(i).getName()));
             imageViews.get(i).setFitHeight(455);
             imageViews.get(i).setFitWidth(238.875);
         }
@@ -51,23 +56,14 @@ public class MovieList extends View{
 
         window.setTitle("Movies");
 
-        FetchMovieListDAO dao = new FetchMovieListDAO();
-        ArrayList<Movie> movies = dao.getMovies();
-
-        for (Movie m :
-                movies) {
-
-            if (m.getRun()==1)
-            {
-
-            }
-        }
 
         int row = 0;
         int column = 0;
 
-        int movieRow = 1;
-        int movieColumn = 0;
+        int nameRow = 1;
+        int nameColumn = 0;
+        int buttonRow = 2;
+        int buttonColumn = 0;
 
         for (int i = 0; i < 10; i++)
         {
@@ -77,19 +73,21 @@ public class MovieList extends View{
 
             if(column == 3)
             {
-                row = row + 2;
+                row = row + 3;
                 column = 0;
             }
 
-            gridPane.add(buttons.get(i), movieColumn, movieRow);
 
-            movieColumn++;
+            gridPane.add(buttons.get(i), buttonColumn, buttonRow);
 
-            if(movieColumn == 3)
+            buttonColumn++;
+
+            if(buttonColumn == 3)
             {
-                movieRow = movieRow + 2;
-                movieColumn = 0;
+                buttonRow = buttonRow + 3;
+                buttonColumn = 0;
             }
+
             buttons.get(i).setOnAction(event -> {
                 PlayList playList = new PlayList(new Movie(1, "Batman", "120", 25, 1), window);
             });
