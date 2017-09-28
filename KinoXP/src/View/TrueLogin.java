@@ -1,6 +1,8 @@
 package View;
 
+        import DataAccessObject.FetchMovieListDAO;
         import javafx.geometry.Insets;
+        import javafx.geometry.Pos;
         import javafx.scene.Scene;
         import javafx.scene.control.Button;
         import javafx.scene.control.Label;
@@ -15,7 +17,8 @@ import System.View;
 import System.Controller;
 import System.Model;
 
-import java.sql.SQLException;
+        import java.awt.*;
+        import java.sql.SQLException;
 
 public class TrueLogin
 {
@@ -27,27 +30,25 @@ public class TrueLogin
         MovieList movieList = new MovieList(primaryStage);
         this.window = primaryStage;
 
-        window.setTitle("Window title");
+        window.setTitle("Login");
 
         GridPane layout = new GridPane();
-        layout.setPadding(new Insets(10,10,10,10));
+        layout.setPadding(new Insets(20,10,10,10));
 
         layout.setVgap(8);
-        layout.setHgap(10);
-
-        Label name = new Label("Username");
-        GridPane.setConstraints(name,0,0);
+        layout.setHgap(5);
 
         TextField nameInput = new TextField();
-        nameInput.setPromptText("username");
-        GridPane.setConstraints(nameInput,1,0);
+        nameInput.setPromptText("Brugernavn");
 
-        Label password = new Label("Password");
-        GridPane.setConstraints(password,0,1);
+        nameInput.getStyleClass().add("input");
+
+        GridPane.setConstraints(nameInput,0,0);
+
 
         PasswordField passInput = new PasswordField();
-        passInput.setPromptText("password");
-        GridPane.setConstraints(passInput,1,1);
+        passInput.setPromptText("Adgangskode");
+        GridPane.setConstraints(passInput,0,1);
         Button button = new Button("Login");
         button.setOnAction(event -> {
             //TODO: move to model later
@@ -56,42 +57,41 @@ public class TrueLogin
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
                     View view = new View(new Controller(new Model()));
-                    view.setScene(movieList.theWindow(),setBottom(primaryStage) , primaryStage);
+                    view.setScene(movieList.theWindow(), movieList.setBottom(primaryStage) , primaryStage);
                 }
             }catch (SQLException e) {
                 System.err.println("FAIL");
             }
         });
 
-        GridPane.setConstraints(button,1,2);
+        passInput.getStyleClass().add("input");
 
-        layout.getChildren().addAll(name,nameInput,password,passInput,button);
+        button.getStyleClass().add("btn");
+        button.getStyleClass().add("btn-xl");
+        button.getStyleClass().add("full-width");
+
+        button.setMaxWidth(Double.MAX_VALUE);
+
+
+        GridPane.setConstraints(button,0,2);
+
+        layout.getChildren().addAll(nameInput,passInput,button);
+
+        layout.setStyle("-fx-background-color: white");
+
+        layout.setAlignment(Pos.TOP_CENTER);
 
         layout.setGridLinesVisible(false);
 
-        Scene scene = new Scene(layout,250, 250);
+        Scene scene = new Scene(layout,350, 230);
+
+
+        scene.getStylesheets().add("css/style.css");
+
         window.setScene(scene);
         window.show();
 
     }
 
-    public FlowPane setBottom(Stage primaryStage)
-    {
-        FlowPane flowPane = new FlowPane();
 
-        Button newMovies = new Button("Ny Spilletid");
-        Button showSale = new Button("Stats for movies");
-
-        flowPane.getChildren().addAll(newMovies, showSale);
-        newMovies.setOnAction(event -> {
-                PlayListCrud playListCrud = new PlayListCrud(primaryStage);
-                playListCrud.setScene(playListCrud.layout(), null, primaryStage);
-            });
-        showSale.setOnAction(event -> {
-            StatsView statsView = new StatsView();
-            statsView.setScene(statsView.centerPane(), null,primaryStage);
-        });
-
-        return flowPane;
-    }
 }

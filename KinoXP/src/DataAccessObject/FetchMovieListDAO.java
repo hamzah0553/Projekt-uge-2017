@@ -11,15 +11,16 @@ import java.util.List;
 /**
  * Created by hamza on 26-09-2017.
  */
-public class AddMovieDAO extends DataWrapper {
+public class FetchMovieListDAO extends DataWrapper {
 
     private Connection conn;
 
-    public AddMovieDAO () {
+    public FetchMovieListDAO() {
         this.conn = super.connection;
-
     }
+
     public ArrayList<Movie> getMovies(){
+
         ArrayList<Movie> movies = new ArrayList<>();
         String query= "SELECT * FROM tandbud_project2.movie_description";
 
@@ -48,18 +49,9 @@ public class AddMovieDAO extends DataWrapper {
             System.out.println(m.getName());
         }
 
-
-
         return movies;
 
         }
-
-
-
-
-
-
-
 
     }
 

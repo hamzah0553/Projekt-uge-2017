@@ -1,17 +1,11 @@
 package System;
 
-import DataAccessObject.AddMovieDAO;
-import DataAccessObject.PlaylistDAO;
-import Models.Movie;
+import DataAccessObject.FetchMovieListDAO;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import View.*;
-
-import java.util.Date;
 
 public class Main extends Application {
 
@@ -22,7 +16,7 @@ public class Main extends Application {
         new TrueLogin(primaryStage);
 
         primaryStage.show();
-        AddMovieDAO dao = new AddMovieDAO();
+        FetchMovieListDAO dao = new FetchMovieListDAO();
         dao.getMovies();
 
         //Movie movie = new Movie("Batman","120",15 ,new Date(),new Date(),4);

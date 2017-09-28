@@ -1,0 +1,80 @@
+
+
+body {
+    -fx-overflow-x:hidden;
+    -fx-font-family:"dinlight","Helvetica Neue",Helvetica,Arial,sans-serif;
+    -fx-color: #555555;
+}
+
+.input
+{
+
+    -fx-border-color:  #f0f0f0;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+
+    -fx-webkit-appearance: none;
+    -fx-border-radius: 0;
+    -fx-resize: none;
+    -fx-outline: 0;
+    -fx-padding: 12px;
+    -fx-transition-duration: .5s;
+    -fx-o-transition-duration: .5s;
+    -fx-moz-transition-duration: .5s;
+    -fx-webkit-transition-duration: .5s;
+    -fx-transition-property: width,height,box-shadow;
+    -fx-o-transition-property: width,height,box-shadow;
+    -fx-moz-transition-property: width,height,box-shadow;
+    -fx-webkit-transition-property: width,height,box-shadow;
+    -fx-background-color: #FBFBFB;
+
+}
+
+.btn
+{
+
+    -fx-display: inline-block;
+    -fx-margin-bottom: 0;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-line-height: 1.42857143;
+    -fx-text-align: center;
+    -fx-white-space: nowrap;
+    -fx-vertical-align: middle;
+    -fx-cursor: pointer;
+    -webkit-user-select: none;
+    -fx-moz-user-select: none;
+    -fx-ms-user-select: none;
+    -fx-user-select: none;
+    -fx-background-image: none;
+
+    -fx-border-color: #F89406;
+    -fx-background-color: #F89406;
+    -fx-text-fill: #fff;
+
+    -fx-background-radius: 250px;
+    -fx-border-radius: 250px;
+
+}
+
+.btn:hover
+{
+    -fx-background-color: #00558c;
+    -fx-border-color:  #00558c;
+    -fx-box-shadow: none;
+}
+
+.btn-xl
+{
+
+    -fx-padding: 18px 30px;
+    -fx-font-size: 12px;
+    -fx-height: 52px;
+    -fx-margin: 10px 0px;
+
+}
+
+.full-width
+{
+    -fx-min-width: 100%;
+}
