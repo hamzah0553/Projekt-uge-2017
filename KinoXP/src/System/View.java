@@ -58,11 +58,9 @@ public class View {
 
         backLabel.setGraphic(backView);
 
-
-
         final Label movieMovie = new Label("Forestillinger");
 
-        final Label phoneLabel = new Label("Søg telefon nr.");
+        final Label phoneLabel = new Label("Find reservation");
 
         final Menu menuOptions = new Menu("Indstillinger");
         final MenuItem logOut = new MenuItem("Log ud");
@@ -72,8 +70,6 @@ public class View {
 
         final Menu menuBack = new Menu();
         menuBack.setGraphic(backLabel);
-
-       // Imag image = new Image(getClass().getResourceAsStream("labels.jpg"));
 
         final Menu menuMovie = new Menu();
         menuMovie.setGraphic(movieMovie);
@@ -104,16 +100,29 @@ public class View {
 
         MenuBar barBack = new MenuBar(menuBack);
 
+
+        borderPane.setStyle("-fx-background-color: white");
+
         borderPane.setCenter(menuBar);
         borderPane.setLeft(barBack);
 
-
+        borderPane.getStyleClass().add("headerPane");
         borderPane.setAlignment(menuBar, Pos.CENTER);
 
         barBack.getStyleClass().add("menu");
         menuBar.getStyleClass().add("menu");
 
-        backLabel.getStyleClass().add("mlabel");
+
+        //...
+
+        menuBack.setStyle("-fx-background-color: #fff !important; -fx-cursor: pointer;");
+
+
+        menuBack.getStyleClass().add("icon");
+        backLabel.getStyleClass().add("icon");
+
+        System.out.println(menuBack.getStyleClass());
+
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
