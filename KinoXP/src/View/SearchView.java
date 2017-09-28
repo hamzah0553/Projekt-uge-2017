@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -34,9 +35,7 @@ public class SearchView extends View
     //center
     private TableView tableView;
 
-
-    //TODO: HALP
-    private String chosenPhone;
+    private String orderID;
     private boolean itemSelected = false;
 
     public SearchView(SearchController controller)
@@ -45,7 +44,7 @@ public class SearchView extends View
         this.controller = controller;
     }
 
-    public void setSearchView(String searchWord, Stage stage, Stage primaryStage)
+    public void setSearchView(String searchWord, Stage newStage, Stage primaryStage)
     {
         tableView = getReservationTable(searchWord);
         tableView.setPlaceholder(new Label("No reservations"));
@@ -53,17 +52,24 @@ public class SearchView extends View
         Button deleteButton = new Button("Slet");
 
         deleteButton.setOnAction(event -> {
-            if(itemSelected) controller.deleteOrder(chosenPhone);
+            if(itemSelected) {
+                controller.deleteOrder(orderID);
+
+                MovieList view = new MovieList(primaryStage);
+                view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);
+            }
+
         });
 
-        setScene(tableView,deleteButton, stage);
+        newStage.close();
+        setScene(tableView, deleteButton, primaryStage);
 
         tableView.setOnMouseClicked(event ->
         {
-            if(event.getClickCount() == 1)  //TODO: DELETE NOT WORKING
+            if(event.getClickCount() == 1)
             {
                 HashMap<String, String> item = (HashMap<String, String>) tableView.getSelectionModel().getSelectedItem();
-                setChosenPhone(item.get("customer_phonenumber"));
+                setOrderID(item.get("order_id"));
                 itemSelected = true;
             }
 
@@ -78,7 +84,7 @@ public class SearchView extends View
                 Button closeButton = new Button("OK");
 
                 closeButton.setOnAction(event1 -> {
-                    stage.close();
+                    newStage.close();
                     MovieList view = new MovieList(primaryStage);
                     view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);
                 });
@@ -116,7 +122,7 @@ public class SearchView extends View
                 gridPane.setHgap(20);
 
                 Scene ticketInfo = new Scene(gridPane, 300, 400, Color.WHITE);
-                stage.setScene(ticketInfo);
+                primaryStage.setScene(ticketInfo);
             }
 
         });
@@ -143,7 +149,12 @@ public class SearchView extends View
         reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>("Vis oplysninger"));
         reservationCol.setMinWidth(50);
 
-        ObservableList<HashMap<String,String>> movieTimeList = FXCollections.observableArrayList(controller.getPlays(searchPhone));
+        ArrayList<HashMap<String, String>> list = controller.getPlays(searchPhone);
+        for (int i = 0; i < list.size(); i++)
+        {
+            if(list.get(i).get("deleted").equalsIgnoreCase("1")) list = new ArrayList<HashMap<String, String>>();
+        }
+        ObservableList<HashMap<String,String>> movieTimeList = FXCollections.observableArrayList(list);
 
         //set items and columns
         table.setItems(movieTimeList);
@@ -155,8 +166,8 @@ public class SearchView extends View
         return table;
     }
 
-    public void setChosenPhone(String chosenPhone)
+    public void setOrderID(String orderID)
     {
-        this.chosenPhone = chosenPhone;
+        this.orderID = orderID;
     }
 }

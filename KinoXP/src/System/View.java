@@ -133,11 +133,10 @@ public class View {
 
         System.out.println(menuBack.getStyleClass());
 
-
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
-            view = new MovieList(primaryStage);
-            view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);            //TODO: how to back?
+            MovieList view = new MovieList(primaryStage);
+            view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);
         });
 
         logOut.setOnAction(event->{
@@ -257,6 +256,8 @@ public class View {
         Button newPlay = new Button("Opret Spilletid");
         Button showSale = new Button("Statistikker");
         Button newMovie = new Button("Opret film");
+        Button back = new Button("back");
+
 
         newPlay.getStyleClass().add("btn");
         newPlay.getStyleClass().add("non");
@@ -281,9 +282,10 @@ public class View {
 
         flowPane.getChildren().addAll(newPlay, showSale, newMovie);
 
+
         newPlay.setOnAction(event ->
         {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage,view.getMovieList());
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage, TrueLogin.movieList.getMovieList());
             playListCrud.setScene(playListCrud.layout(), null, primaryStage);
         });
 
