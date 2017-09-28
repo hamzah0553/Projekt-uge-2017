@@ -30,7 +30,7 @@ public class PlaylistDAO extends DataWrapper {
                         "\n" +
                         "order.order_id, order.order_price, order.order_date,\n" +
                         "\n" +
-                        "description.movie_name, hall.hall_name, hall.hall_id, play.start_date\n" +
+                        "description.movie_name, hall.hall_name, hall.hall_id, play.start_date, seat_column, seat_row\n" +
                         "\n" +
                         "FROM customers customer\n" +
                         "\n" +
@@ -42,7 +42,9 @@ public class PlaylistDAO extends DataWrapper {
                         "\n" +
                         "INNER JOIN hall hall ON(hall.hall_id = play.hall_id)\n" +
                         "\n" +
-                        "WHERE customer_phonenumber LIKE '%" + phone + "%'";
+                        "INNER JOIN seats seats ON (order.order_id = seats.order_id)\n" +
+                        "\n" +
+                        "WHERE customer_phonenumber LIKE '%"+ phone +"%'";
 
         System.out.println(query);
 
@@ -52,7 +54,7 @@ public class PlaylistDAO extends DataWrapper {
 
             while (rs.next()) {
                 rows.put("customer_id", rs.getString("customer_id"));
-                rows.put("customer_phoneumber", rs.getString("customer_phonenumber"));
+                rows.put("customer_phonenumber", rs.getString("customer_phonenumber"));
                 rows.put("customer_email", rs.getString("customer_email"));
                 rows.put("order_id", rs.getString("order_id"));
                 rows.put("order_price", rs.getString("order_price"));
@@ -61,6 +63,8 @@ public class PlaylistDAO extends DataWrapper {
                 rows.put("movie_name", rs.getString("movie_name"));
                 rows.put("hall_name", rs.getString("hall_name"));
                 rows.put("hall_id", rs.getString("hall_id"));
+                rows.put("seat_column", rs.getString("seat_Column"));
+                rows.put("seat_row", rs.getString("seat_row"));
                 ticketInfo.add(rows);
             }
         } catch (SQLException e) {
