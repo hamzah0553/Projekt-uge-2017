@@ -20,4 +20,8 @@ public class SearchController extends Controller
     {
         return new PlaylistDAO().getTicketInfo(searchPhone);
     }
+
+    public void deleteOrder(String phone) {
+        new PlaylistDAO().removeOrder(phone);
+    }
 }
