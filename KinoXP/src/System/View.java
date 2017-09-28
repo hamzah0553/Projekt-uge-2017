@@ -63,8 +63,8 @@ public class View {
         Image backIMG = new Image("/img/back.png");
         ImageView backView = new ImageView(backIMG);
 
-        backView.setFitWidth(30);
-        backView.setFitHeight(30);
+        backView.setFitWidth(26);
+        backView.setFitHeight(26);
 
         backLabel.setGraphic(backView);
 
