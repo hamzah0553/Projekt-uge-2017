@@ -19,7 +19,7 @@ import java.sql.SQLException;
 public class TrueLogin
 {
     Stage window;
-   public static MovieList movieList;
+    MovieList movieList;
 
     ProgressBar prgbProgress;
 
