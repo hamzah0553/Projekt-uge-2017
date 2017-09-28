@@ -65,38 +65,7 @@ public class Hall
 
     }
 
-    public ArrayList<Hall> getHalls (){
-        ArrayList<Hall> halls = new ArrayList<>();
-        Connector connector = Connector.getInstance();
-        conn = connector.getConnection();
-        String query = "SELECT * FROM tandbud_project2.hall";
-        try
-        {
-            PreparedStatement preparedStatement = conn.prepareStatement(query);
 
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next())
-            {
-                Hall hall = new Hall();
-                hallID = rs.getInt("hall_id");
-                hallName = rs.getString("hall_name");
-                seats_row = rs.getInt("hall_seats_row");
-                seats_column = rs.getInt("hall_seats_column");
-                halls.add(hall);
-            }
-
-        } catch (SQLException e)
-        {
-            System.out.println("?");
-            System.out.println(e.getMessage());
-        }
-
-        for (Hall h : halls) {
-            System.out.println(h.getHallID());
-        }
-        return halls;
-    }
 
     public int getHallID()
     {
@@ -136,5 +105,38 @@ public class Hall
 
     }
 
+    public void setHallID(int hallID)
+    {
+        this.hallID = hallID;
+    }
 
+    public int getSeats_row()
+    {
+        return seats_row;
+    }
+
+    public void setSeats_row(int seats_row)
+    {
+        this.seats_row = seats_row;
+    }
+
+    public int getSeats_column()
+    {
+        return seats_column;
+    }
+
+    public void setSeats_column(int seats_column)
+    {
+        this.seats_column = seats_column;
+    }
+
+    public String getHallName()
+    {
+        return hallName;
+    }
+
+    public void setHallName(String hallName)
+    {
+        this.hallName = hallName;
+    }
 }

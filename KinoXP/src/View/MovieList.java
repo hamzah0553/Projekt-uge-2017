@@ -5,6 +5,7 @@ import Models.Movie;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,6 +39,7 @@ public class MovieList extends View{
         GridPane gridPane = new GridPane();
         ArrayList<ImageView> imageViews = new ArrayList<>();
         ArrayList<Button> buttons = new ArrayList<>();
+        ArrayList<Label> labels = new ArrayList<>();
 
         System.out.println(movies.size());
 
@@ -45,8 +47,13 @@ public class MovieList extends View{
 
         for (int i = 0; i < movies.size(); i++) {
 
+
             int t = i + 1;
+
             imageViews.add(new ImageView(new Image("/img/" + t  + ".jpg", true)));
+
+            labels.add(new Label());
+            labels.get(i).setGraphic(imageViews.get(i));
 
             Button button = new Button(movies.get(i).getName());
 
@@ -74,7 +81,8 @@ public class MovieList extends View{
 
         for (int i = 0; i < movies.size(); i++)
         {
-            gridPane.add(imageViews.get(i), column, row);
+
+            gridPane.add(labels.get(i), column, row);
 
             column++;
 
@@ -97,10 +105,13 @@ public class MovieList extends View{
 
             int finalI = i;
             buttons.get(i).setOnAction(event -> {
-
                 PlayList playList = new PlayList(movies.get(finalI), window);
+
             });
 
+            labels.get(i).setOnMouseClicked(event -> {
+                PlayList playList = new PlayList(movies.get(finalI), window);
+            });
         }
 
         gridPane.setAlignment(Pos.CENTER);

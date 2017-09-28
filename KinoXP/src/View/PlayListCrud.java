@@ -1,6 +1,7 @@
 package View;
 
 import Controller.PlayListCrudController;
+import DataAccessObject.HallDAO;
 import Models.Hall;
 import Models.Movie;
 import System.View;
@@ -35,9 +36,16 @@ public class PlayListCrud extends View
 
         this.movieList = movieList;
 
-        Hall hall = new Hall();
+        HallDAO hall = new HallDAO();
 
         this.halls = hall.getHalls();
+
+        int count = 0;
+        for (Hall h : halls) {
+
+            System.out.println(count + " " +h.getHallID());
+            count++;
+        }
 
         setScene(layout(),new Button("Gå væk!"),primaryStage);
 
@@ -68,7 +76,7 @@ public class PlayListCrud extends View
 
         hall = new ChoiceBox<>();
         for (Hall h : halls ) {
-            hall.getItems().add(h.getHallID()+"");
+            hall.getItems().add(h.getHallName()+"");
         }
 
         Label time = new Label("Vælg tid og dato");

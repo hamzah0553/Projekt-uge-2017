@@ -49,7 +49,7 @@ public class PlaylistDAO extends DataWrapper {
                         "\n" +
                         "order.order_id, order.order_price, order.order_date,\n" +
                         "\n" +
-                        "description.movie_name, hall.hall_name, hall.hall_id, play.start_date, seat_column, seat_row\n" +
+                        "description.movie_name, hall.hall_name, hall.hall_id, play.start_date, seat_column, seat_row, deleted\n" +
                         "\n" +
                         "FROM customers customer\n" +
                         "\n" +
@@ -84,6 +84,7 @@ public class PlaylistDAO extends DataWrapper {
                 rows.put("hall_id", rs.getString("hall_id"));
                 rows.put("seat_column", rs.getString("seat_Column"));
                 rows.put("seat_row", rs.getString("seat_row"));
+                rows.put("deleted", rs.getString("deleted"));
                 ticketInfo.add(rows);
             }
         } catch (SQLException e) {

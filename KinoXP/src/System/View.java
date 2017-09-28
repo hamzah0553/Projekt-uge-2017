@@ -133,11 +133,10 @@ public class View {
 
         System.out.println(menuBack.getStyleClass());
 
-
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
-            view = new MovieList(primaryStage);
-            view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);            //TODO: how to back?
+            MovieList view = new MovieList(primaryStage);
+            view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);
         });
 
         logOut.setOnAction(event->{
@@ -286,7 +285,7 @@ public class View {
 
         newPlay.setOnAction(event ->
         {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage,view.getMovieList());
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage, view.getMovieList());
             playListCrud.setScene(playListCrud.layout(), null, primaryStage);
         });
 

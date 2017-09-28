@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 
-    public void sendMail(String mail,Ticket ticket) {
+    public void sendMail(String mail) {
 
         final String username = "CinemaWeek17@gmail.com";
         final String password = "biograf123";
@@ -42,12 +42,8 @@ public class SendMail {
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(mail));
-            message.setSubject("Heres is your order");
-            message.setText("Hej! \n" + "Her er din billet for filmen " + ticket.getMovieTitle() + ". \n"
-                    + "Du har sæde(erne) " + ticket.getSeatId() + ',' + " på rækken " + ticket.getRowNr() + '.'
-                    + "\nDatoen for hvornår filmen starter er: " + ticket.getTicketDate());
-
-
+            message.setSubject("Tak for din bestilling!");
+            message.setText("Hej! \n" + "Her er din billet for filmen ");
 
             Transport.send(message);
 
