@@ -156,6 +156,8 @@ public class CreateMovies {
                 daOmovie.Createmovie(movieNameInput.getText(),movieLength.getText(), Integer.parseInt(movieAge.getText()),
                         Integer.parseInt(movieRun.getText()), Integer.parseInt(theaterIDInput.getText()));
 
+
+
                 //Shows "YES" or "NO" if you insert 0/1 in movie runs
                 if (movieRun.getText().equalsIgnoreCase("0")) {
                     movieRunning = "No";
@@ -197,6 +199,20 @@ public class CreateMovies {
             }
 
             deleteField.clear();
+        });
+
+        updateButton.setOnAction(event -> {
+            try {
+                daOmovie.Update(Integer.parseInt(updateID.getText()),Integer.parseInt(updateHall.getText())
+                        ,updateMovieName.getText(),updateMovieLength.getText(),Integer.parseInt(updateMovieAge.getText()));
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            updateID.clear();
+            updateHall.clear();
+            updateMovieName.clear();
+            updateMovieLength.clear();
+            updateMovieAge.clear();
         });
     }
 
