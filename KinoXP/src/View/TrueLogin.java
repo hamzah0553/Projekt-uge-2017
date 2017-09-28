@@ -1,6 +1,9 @@
 package View;
 
+        import DataAccessObject.DAOmovie;
         import DataAccessObject.FetchMovieListDAO;
+        import DataAccessObject.GetMoviesDAO;
+        import Models.Movie;
         import javafx.geometry.Insets;
         import javafx.geometry.Pos;
         import javafx.scene.Scene;
@@ -19,6 +22,7 @@ import System.Model;
 
         import java.awt.*;
         import java.sql.SQLException;
+        import java.util.ArrayList;
 
 public class TrueLogin
 {
@@ -27,6 +31,8 @@ public class TrueLogin
     public TrueLogin(Stage primaryStage){
 
         LoginDAO loginDAO = new LoginDAO();
+
+
         MovieList movieList = new MovieList(primaryStage);
         this.window = primaryStage;
 
@@ -57,6 +63,7 @@ public class TrueLogin
                 if (loginDAO.validate(nameInput.getText(), passInput.getText()))
                 {
                     View view = new View(new Controller(new Model()));
+                    view.setAdmin(loginDAO.isAdmin(nameInput.getText(), passInput.getText()));
                     view.setScene(movieList.theWindow(), movieList.setBottom(primaryStage) , primaryStage);
                 }
             }catch (SQLException e) {

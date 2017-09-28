@@ -30,6 +30,18 @@ body {
 
 }
 
+.bottomPane
+{
+
+    -fx-border-color:  #f0f0f0;
+    -fx-border-width-top: 1px;
+    -fx-border-style: solid;
+
+    -fx-background-color: white;
+    -fx-padding: 12px;
+
+}
+
 .btn
 {
 
@@ -54,6 +66,41 @@ body {
 
     -fx-background-radius: 250px;
     -fx-border-radius: 250px;
+
+    -fx-cursor: hand;
+
+
+}
+
+.non
+{
+
+    -fx-background-color: transparent;
+    -fx-border-color: #a2a2a2;
+    -fx-text-fill: #000;
+
+}
+
+.non:hover
+{
+
+    -fx-border-color: #3498db;
+    -fx-background-color: #3498db;
+    -fx-text-fill: #fff;
+
+}
+
+.margin-r
+{
+
+
+
+}
+.green
+{
+
+    -fx-background-color: #45b21e!important;
+    -fx-border-color: #45b21e!important;
 
 }
 

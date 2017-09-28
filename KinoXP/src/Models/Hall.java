@@ -76,7 +76,7 @@ public class Hall
 
             ResultSet rs = preparedStatement.executeQuery();
 
-            if (rs.first())
+            if (rs.next())
             {
                 Hall hall = new Hall();
                 hallID = rs.getInt("hall_id");
