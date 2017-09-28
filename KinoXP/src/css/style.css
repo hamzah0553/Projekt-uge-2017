@@ -6,6 +6,145 @@ body {
     -fx-color: #555555;
 }
 
+
+.menu
+{
+
+    -fx-padding: 12px;
+    -fx-text-fill: #fff;
+
+
+
+
+
+}
+
+/* VARIABLE DEFINITIONS: Only these 4 variables have to be adjusted, the rest is copy-paste */
+* {
+    -fx-my-menu-color: #fff;                  /* Change according to your needs */
+    -fx-my-menu-color-highlighted: #455a64;      /* Change according to your needs */
+    -fx-my-menu-font-color: #000;             /* Change according to your needs */
+    -fx-my-menu-font-color-highlighted: #FFFFFF; /* Change according to your needs */
+}
+
+/* MENU BAR + Top-level MENU BUTTONS */
+/*** The menu bar itself ***/
+.menu-bar {
+    -fx-background-color: #fff;
+
+
+    -fx-border-color: #F0F0F0;
+
+    -fx-border-width-bottom: 1px;
+    -fx-border-style: solid;
+
+}
+
+/*** Top-level menu itself (not selected / hovered) ***/
+.menu-bar > .container > .menu-button {
+    -fx-background-color: -fx-my-menu-color;
+    -fx-background-radius: 250px;
+    -fx-border-radius: 250px;
+}
+
+/*** Top-level menu's label (not selected / hovered) ***/
+.menu-bar > .container > .menu-button > .label {
+    -fx-text-fill: -fx-my-menu-font-color;
+}
+
+/*** Top-level menu's label (disabled) ***/
+.menu-bar > .container > .menu-button > .label:disabled {
+    -fx-opacity: 1.0;
+}
+
+.label-menu-item .label{
+//and here
+-fx-text-alignment:center;
+}
+
+.label-menu-item .label .text{
+//and here
+-fx-text-alignment:center;
+}
+
+.iconOpen  {
+    -fx-background-color: red;
+}
+.iconOpen > .label {
+    -fx-graphic: url("/img/back.png") !important;
+}
+
+/*** Top-level menu itself (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: -fx-my-menu-color-highlighted;
+}
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: -fx-my-menu-font-color-highlighted;
+}
+
+/* MENU ITEM (children of a MENU BUTTON) */
+/*** The item itself (not hovered / focused) ***/
+.menu-item {
+    -fx-background-color: -fx-my-menu-color;
+}
+
+/*** The item's label (not hovered / focused) ***/
+.menu-item .label {
+    -fx-text-fill: -fx-my-menu-font-color;
+}
+
+/*** The item's label (disabled) ***/
+.menu-item .label:disabled {
+    -fx-opacity: 1.0;
+}
+
+/*** The item itself (hovered / focused) ***/
+.menu-item:focused, .menu-item:hovered {
+    -fx-background-color: -fx-my-menu-color-highlighted;
+}
+
+/*** The item's label (hovered / focused) ***/
+.menu-item:focused .label, .menu-item:hovered .label {
+    -fx-text-fill: -fx-my-menu-font-color-highlighted;
+}
+
+/* CONTEXT MENU */
+/*** The context menu that contains a menu's menu items ***/
+.context-menu {
+    -fx-background-color: -fx-my-menu-color;
+}
+
+
+.btn
+{
+
+    -fx-display: inline-block;
+    -fx-margin-bottom: 0;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-line-height: 1.42857143;
+    -fx-text-align: center;
+    -fx-white-space: nowrap;
+    -fx-vertical-align: middle;
+    -fx-cursor: pointer;
+    -webkit-user-select: none;
+    -fx-moz-user-select: none;
+    -fx-ms-user-select: none;
+    -fx-user-select: none;
+    -fx-background-image: none;
+
+    -fx-border-color: #F89406;
+    -fx-background-color: #F89406;
+    -fx-text-fill: #fff;
+
+}
+
 .input
 {
 
@@ -33,11 +172,12 @@ body {
 .bottomPane
 {
 
-    -fx-border-color:  #f0f0f0;
+    -fx-border-color:  #F0F0F0;
     -fx-border-width-top: 1px;
     -fx-border-style: solid;
 
-    -fx-background-color: white;
+    -fx-background-color: #FBFBFB;
+
     -fx-padding: 12px;
 
 }

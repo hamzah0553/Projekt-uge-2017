@@ -44,12 +44,12 @@ public class MovieList extends View{
         ArrayList<ImageView> imageViews = new ArrayList<>();
         ArrayList<Button> buttons = new ArrayList<>();
 
-        for (int i = 0; i < movies.size(); i++)
-        {
-            imageViews.add(new ImageView(new Image("https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg")));
+        for (int i = 0; i < movies.size(); i++) {
+            imageViews.add(new ImageView(new Image("/img/batman.jpg", true)));
             buttons.add(new Button(movies.get(i).getName()));
             imageViews.get(i).setFitHeight(455);
             imageViews.get(i).setFitWidth(238.875);
+
         }
 
         gridPane.setHgap(25);
@@ -67,7 +67,7 @@ public class MovieList extends View{
         int buttonRow = 2;
         int buttonColumn = 0;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < movies.size(); i++)
         {
             gridPane.add(imageViews.get(i), column, row);
 
@@ -93,15 +93,19 @@ public class MovieList extends View{
             buttons.get(i).setOnAction(event -> {
                 PlayList playList = new PlayList(new Movie(1, "Batman", "120", 25, 1), window);
             });
+
         }
 
         gridPane.setAlignment(Pos.CENTER);
 
+        gridPane.setStyle("-fx-background-color: white");
 
         ScrollPane pane = new ScrollPane(gridPane);
 
-        pane.setPadding(new Insets(25, 0, 25, 0));
+        pane.setStyle("-fx-background-color: white");
 
+
+        pane.setPadding(new Insets(25, 0, 25, 0));
 
         pane.setFitToHeight(true);
         pane.setFitToWidth(true);

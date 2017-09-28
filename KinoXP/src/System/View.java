@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
 import View.*;
 import Controller.*;
 
@@ -43,13 +44,25 @@ public class View {
 
     public void setScene(Node center, Node bottom, Stage primaryStage)
     {
+
+
         final Label backLabel = new Label("Tilbage");
+
+        final Label movieMovie = new Label("Forestillinger");
+
         final Label phoneLabel = new Label("Søg telefon nr.");
         final Menu menuOptions = new Menu("Indstillinger");
         final MenuItem logOut = new MenuItem("Log ud");
 
         final Menu menuBack = new Menu();
         menuBack.setGraphic(backLabel);
+
+       // Imag image = new Image(getClass().getResourceAsStream("labels.jpg"));
+
+        final Menu menuMovie = new Menu();
+        menuMovie.setGraphic(movieMovie);
+
+
         final Menu menuSearchPhone = new Menu();
         menuSearchPhone.setGraphic(phoneLabel);
 
@@ -67,11 +80,15 @@ public class View {
             });
 
             menuAdmin.getItems().addAll(createUser, manageUser);
-            menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone, menuAdmin);
+            menuBar.getMenus().addAll(menuBack, menuMovie, menuOptions, menuSearchPhone, menuAdmin);
         }else
         {
-            menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone);
+            menuBar.getMenus().addAll(menuBack, menuMovie, menuOptions, menuSearchPhone);
         }
+
+        menuBar.getStyleClass().add("menu");
+
+        backLabel.getStyleClass().add("mlabel");
 
         //actions for menu
         backLabel.setOnMouseClicked(event -> {
@@ -126,7 +143,12 @@ public class View {
 
         //set layout
         BorderPane layout = new BorderPane();
+
+
         layout.setTop(menuBar);
+
+
+
         layout.setCenter(center);
         layout.setBottom(bottom);
 
@@ -143,6 +165,10 @@ public class View {
 
         //scene within stage
         primaryStage.setTitle("KINO XP");
+
+        mainScene.getStylesheets().add("css/style.css");
+
+
         primaryStage.setMinHeight(700);
         primaryStage.setMinWidth(1000);
         primaryStage.setScene(mainScene);
