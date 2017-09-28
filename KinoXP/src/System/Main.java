@@ -2,8 +2,10 @@ package System;
 
 import DataAccessObject.FetchMovieListDAO;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import View.*;
 
@@ -14,6 +16,9 @@ public class Main extends Application {
         primaryStage.setTitle("KINO XP");
         primaryStage.setScene(new Scene(new Pane(), 300, 275));
         new TrueLogin(primaryStage);
+
+
+
 
         primaryStage.show();
         FetchMovieListDAO dao = new FetchMovieListDAO();

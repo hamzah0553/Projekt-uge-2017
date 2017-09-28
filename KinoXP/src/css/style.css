@@ -12,10 +12,7 @@ body {
 
     -fx-padding: 12px;
     -fx-text-fill: #fff;
-
-
-
-
+    -fx-alignment: center;
 
 }
 
