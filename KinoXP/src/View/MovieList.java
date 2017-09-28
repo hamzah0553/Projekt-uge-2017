@@ -40,6 +40,9 @@ public class MovieList extends View{
         ArrayList<Button> buttons = new ArrayList<>();
 
         System.out.println(movies.size());
+
+        int count = 0;
+
         for (int i = 0; i < movies.size(); i++) {
 
             int t = i + 1;
@@ -51,8 +54,7 @@ public class MovieList extends View{
 
             buttons.add(button);
 
-
-
+            count++;
             imageViews.get(i).setFitHeight(380);
             imageViews.get(i).setFitWidth(230);
 
@@ -93,8 +95,10 @@ public class MovieList extends View{
                 buttonColumn = 0;
             }
 
+            int finalI = i;
             buttons.get(i).setOnAction(event -> {
-                PlayList playList = new PlayList(new Movie(1, "Batman", "120", 25, 1), window);
+
+                PlayList playList = new PlayList(movies.get(finalI), window);
             });
 
         }

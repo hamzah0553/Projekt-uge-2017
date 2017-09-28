@@ -218,6 +218,7 @@ public class Login extends View
 
 
             final Stage dialog = new Stage();
+
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(window);
             VBox dialogVbox = new VBox(20);
