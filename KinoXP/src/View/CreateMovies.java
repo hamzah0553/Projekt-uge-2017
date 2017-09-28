@@ -15,9 +15,9 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import System.View;
 
-public class CreateMovies {
+public class CreateMovies extends View {
 
     private Button addMovieButton = new Button("Tilføj film!");
     private Button deleteMovieButton = new Button("Slet film!");
@@ -141,10 +141,8 @@ public class CreateMovies {
         borderPane.setTop(pane);
         borderPane.setBottom(hboxBottom);
 
-        Scene scene = new Scene(borderPane);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        setScene(borderPane, null, primaryStage);
+       
 
 
 
