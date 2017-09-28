@@ -14,6 +14,7 @@ public class TableInformation {
         this.isMovieRunning = new SimpleStringProperty(isMovieRunning);
     }
 
+    //These getters are used in tableview, don't delete them, even if they're grey.
     public String getIsMovieRunning() {
         return isMovieRunning.get();
     }

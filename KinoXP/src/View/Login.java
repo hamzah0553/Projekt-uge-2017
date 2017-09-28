@@ -2,7 +2,6 @@ package View;
 
 import Controller.ReservationController;
 import Models.Hall;
-import Models.Order;
 import Models.Seat;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,20 +19,18 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import System.View;
 
 import java.util.ArrayList;
 
-public class Login
+public class Login extends View
 {
     Stage window;
-
 
     private ArrayList<Seat> seatsChosen = new ArrayList<Seat>();
 
     public Login(Stage primaryStage)
     {
-
-
         //visning af biograf pladser...
         this.window = primaryStage;
 
@@ -177,66 +174,8 @@ public class Login
 
         BorderPane borderPane = new BorderPane(vBox, createTopPane(), null, createBottomPane(), null);
 
-        Scene scene = new Scene(borderPane,550, 550);
-        window.setScene(scene);
-        window.show();
-
-
+        setScene(borderPane, null, window);
         //end...
-
-
-        /*
-        Hall hall  = new Hall(1);
-
-        hall.getSeats();
-
-        this.window = primaryStage;
-
-        window.setTitle("Window title");
-
-        GridPane layout = new GridPane();
-
-        layout.setPadding(new Insets(10,10,10,10));
-
-        layout.setVgap(8);
-        layout.setHgap(10);
-
-        Label name = new Label("Username");
-        GridPane.setConstraints(name,0,0);
-
-        TextField nameInput = new TextField("Username");
-        GridPane.setConstraints(nameInput,1,0);
-
-        Label password = new Label("Password");
-        GridPane.setConstraints(password,0,1);
-
-        PasswordField passInput = new PasswordField();
-        passInput.setPromptText("password");
-        GridPane.setConstraints(passInput,1,1);
-        Button button = new Button("Login");
-        button.setOnAction(event -> {
-
-            LoginDAO loginDAO = new LoginDAO();
-            if (loginDAO.validate(nameInput.getText(),passInput.getText()))
-            {
-                View view = new View();
-                view.setScene(primaryStage);
-            }
-
-
-        });
-
-        GridPane.setConstraints(button,1,2);
-
-        layout.getChildren().addAll(name,nameInput,password,passInput,button);
-
-        layout.setGridLinesVisible(false);
-
-        Scene scene = new Scene(layout,250, 250);
-        window.setScene(scene);
-        window.show();
-        */
-
     }
 
     public BorderPane createTopPane()
@@ -306,30 +245,26 @@ public class Login
                 dialogVbox.setAlignment(Pos.CENTER);
 
                 //clicked on the dialog create reservation...
-                createReservationButton.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent e) {
+                createReservationButton.setOnAction(event -> {
+                    ReservationController reservationController = new ReservationController();
 
+                    String responseMessage = reservationController.validateReservation(
+                            Integer.parseInt(phoneInput.getText()), emailInput.getText());
 
-                        ReservationController reservationController = new ReservationController();
+                    //validate..
+                    if(responseMessage.equals("OK"))
+                    {
 
-                        String responseMessage = reservationController.validateReservation(
-                                Integer.parseInt(phoneInput.getText()), emailInput.getText());
+                        reservationController.setSeatsChosen(seatsChosen);
+                        reservationController.createReservation();
+                        messageLabel.setText("Kundens billet er nu reserveret.");
+                        dialogVbox.getChildren().removeAll(phoneInput, emailInput, createReservationButton);
 
-                        //validate..
-                        if(responseMessage.equals("OK"))
-                        {
-
-                            reservationController.setSeatsChosen(seatsChosen);
-                            reservationController.createReservation();
-                            messageLabel.setText("Kundens billet er nu reserveret.");
-                            dialogVbox.getChildren().removeAll(phoneInput, emailInput, createReservationButton);
-
-                        } else {
-                            messageLabel.setText("Fejl: " + responseMessage);
-                        }
+                    } else {
+                        messageLabel.setText("Fejl: " + responseMessage);
                     }
                 });
+
                 Scene dialogScene = new Scene(dialogVbox, 300, 200);
                 dialog.setScene(dialogScene);
                 dialog.show();

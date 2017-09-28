@@ -3,14 +3,12 @@ package System;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -24,7 +22,7 @@ public class View {
     protected Controller controller;
 
     private Scene mainScene;
-    private SearchView searchView;
+    private boolean adminLogIn;
 
     public View(Controller controller)
     {
@@ -33,51 +31,91 @@ public class View {
 
     public View (){}
 
+    public void setAdmin(boolean adminLogIn)
+    {
+        this.adminLogIn = adminLogIn;
+    }
+
     public void setScene(Node center, Node bottom, Stage primaryStage)
     {
-        final Label phoneLabel = new Label("Search phone number");
-        final Menu menuOptions = new Menu("Options");
-        final MenuItem logOut = new MenuItem("Log out");
+        final Label backLabel = new Label("Tilbage");
+        final Label phoneLabel = new Label("Søg telefon nr.");
+        final Menu menuOptions = new Menu("Indstillinger");
+        final MenuItem logOut = new MenuItem("Log ud");
+
+        final Menu menuBack = new Menu();
+        menuBack.setGraphic(backLabel);
         final Menu menuSearchPhone = new Menu();
         menuSearchPhone.setGraphic(phoneLabel);
 
         menuOptions.getItems().addAll(logOut);
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().addAll(menuOptions, menuSearchPhone);
+
+        if(adminLogIn){
+            Menu menuAdmin = new Menu("Admin");
+            MenuItem createUser = new MenuItem("Opret login");
+            MenuItem manageUser = new MenuItem("Se medarbejder liste");
+
+            //actions for items
+            createUser.setOnAction(event -> {
+                
+            });
+
+            menuAdmin.getItems().addAll(createUser, manageUser);
+            menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone, menuAdmin);
+        }else
+        {
+            menuBar.getMenus().addAll(menuBack, menuOptions, menuSearchPhone);
+        }
 
         //actions for menu
-        logOut.setOnAction(event->{
-            Platform.exit();
-            System.out.println("LOG OUT NOW!"); //TODO LATER
+        backLabel.setOnMouseClicked(event -> {
+            //TODO: how to back?
         });
 
-        phoneLabel.setOnMouseClicked(event->{
+        logOut.setOnAction(event->{
+            primaryStage.close();
+            Stage newStage = new Stage();
+            new TrueLogin(newStage);
+        });
+
+        phoneLabel.setOnMouseClicked(event->
+        {
             final Stage stage = new Stage();
+
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(primaryStage);
 
-            Label searchLabel = new Label("Find reservation");
-            Button searchButton = new Button("Search");
-            searchButton.setStyle(
-                    "-fx-background-color:#1fc714;"
-            );
+            Label searchLabel = new Label("Indtast telefon nr:");
+
+            Button searchButton = new Button("Søg");
+            searchButton.getStyleClass().add("btn");
+            searchButton.getStyleClass().add("btn-xl");
+            searchButton.getStyleClass().add("full-width");
+            searchButton.setMaxWidth(Double.MAX_VALUE);
 
             TextField searchBar = getSearchBar();
 
+            searchBar.setMaxWidth(Double.MAX_VALUE);
+
             VBox searchBox = new VBox(20);
+
+            searchBox.setStyle("-fx-background-color: white");
+
+            searchBox.setPadding(new Insets(30,10,10,10));
+
             searchBox.setAlignment(Pos.CENTER);
             searchBox.getChildren().addAll(searchLabel, searchBar, searchButton);
 
             searchButton.setOnAction(event1 -> {
-                if(searchView == null)
-                {
-                    new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage);
-                }
+                new SearchView(new SearchController(new Model())).setSearchView(searchBar.getText(), stage);
             });
 
-            Scene searchScene = new Scene(searchBox, 300, 200);
+            Scene searchScene = new Scene(searchBox, 300, 200, Color.WHITE);
             stage.setScene(searchScene);
+            searchScene.getStylesheets().add("css/style.css");
             stage.show();
+
         });
 
         //set layout
@@ -110,7 +148,7 @@ public class View {
         TextField searchBar = new TextField();
         searchBar.setMaxWidth(145);
         searchBar.setPrefHeight(45);
-        searchBar.setPromptText("Enter phone...");
+        searchBar.setPromptText("Telefon nummer..");
 
         searchBar.setStyle("-fx-alignment: center");
 

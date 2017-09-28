@@ -1,5 +1,6 @@
 package Controller;
 
+import Models.Movie;
 import Models.Play;
 import View.PlayListCrud;
 
@@ -17,7 +18,14 @@ public class PlayListCrudController
     public void createPlay(){
 
         Play play = new Play();
-        
-
+        Movie movie = null;
+        for (Movie m : gui.getMovieList()) {
+            if (m.getName().equalsIgnoreCase(gui.getMovies())){
+                movie = m;
+            }
+        }
+        play.setMovie(movie);
+        play.setDate(gui.getDate());
+        play.setTime(gui.getTimes());
     }
 }

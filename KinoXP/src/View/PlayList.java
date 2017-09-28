@@ -105,11 +105,7 @@ public class PlayList extends View {
 
         }
 
-
-        Scene scene = new Scene(gridPane, 650, 400);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+        setScene(gridPane, null, primaryStage);
     }
 
 

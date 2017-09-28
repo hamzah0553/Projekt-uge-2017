@@ -49,9 +49,7 @@ public class SearchView extends View
         backButton = new Button("Back");
 
         MovieList movieList = new MovieList(stage);
-        backButton.setOnAction(event-> {
-            setScene(movieList.theWindow(), movieList.setBottom(stage), stage);
-        });
+        backButton.setOnAction(event-> setScene(movieList.theWindow(), movieList.setBottom(stage), stage));
 
         setScene(tableView,backButton, stage);
     }
@@ -63,26 +61,18 @@ public class SearchView extends View
         table.setStyle("-fx-background-color: #ffffff");
         table.setEditable(false);
 
-        TableColumn movieCol = new TableColumn("Movie title");
-        movieCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HashMap<String,String>, String>, ObservableValue>() {
-            @Override
-            public ObservableValue call(CellDataFeatures<HashMap<String,String>, String> param) {
-                return new ReadOnlyObjectWrapper<>(param.getValue().get("movie_name"));
-            }
-        });
+        TableColumn movieCol = new TableColumn("Film");
+        movieCol.setCellValueFactory((Callback<CellDataFeatures<HashMap<String, String>, String>, ObservableValue>)
+                param -> new ReadOnlyObjectWrapper<>(param.getValue().get("movie_name")));
         movieCol.setMinWidth(50);
 
-        TableColumn playTimeCol = new TableColumn("Playtime");
-        playTimeCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<HashMap<String,String>, String>, ObservableValue>() {
-            @Override
-            public ObservableValue call(CellDataFeatures<HashMap<String,String>, String> param) {
-                return new ReadOnlyObjectWrapper<>(param.getValue().get("start_date").toString());
-            }
-        });
+        TableColumn playTimeCol = new TableColumn("Spilletid");
+        playTimeCol.setCellValueFactory((Callback<CellDataFeatures<HashMap<String, String>, String>, ObservableValue>)
+                param -> new ReadOnlyObjectWrapper<>(param.getValue().get("start_date").toString()));
         playTimeCol.setMinWidth(90);
 
         TableColumn reservationCol = new TableColumn("Reservation");
-        reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>("Show reservation"));
+        reservationCol.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>("Vis oplysninger"));
         reservationCol.setMinWidth(50);
 
         ObservableList<HashMap<String,String>> movieTimeList = FXCollections.observableArrayList(controller.getPlays(searchPhone));
