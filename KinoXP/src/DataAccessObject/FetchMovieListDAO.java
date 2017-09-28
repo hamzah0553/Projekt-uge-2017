@@ -44,10 +44,6 @@ public class FetchMovieListDAO extends DataWrapper {
 
          }
 
-        for (Movie m :
-                movies) {
-            System.out.println(m.getName());
-        }
 
         return movies;
 

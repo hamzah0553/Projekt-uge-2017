@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -20,26 +21,33 @@ import java.util.ArrayList;
 public class PlayListCrud extends View
 {
     PlayListCrudController controller;
-    ChoiceBox<String> movies,times, hall;
-    DatePicker date;
+    String selectedDate, selectedMovie, selectedTime;
     ArrayList<Hall> halls;
     ArrayList<Movie> movieList;
 
-    public PlayListCrud(Stage primaryStage)
+    public PlayListCrud(Stage primaryStage, ArrayList<Movie> movieList)
                         //ArrayList<Hall> halls, ArrayList<Movie> movieList ){
     {
         super();
         this.controller = new PlayListCrudController(this);
 
+        this.movieList = movieList;
+
+        Hall hall = new Hall();
+
+        this.halls = hall.getHalls();
+
         setScene(layout(),new Button("Gå væk!"),primaryStage);
 
-        this.halls = halls;
 
-        this.movieList = movieList;
+        //for (Movie m : this.movieList ) {
+          //  System.out.println(m.getName() + "????");
+        //}
 
     }
 
     public VBox layout (){
+        ChoiceBox<String> movies,times, hall;
 
         VBox layout = new VBox(10);
 
@@ -48,7 +56,10 @@ public class PlayListCrud extends View
 
         movies = new ChoiceBox<>();
         for (Movie m : movieList) {
-            movies.getItems().add(m.getName());
+            if (m.getRun() == 1)
+            {
+                movies.getItems().add(m.getName());
+            }
         }
 
         Label chooseHall = new Label("Select which hall");
@@ -61,13 +72,18 @@ public class PlayListCrud extends View
 
         Label time = new Label("Select date and time");
 
-        date = new DatePicker();
+       DatePicker date = new DatePicker();
+        date.setOnAction(event ->{
+            selectedDate = date.getValue().toString();
+        });
 
         times = new ChoiceBox<>();
         times.getItems().addAll("09:00","12:30","16:00","19:30","23:00");
 
         Button save = new Button("Save");
         save.setOnAction(event -> {
+            selectedMovie = movies.getValue().toString();
+            selectedTime = times.getValue().toString();
             controller.createPlay();
         });
 
@@ -89,21 +105,21 @@ public class PlayListCrud extends View
         return movieList;
     }
 
-    public String getMovies()
-    {
-        return movies.getValue();
-    }
 
-
-    public String getTimes()
-    {
-        return times.getValue();
-    }
 
     public String getDate()
     {
-        return date.getValue().toString();
+        return selectedDate;
     }
 
 
+    public String getSelectedMovie()
+    {
+        return selectedMovie;
+    }
+
+    public String getSelectedTime()
+    {
+        return selectedTime;
+    }
 }
