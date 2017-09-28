@@ -4,6 +4,7 @@ package Controller;
 import Models.Customer;
 import Models.Order;
 import Models.Seat;
+import Models.SendMail;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -57,6 +58,11 @@ public class ReservationController
         {
 
             customer.createCustomer(customerEmail, customerPhone);
+            if (customerEmail.contains("@"))
+            {
+                SendMail mail = new SendMail();
+                mail.sendMail(customerEmail);
+            }
             customerID = customer.getLatestCustomerID();
 
         }

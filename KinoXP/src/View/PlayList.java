@@ -41,15 +41,16 @@ public class PlayList extends View {
         VBox[] dayAndDate = new VBox[7];
 
         GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(15,15,15,15));
+        gridPane.setPadding(new Insets(20,0,0,0));
 
-        Label name = new Label(movie.getName() );
+        Label name = new Label("Film: " + movie.getName());
         GridPane.setConstraints(name,1,0);
-        name.setStyle("-fx-font-weight: bold;");
 
-        Label hall = new Label("Hall#");
-        GridPane.setConstraints(hall,2,0);
-        hall.setStyle("-fx-font-weight: bold;");
+        name.setStyle("-fx-font-weight: bold; -fx-font-size: 26px;");
+
+        //Label hall = new Label("Hall#");
+        //GridPane.setConstraints(hall,2,0);
+        //hall.setStyle("-fx-font-weight: bold;");
 
         String day;
         String today;
@@ -66,30 +67,37 @@ public class PlayList extends View {
             dayAndDate[i].setAlignment(Pos.CENTER);
             days[i] = new Label(day);
             dates[i] = new Label(today);
-            days[i].setStyle("-fx-font-weight: bold;");
-
+            days[i].setStyle("-fx-font-weight: bold;  -fx-font-size: 16px;");
 
             dayAndDate[i].getChildren().addAll(days[i],dates[i]);
             dayAndDate[i].setPadding(new Insets(10,10,10,10));
 
             GridPane.setConstraints(dayAndDate[i],i+1,2);
+            gridPane.setAlignment(Pos.TOP_CENTER);
+            gridPane.setHgap(25);
+            gridPane.setVgap(25);
 
             times[i] = addPlays(today,gridPane,dao,movie);
         }
 
-        for (int i = 0; i <times.length ; i++) {
+        for (int i = 0; i <times.length ; i++)
+        {
 
-            for (int j = 0; j < times[i].size(); j++) {
+            for (int j = 0; j < times[i].size(); j++)
+            {
+
+
                 GridPane.setConstraints(times[i].get(j), 1+i, 3 + j);
-                //times[i].get(j).setPadding(new Insets(10,10,10,10));
-
-
                 handleButton(times[i].get(j),movie);
+
             }
         }
 
 
-        gridPane.getChildren().addAll(name,hall);
+
+
+        gridPane.getChildren().addAll(name);
+
         gridPane.getChildren().addAll(dayAndDate);
         for (int i = 0; i < days.length ; i++) {
 
@@ -97,8 +105,8 @@ public class PlayList extends View {
 
         }
 
+        setScene(gridPane, setBottom(primaryStage), primaryStage);
 
-        setScene(gridPane, null, primaryStage);
     }
 
 
@@ -107,7 +115,30 @@ public class PlayList extends View {
 
         Button add = new Button(time);
 
+        add.setStyle("    -fx-display: inline-block;\n" +
+                "    -fx-margin-bottom: 0;\n" +
+                "    -fx-font-size: 14px;\n" +
+                "    -fx-font-weight: normal;\n" +
+                "    -fx-line-height: 1.42857143;\n" +
+                "    -fx-text-align: center;\n" +
+                "    -fx-white-space: nowrap;\n" +
+                "    -fx-vertical-align: middle;\n" +
+                "    -fx-cursor: pointer;\n" +
+                "    -webkit-user-select: none;\n" +
+                "    -fx-moz-user-select: none;\n" +
+                "    -fx-ms-user-select: none;\n" +
+                "    -fx-user-select: none;\n" +
+                "    -fx-background-image: none;\n" +
+                "\n" +
+                "    -fx-border-color: #27ae60;\n" +
+                "    -fx-background-color: #27ae60;\n" +
+                "    -fx-text-fill: #fff;\n" +
+                "-fx-background-radius: 250px;\n" +
+                "    -fx-border-radius: 250px;");
+
+
         return add;
+
     }
 
     private ArrayList<Button> addPlays(String date, GridPane gridPane, PlaylistDAO dao, Movie movie){
