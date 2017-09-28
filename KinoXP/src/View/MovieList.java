@@ -5,17 +5,12 @@ import Models.Movie;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import System.View;
 
@@ -44,30 +39,40 @@ public class MovieList extends View{
         ArrayList<ImageView> imageViews = new ArrayList<>();
         ArrayList<Button> buttons = new ArrayList<>();
 
-        for (int i = 0; i < movies.size(); i++)
-        {
-            imageViews.add(new ImageView(new Image("https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_UY1200_CR90,0,630,1200_AL_.jpg")));
-            buttons.add(new Button(movies.get(i).getName()));
-            imageViews.get(i).setFitHeight(455);
-            imageViews.get(i).setFitWidth(238.875);
+        System.out.println(movies.size());
+
+        int count = 0;
+
+        for (int i = 0; i < movies.size(); i++) {
+
+            int t = i + 1;
+            imageViews.add(new ImageView(new Image("/img/" + t  + ".jpg", true)));
+
+            Button button = new Button(movies.get(i).getName());
+
+            button.getStyleClass().add("linkButton");
+
+            buttons.add(button);
+
+            count++;
+            imageViews.get(i).setFitHeight(380);
+            imageViews.get(i).setFitWidth(230);
+
         }
 
-        gridPane.setHgap(25);
-        gridPane.setVgap(15);
+        gridPane.setHgap(5);
+        gridPane.setVgap(0);
 
         window.setTitle("Movies");
         movieList = movies;
 
-
         int row = 0;
         int column = 0;
 
-        int nameRow = 1;
-        int nameColumn = 0;
         int buttonRow = 2;
         int buttonColumn = 0;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < movies.size(); i++)
         {
             gridPane.add(imageViews.get(i), column, row);
 
@@ -90,18 +95,26 @@ public class MovieList extends View{
                 buttonColumn = 0;
             }
 
+            int finalI = i;
             buttons.get(i).setOnAction(event -> {
-                PlayList playList = new PlayList(new Movie(1, "Batman", "120", 25, 1), window);
+
+                PlayList playList = new PlayList(movies.get(finalI), window);
             });
+
         }
 
         gridPane.setAlignment(Pos.CENTER);
 
+        gridPane.setStyle("-fx-background-color: white");
 
         ScrollPane pane = new ScrollPane(gridPane);
 
-        pane.setPadding(new Insets(25, 0, 25, 0));
+        pane.getStylesheets().add("css/style.css");
 
+        pane.setStyle("-fx-background-color: white");
+
+
+        pane.setPadding(new Insets(0, 0, 0, 0));
 
         pane.setFitToHeight(true);
         pane.setFitToWidth(true);
