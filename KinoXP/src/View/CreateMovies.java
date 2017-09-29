@@ -93,17 +93,17 @@ public class CreateMovies extends View {
         pane.add(movieRun, 0, 3);
         pane.add(addMovieButton, 1, 3);
 
-        pane.add(deleteLabel, 3, 0);
-        pane.add(deleteField, 3, 1);
-        pane.add(deleteMovieButton, 4, 1);
+        pane.add(deleteLabel, 3, 4);
+        pane.add(deleteField, 3, 5);
+        pane.add(deleteMovieButton, 4, 5);
 
-        pane.add(updateLabel, 3, 2);
-        pane.add(updateID, 4,2);
-        pane.add(updateHall,4,3);
-        pane.add(updateMovieName,3,3);
-        pane.add(updateMovieLength,3,4);
-        pane.add(updateMovieAge,4,4);
-        pane.add(updateButton, 5,4);
+        pane.add(updateLabel, 3, 0);
+        pane.add(updateID, 3,1);
+        pane.add(updateHall,4,1);
+        pane.add(updateMovieName,3,2);
+        pane.add(updateMovieLength,4,2);
+        pane.add(updateMovieAge,3,3);
+        pane.add(updateButton, 4,3);
 
         pane.setPadding(new Insets(25, 25, 0, 10));
         pane.setHgap(15);
@@ -118,8 +118,8 @@ public class CreateMovies extends View {
         movieNameCol.setMinWidth(200);
         movieNameCol.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
 
-        TableColumn movieViewable = new TableColumn("Is movie showing in theaters?");
-        movieViewable.setMinWidth(300);
+        TableColumn movieViewable = new TableColumn("Movie running");
+        movieViewable.setMinWidth(125);
         movieViewable.setCellValueFactory(new PropertyValueFactory<>("isMovieRunning"));
 
         //sets the data
@@ -193,10 +193,6 @@ public class CreateMovies extends View {
                 movieLength.clear();
                 movieAge.clear();
                 movieRun.clear();
-
-
-
-
 
         });
 

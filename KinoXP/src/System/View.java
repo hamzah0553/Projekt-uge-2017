@@ -1,8 +1,16 @@
 package System;
 
-import Controller.SearchController;
 import DataAccessObject.FetchMovieListDAO;
-import View.*;
+import Controller.*;
+import View.MovieList;
+import View.SearchView;
+import View.TrueLogin;
+import View.PlayListCrud;
+import View.CreateMovies;
+import View.StatsView;
+import View.CreateLogin;
+
+import Controller.SearchController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -65,9 +73,6 @@ public class View {
         final Menu menuOptions = new Menu("Indstillinger");
         final MenuItem logOut = new MenuItem("Log ud");
 
-
-
-
         final Menu menuBack = new Menu();
         menuBack.setGraphic(backLabel);
 
@@ -88,7 +93,7 @@ public class View {
 
             //actions for items
             createUser.setOnAction(event -> {
-                
+                new CreateLogin(new EmployeeController(new Model())).setCreateLogin(primaryStage);
             });
 
             menuAdmin.getItems().addAll(createUser, manageUser);

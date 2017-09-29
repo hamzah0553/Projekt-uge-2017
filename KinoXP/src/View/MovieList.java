@@ -45,12 +45,27 @@ public class MovieList extends View{
 
         int count = 0;
 
-        for (int i = 0; i < movies.size(); i++) {
+        for (int i = 0; i < movies.size(); i++)
+        {
 
 
             int t = i + 1;
 
-            imageViews.add(new ImageView(new Image("/img/" + t  + ".jpg", true)));
+            Image image = new Image("/img/no-img.png");
+
+
+            try {
+
+                image = new Image("/img/" + t + ".jpg", true);
+
+            } catch (Exception ex)
+            {
+
+                image = new Image("/img/no-img.png", true);
+
+            }
+
+            imageViews.add(new ImageView(image));
 
             labels.add(new Label());
             labels.get(i).setGraphic(imageViews.get(i));
