@@ -10,6 +10,7 @@ import View.CreateMovies;
 import View.StatsView;
 import View.CreateLogin;
 
+import Controller.SearchController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -250,12 +251,9 @@ public class View {
         Button newPlay = new Button("Opret Spilletid");
         Button showSale = new Button("Statistikker");
         Button newMovie = new Button("Opret film");
-        Button back = new Button("back");
-
 
         newPlay.getStyleClass().add("btn");
         newPlay.getStyleClass().add("non");
-
 
 
         showSale.getStyleClass().add("btn");
