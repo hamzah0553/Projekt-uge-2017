@@ -246,7 +246,6 @@ public class View {
         Button newPlay = new Button("Opret Spilletid");
         Button showSale = new Button("Statistikker");
         Button newMovie = new Button("Opret film");
-
         newPlay.getStyleClass().add("btn");
         newPlay.getStyleClass().add("non");
 
