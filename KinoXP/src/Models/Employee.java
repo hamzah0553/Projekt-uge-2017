@@ -1,24 +1,17 @@
 package Models;
 
-/**
- * Created by User on 26-09-2017.
- */
 public class Employee
 {
     private int EmployeeId;
-    private int phone;
+    private String name;
+    private String role;
 
-    public Employee(int employeeId,int phone){
-        this.phone=phone;
+
+
+    public Employee(int employeeId,String name, String role){
+        this.name=name;
         this.EmployeeId=employeeId;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    public int getPhone() {
-        return phone;
+        this.role = role;
     }
 
     public void setEmployeeId(int employeeId) {
@@ -28,4 +21,25 @@ public class Employee
     public int getEmployeeId() {
         return EmployeeId;
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getRole()
+    {
+        return role;
+    }
+
+    public void setRole(String role)
+    {
+        this.role = role;
+    }
+
 }
