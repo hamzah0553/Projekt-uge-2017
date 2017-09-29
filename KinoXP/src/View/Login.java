@@ -39,6 +39,8 @@ public class Login
         layout.setVgap(8);
         layout.setHgap(5);
 
+        layout.setId("login");
+
         TextField nameInput = new TextField();
         nameInput.setPromptText("Brugernavn");
 
