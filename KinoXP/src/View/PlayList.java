@@ -95,9 +95,7 @@ public class PlayList extends View {
             for (int j = 0; j < times[i].size(); j++)
             {
 
-
                 GridPane.setConstraints(times[i].get(j), 1+i, 3 + j);
-                handleButton(times[i].get(j),movie);
 
             }
         }
@@ -117,7 +115,7 @@ public class PlayList extends View {
 
 
 
-    private Button addSinglePlay(String time){
+    private Button addSinglePlay(String time, int playtime_id){
 
         Button add = new Button(time);
 
@@ -143,9 +141,18 @@ public class PlayList extends View {
                 "    -fx-border-radius: 250px;");
 
 
+
+        add.setOnAction(event -> {
+
+            new Login(stage, playtime_id );
+
+        });
+
+
         return add;
 
     }
+
 
     private ArrayList<Button> addPlays(String date, GridPane gridPane, PlaylistDAO dao, Movie movie){
 
@@ -154,12 +161,19 @@ public class PlayList extends View {
         ArrayList<Button> buttons = new ArrayList<>();
 
         String today = date;
-        for (Play p: plays) {
 
-            if (p.getMovieName().equalsIgnoreCase(movie.getName())&&p.getDate().equals(today)){
-                buttons.add(addSinglePlay(p.getTime()));
+        int i =0 ;
+        for (Play p: plays)
+        {
+
+            if (p.getMovieName().equalsIgnoreCase(movie.getName()) && p.getDate().equals(today))
+            {
+
+                System.out.println(plays.get(i).getId());
+                buttons.add(addSinglePlay(p.getTime(), plays.get(i).getId()));
             }
 
+        i++;
 
         }
 
@@ -167,29 +181,7 @@ public class PlayList extends View {
     }
 
 
-    public void handleButton(Button button, Movie movie){
 
-        button.setOnAction(event -> {
-
-            int theId=0;
-
-            for (Play p : plays) {
-
-                if (p.getMovie().getName().equalsIgnoreCase(movie.getName()) && p.getTime().equalsIgnoreCase(button.getText()) ){
-                    theId= p.getId();
-
-                }
-
-            }
-            Login login = new Login(stage);
-            System.out.println(button.getText());
-            System.out.println(movie.getName());
-            System.out.println(theId);
-
-        });
-
-
-    }
 
     public String getDate(int i, Date date){
         String today;

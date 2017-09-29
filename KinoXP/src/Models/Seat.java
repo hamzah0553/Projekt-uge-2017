@@ -146,7 +146,7 @@ public class Seat
             if (rs.first())
             {
 
-                System.out.println("lol");
+                //System.out.println("lol");
                 return true;
 
             }

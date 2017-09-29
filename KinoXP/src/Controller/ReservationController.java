@@ -15,6 +15,8 @@ public class ReservationController
     private int customerPhone;
     private String customerEmail;
 
+    private int playtime_id;
+
     private ArrayList<Seat> seatsChosen;
 
     /**
