@@ -53,10 +53,10 @@ public class SearchView extends View
 
         deleteButton.setOnAction(event -> {
             if(itemSelected) {
-                controller.deleteOrder(orderID);
-
                 MovieList view = new MovieList(primaryStage);
                 view.setScene(view.theWindow(), view.setBottom(primaryStage) , primaryStage);
+                controller.deleteOrder(orderID);
+
             }
 
         });
