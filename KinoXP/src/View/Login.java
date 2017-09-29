@@ -29,6 +29,12 @@ public class Login extends View
 
     private ArrayList<Seat> seatsChosen = new ArrayList<Seat>();
 
+    private int amountOfSeats = 0;
+
+    private int amountOfReservedSeats;
+
+    private Text sæder = new Text("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
+
     public Login(Stage primaryStage)
     {
         //visning af biograf pladser...
@@ -59,7 +65,14 @@ public class Login extends View
 
 
         //iterate through amount of seats...
-        for(int i = 1; hall.amountOfSeats() >= i; i++)
+
+        int amountOfSeats = hall.amountOfSeats();
+
+        this.amountOfSeats = hall.amountOfSeats();
+        this.amountOfReservedSeats = 0;
+
+
+        for(int i = 1; amountOfSeats >= i; i++)
         {
 
             //System.out.println("row: " + row + " column: " + column);
@@ -86,6 +99,8 @@ public class Login extends View
                         {
 
                             seatsChosen.add(seat);
+                            amountOfReservedSeats++;
+                            sæder.setText("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
                             button.setStyle("-fx-border-color: #e67e22; -fx-border-width: 1px; -fx-background-color: #e67e22");
 
                         } else {
@@ -98,6 +113,8 @@ public class Login extends View
                                         && seatsChosen.get(i1).getColumn() == seat.getColumn())
                                 {
 
+                                    amountOfReservedSeats--;
+                                    sæder.setText("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
                                     seatsChosen.remove(i1);
                                     break;
 
@@ -115,6 +132,8 @@ public class Login extends View
                     });
 
                 } else {
+                    amountOfReservedSeats++;
+                    sæder.setText("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
                     button.setStyle("-fx-border-color: #e74c3c; -fx-border-width: 1px; -fx-background-color: #e74c3c");
                 }
 
@@ -161,6 +180,8 @@ public class Login extends View
         hBox.getChildren().addAll(greenButton, green , redButton, red, yellowButton, yellow);
         hBox.setAlignment(Pos.CENTER);
 
+
+
         VBox vBox = new VBox(15);
         Line line1 = new Line(0, 50, 400, 50);
 
@@ -175,6 +196,7 @@ public class Login extends View
 
     public BorderPane createTopPane()
     {
+
         Text title = new Text("Kingsman");
         title.setStyle("-fx-font-family: sans-serif");
         title.setStyle("-fx-font-size: 35px");
@@ -188,7 +210,8 @@ public class Login extends View
         Text biograf = new Text("Biograf: KinoXP");
         biograf.setStyle("-fx-font-family: sans-serif");
 
-        Text sæder = new Text("sæder ledige: 40/55");
+
+        sæder.setText("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
         sæder.setStyle("-fx-font-family: sans-serif");
 
         GridPane leftPane = new GridPane();
@@ -215,7 +238,6 @@ public class Login extends View
         Button buttonRes = new Button("Reserver billetter");
         //clicked on "reserver billetter"
         buttonRes.setOnAction(e -> {
-
 
             final Stage dialog = new Stage();
 

@@ -17,6 +17,12 @@ public class ReservationController
 
     private ArrayList<Seat> seatsChosen;
 
+    /**
+     *
+     * @param customerPhone
+     * @param customerEmail
+     * @return
+     */
     public String validateReservation(int customerPhone, String customerEmail)
     {
 
@@ -27,7 +33,6 @@ public class ReservationController
 
         }
 
-
         this.customerEmail = customerEmail;
         this.customerPhone = customerPhone;
 
@@ -35,6 +40,10 @@ public class ReservationController
 
     }
 
+    /**
+     *
+     * @param seatsChosen
+     */
     public void setSeatsChosen(ArrayList<Seat> seatsChosen)
     {
 
@@ -58,13 +67,14 @@ public class ReservationController
         {
 
             customer.createCustomer(customerEmail, customerPhone);
-            if (customerEmail.contains("@"))
-            {
-                SendMail mail = new SendMail();
-                mail.sendMail(customerEmail);
-            }
             customerID = customer.getLatestCustomerID();
 
+        }
+
+        if (customerEmail.contains("@"))
+        {
+            SendMail mail = new SendMail();
+            mail.sendMail(customerEmail);
         }
 
         //finally creating the order, with the given seats.
