@@ -41,7 +41,6 @@ public class PlayList extends View {
 
         BorderPane borderPane = new BorderPane();
 
-
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(20,0,0,0));
 
@@ -56,10 +55,6 @@ public class PlayList extends View {
 
         name.setStyle("-fx-font-weight: bold; -fx-font-size: 24px;");
 
-        //Label hall = new Label("Hall#");
-        //GridPane.setConstraints(hall,2,0);
-        //hall.setStyle("-fx-font-weight: bold;");
-
         String day;
         String today;
 
@@ -68,7 +63,6 @@ public class PlayList extends View {
             long dayTemp = TimeUnit.DAYS.toMillis(1);
             Date date = new Date(System.currentTimeMillis()+(dayTemp*i));
             today = getDate(i,date);
-
 
             day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
             dayAndDate[i] = new VBox(5);
@@ -90,7 +84,6 @@ public class PlayList extends View {
 
         for (int i = 0; i <times.length ; i++)
         {
-
             for (int j = 0; j < times[i].size(); j++)
             {
 
@@ -98,8 +91,6 @@ public class PlayList extends View {
 
             }
         }
-
-
 
         gridPane.getChildren().addAll(dayAndDate);
         for (int i = 0; i < days.length ; i++) {
@@ -111,6 +102,7 @@ public class PlayList extends View {
         setScene(borderPane, setBottom(primaryStage), primaryStage);
 
     }
+
 
 
 
@@ -146,8 +138,6 @@ public class PlayList extends View {
             new Reservation(stage, playtime_id );
 
         });
-
-
         return add;
 
     }
@@ -171,15 +161,11 @@ public class PlayList extends View {
                 System.out.println(plays.get(i).getId());
                 buttons.add(addSinglePlay(p.getTime(), plays.get(i).getId()));
             }
-
         i++;
 
         }
-
         return buttons;
     }
-
-
 
 
     public String getDate(int i, Date date){

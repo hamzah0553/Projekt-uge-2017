@@ -287,7 +287,6 @@ public class View {
             CreateMovies createMovies = new CreateMovies(primaryStage);
         });
 
-
         return flowPane;
     }
 

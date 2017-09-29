@@ -15,9 +15,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(new Pane(), 300, 275));
         new Login(primaryStage);
 
-
-
-
         primaryStage.show();
         FetchMovieListDAO dao = new FetchMovieListDAO();
         dao.getMovies();

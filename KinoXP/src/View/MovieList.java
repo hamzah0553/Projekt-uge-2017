@@ -10,7 +10,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import System.View;
@@ -47,8 +46,6 @@ public class MovieList extends View{
 
         for (int i = 0; i < movies.size(); i++)
         {
-
-
             int t = i + 1;
 
             Image image = new Image("/img/no-img.png");
@@ -96,7 +93,6 @@ public class MovieList extends View{
 
         for (int i = 0; i < movies.size(); i++)
         {
-
             gridPane.add(labels.get(i), column, row);
 
             column++;
@@ -106,7 +102,6 @@ public class MovieList extends View{
                 row = row + 3;
                 column = 0;
             }
-
 
             gridPane.add(buttons.get(i), buttonColumn, buttonRow);
 
@@ -128,7 +123,6 @@ public class MovieList extends View{
                 PlayList playList = new PlayList(movies.get(finalI), window);
             });
         }
-
         gridPane.setAlignment(Pos.CENTER);
 
         gridPane.setStyle("-fx-background-color: white");
@@ -138,7 +132,6 @@ public class MovieList extends View{
         pane.getStylesheets().add("css/style.css");
 
         pane.setStyle("-fx-background-color: white");
-
 
         pane.setPadding(new Insets(0, 0, 0, 0));
 

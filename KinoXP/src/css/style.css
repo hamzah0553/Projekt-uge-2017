@@ -280,10 +280,8 @@ body {
 }
 .green
 {
-
     -fx-background-color: #45b21e!important;
     -fx-border-color: #45b21e!important;
-
 }
 
 .btn:hover
@@ -295,12 +293,10 @@ body {
 
 .btn-xl
 {
-
     -fx-padding: 18px 30px;
     -fx-font-size: 12px;
     -fx-height: 52px;
     -fx-margin: 10px 0px;
-
 }
 
 .full-width
@@ -310,7 +306,5 @@ body {
 
 .menu-item .menu .icon
 {
-
     -fx-background-color: #fff !important;
-
 }

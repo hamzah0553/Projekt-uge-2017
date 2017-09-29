@@ -7,6 +7,4 @@ public class Model {
     public Model() {
         super();}
 
-
-
 }

@@ -65,8 +65,5 @@ public class CreateLogin extends View
         gridPane.setPadding(new Insets(30,20,20,20));
         borderPane.setCenter(gridPane);
         setScene(borderPane, saveButton, stage);
-
     }
-
-
 }
