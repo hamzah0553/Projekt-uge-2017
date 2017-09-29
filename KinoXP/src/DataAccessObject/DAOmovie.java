@@ -58,11 +58,10 @@ public class DAOmovie extends DataWrapper {
 
             System.out.println("SLET VIRKER");
             delete = true;
-            conn.close();                                                          // FIXME: 27-09-2017
+
             return delete;
         } catch (SQLException e) {
             delete = false;
-            conn.close();
             return delete;
         }
 

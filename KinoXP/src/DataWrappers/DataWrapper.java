@@ -42,7 +42,6 @@ public class DataWrapper
         {
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
         }
         catch (SQLException e)
         {
