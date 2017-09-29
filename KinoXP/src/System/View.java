@@ -1,18 +1,8 @@
 package System;
 
-import DataAccessObject.FetchMovieListDAO;
-import Models.Movie;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import Controller.SearchController;
-import View.MovieList;
-import View.SearchView;
-import View.TrueLogin;
-import View.PlayListCrud;
-import View.CreateMovies;
-import View.StatsView;
-
+import DataAccessObject.FetchMovieListDAO;
+import View.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
@@ -256,12 +246,9 @@ public class View {
         Button newPlay = new Button("Opret Spilletid");
         Button showSale = new Button("Statistikker");
         Button newMovie = new Button("Opret film");
-        Button back = new Button("back");
-
 
         newPlay.getStyleClass().add("btn");
         newPlay.getStyleClass().add("non");
-
 
 
         showSale.getStyleClass().add("btn");
