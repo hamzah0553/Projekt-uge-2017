@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,8 +26,6 @@ public class PlayListCrud extends View
     String selectedDate, selectedMovie, selectedTime;
     ArrayList<Hall> halls;
     ArrayList<Movie> movieList;
-
-
 
     public PlayListCrud(Stage primaryStage, ArrayList<Movie> movieList)
                         //ArrayList<Hall> halls, ArrayList<Movie> movieList ){
@@ -47,17 +46,15 @@ public class PlayListCrud extends View
             count++;
         }
 
-        setScene(layout(),new Button("Gå væk!"),primaryStage);
-
-
-
+        setScene(layout(), null,primaryStage);
 
     }
 
-    public VBox layout (){
+    public GridPane layout (){
+
         ChoiceBox<String> movies,times, hall;
 
-        VBox layout = new VBox(10);
+        GridPane layout = new GridPane();
 
         Label create = new Label("Opret ny spilletid");
         Label mov = new Label("Vælg hvilken film");
@@ -97,9 +94,18 @@ public class PlayListCrud extends View
         });
 
 
-        layout.getChildren().addAll(create,mov,movies,chooseHall,hall,date,time,times,save);
+        layout.add(create, 0, 0);
+        layout.add(mov ,0, 1);
+        layout.add(movies, 1, 1);
+        layout.add(chooseHall, 0, 2);
+        layout.add(hall, 1, 2);
+        layout.add(date, 1, 5);
+        layout.add(time, 0, 4);
+        layout.add(times, 1, 4);
+        layout.add(save, 1, 6);
 
         layout.setAlignment(Pos.CENTER);
+        layout.setVgap(20);
         return layout;
 
     }
@@ -114,13 +120,10 @@ public class PlayListCrud extends View
         return movieList;
     }
 
-
-
     public String getDate()
     {
         return selectedDate;
     }
-
 
     public String getSelectedMovie()
     {
