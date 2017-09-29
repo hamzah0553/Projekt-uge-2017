@@ -42,6 +42,13 @@ public class ReservationController
 
     }
 
+    public void setPlayTimeID(int playtime_id)
+    {
+
+        this.playtime_id = playtime_id;
+
+    }
+
     /**
      *
      * @param seatsChosen
@@ -81,7 +88,7 @@ public class ReservationController
 
         //finally creating the order, with the given seats.
         Order order = new Order();
-        order.createOrder(customerID,1, 299);
+        order.createOrder(customerID,playtime_id , 299);
         order.createOrderSeatReservation(seatsChosen);
 
     }
