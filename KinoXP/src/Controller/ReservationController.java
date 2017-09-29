@@ -15,6 +15,8 @@ public class ReservationController
     private int customerPhone;
     private String customerEmail;
 
+    private int playtime_id;
+
     private ArrayList<Seat> seatsChosen;
 
     /**
@@ -37,6 +39,13 @@ public class ReservationController
         this.customerPhone = customerPhone;
 
         return "OK";
+
+    }
+
+    public void setPlayTimeID(int playtime_id)
+    {
+
+        this.playtime_id = playtime_id;
 
     }
 
@@ -79,7 +88,7 @@ public class ReservationController
 
         //finally creating the order, with the given seats.
         Order order = new Order();
-        order.createOrder(customerID,1, 299);
+        order.createOrder(customerID,playtime_id , 299);
         order.createOrderSeatReservation(seatsChosen);
 
     }

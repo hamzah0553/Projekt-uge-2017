@@ -2,6 +2,7 @@ package View;
 
 import Controller.ReservationController;
 import Models.Hall;
+import Models.PlayTime;
 import Models.Seat;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +22,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import System.View;
 
+import javax.xml.transform.Result;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Login extends View
@@ -33,12 +37,22 @@ public class Login extends View
 
     private int amountOfReservedSeats;
 
+    private int movie_playtime_id;
+
+    private String movieName;
+
+    private int hallID;
+
+    private String startDate;
+
     private Text sæder = new Text("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
 
-    public Login(Stage primaryStage)
+    public Login(Stage primaryStage, int movie_playtime_id)
     {
         //visning af biograf pladser...
         this.window = primaryStage;
+
+        this.movie_playtime_id = movie_playtime_id;
 
         window.setTitle("Reservation");
 
@@ -50,7 +64,15 @@ public class Login extends View
 
         layout.setGridLinesVisible(false);
 
-        Hall hall = new Hall(1);
+        PlayTime playTime = new PlayTime( movie_playtime_id );
+
+        this.hallID = playTime.getHallIDByPlayTime();
+
+        Hall hall = new Hall(hallID);
+
+        this.movieName = playTime.getMovieNameByPlayTime();
+
+        this.startDate = playTime.getPlayStartDate();
 
         //a list of the type of seats...
         int rows = hall.getSeatsRow();
@@ -78,7 +100,7 @@ public class Login extends View
             //System.out.println("row: " + row + " column: " + column);
             //-1 as array starts with zero index.
 
-            seats[row - 1][column - 1] = new Seat(row - 1, column - 1, 1);
+            seats[row - 1][column - 1] = new Seat(row - 1, column - 1, hallID, movie_playtime_id);
             Seat seat = seats[row - 1][column - 1];
 
             //add button...
@@ -197,14 +219,14 @@ public class Login extends View
     public BorderPane createTopPane()
     {
 
-        Text title = new Text("Kingsman");
+        Text title = new Text(movieName);
         title.setStyle("-fx-font-family: sans-serif");
         title.setStyle("-fx-font-size: 35px");
 
-        Text playtime = new Text("Spille tider: 15:30 - 26/09");
+        Text playtime = new Text("Spille tider: " + startDate);
         playtime.setStyle("-fx-font-family: sans-serif");
 
-        Text theater = new Text("Teater: 1");
+        Text theater = new Text("Teater: " + hallID);
         theater.setStyle("-fx-font-family: sans-serif");
 
         Text biograf = new Text("Biograf: KinoXP");
@@ -270,6 +292,7 @@ public class Login extends View
                 if(responseMessage.equals("OK"))
                 {
 
+                    reservationController.setPlayTimeID(movie_playtime_id);
                     reservationController.setSeatsChosen(seatsChosen);
                     reservationController.createReservation();
                     messageLabel.setText("Kundens billet er nu reserveret.");
