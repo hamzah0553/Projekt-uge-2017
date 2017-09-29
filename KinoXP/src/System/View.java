@@ -2,13 +2,7 @@ package System;
 
 import DataAccessObject.FetchMovieListDAO;
 import Controller.*;
-import View.MovieList;
-import View.SearchView;
-import View.TrueLogin;
-import View.PlayListCrud;
-import View.CreateMovies;
-import View.StatsView;
-import View.CreateLogin;
+import View.*;
 
 import Controller.SearchController;
 import javafx.geometry.Insets;
@@ -137,7 +131,7 @@ public class View {
         logOut.setOnAction(event->{
             primaryStage.close();
             Stage newStage = new Stage();
-            new TrueLogin(newStage);
+            new Login(newStage);
         });
 
         phoneLabel.setOnMouseClicked(event->
@@ -276,7 +270,7 @@ public class View {
 
         newPlay.setOnAction(event ->
         {
-            PlayListCrud playListCrud = new PlayListCrud(primaryStage, TrueLogin.movieList.getMovieList());
+            PlayListCrud playListCrud = new PlayListCrud(primaryStage, Login.movieList.getMovieList());
             playListCrud.setScene(playListCrud.layout(), null, primaryStage);
         });
 

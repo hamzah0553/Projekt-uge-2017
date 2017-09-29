@@ -4,9 +4,9 @@ import DataAccessObject.PlaylistDAO;
 import Models.Movie;
 import Models.Play;
 import System.View;
+import View.Reservation;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -144,7 +143,7 @@ public class PlayList extends View {
 
         add.setOnAction(event -> {
 
-            new Login(stage, playtime_id );
+            new Reservation(stage, playtime_id );
 
         });
 

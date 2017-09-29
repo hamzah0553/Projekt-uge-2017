@@ -2,12 +2,10 @@ package System;
 
 import DataAccessObject.FetchMovieListDAO;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import View.*;
+import View.Login;
 
 public class Main extends Application {
 
@@ -15,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("KINO XP");
         primaryStage.setScene(new Scene(new Pane(), 300, 275));
-        new TrueLogin(primaryStage);
+        new Login(primaryStage);
 
 
 
