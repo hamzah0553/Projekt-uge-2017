@@ -40,13 +40,22 @@ public class PlayList extends View {
 
         VBox[] dayAndDate = new VBox[7];
 
+        BorderPane borderPane = new BorderPane();
+
+
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(20,0,0,0));
 
         Label name = new Label("Film: " + movie.getName());
-        GridPane.setConstraints(name,1,0);
 
-        name.setStyle("-fx-font-weight: bold; -fx-font-size: 26px;");
+        borderPane.setCenter(gridPane);
+        borderPane.setTop(name);
+        borderPane.setAlignment(name, Pos.TOP_CENTER);
+        borderPane.setPadding(new Insets(25, 0, 0, 0));
+
+        gridPane.setAlignment(Pos.CENTER_LEFT);
+
+        name.setStyle("-fx-font-weight: bold; -fx-font-size: 24px;");
 
         //Label hall = new Label("Hall#");
         //GridPane.setConstraints(hall,2,0);
@@ -95,9 +104,6 @@ public class PlayList extends View {
 
 
 
-
-        gridPane.getChildren().addAll(name);
-
         gridPane.getChildren().addAll(dayAndDate);
         for (int i = 0; i < days.length ; i++) {
 
@@ -105,7 +111,7 @@ public class PlayList extends View {
 
         }
 
-        setScene(gridPane, setBottom(primaryStage), primaryStage);
+        setScene(borderPane, setBottom(primaryStage), primaryStage);
 
     }
 
