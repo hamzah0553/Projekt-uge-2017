@@ -39,13 +39,11 @@ public class CreateMovieController {
 
         } else {
 
-
             this.hall_id = hall_id;
             this.movie_name = movie_name;
             this.movie_length = movie_length;
             this.movie_age = movie_age;
             this.movie_run = movie_run;
-
 
             return "ok";
 
@@ -54,8 +52,8 @@ public class CreateMovieController {
 
 
     public void createMovie () {
-        Movie movie = new Movie();
 
+        Movie movie = new Movie();
         movie.addMovie(hall_id, movie_name, String.valueOf(movie_length), movie_age, movie_run);
 
 

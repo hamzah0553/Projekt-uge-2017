@@ -100,7 +100,7 @@ public class Login extends View
             //System.out.println("row: " + row + " column: " + column);
             //-1 as array starts with zero index.
 
-            seats[row - 1][column - 1] = new Seat(row - 1, column - 1, 1);
+            seats[row - 1][column - 1] = new Seat(row - 1, column - 1, hallID, movie_playtime_id);
             Seat seat = seats[row - 1][column - 1];
 
             //add button...
@@ -279,6 +279,7 @@ public class Login extends View
                 if(responseMessage.equals("OK"))
                 {
 
+                    reservationController.setPlayTimeID(movie_playtime_id);
                     reservationController.setSeatsChosen(seatsChosen);
                     reservationController.createReservation();
                     messageLabel.setText("Kundens billet er nu reserveret.");

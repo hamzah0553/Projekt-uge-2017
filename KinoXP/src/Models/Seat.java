@@ -16,13 +16,15 @@ public class Seat
 
     private boolean hasBeenChosen = false;
 
+    private int playtime_id;
+
     /**
      *
      * @param row
      * @param column
      * @param hallID
      */
-    public Seat(int row, int column, int hallID)
+    public Seat(int row, int column, int hallID, int playtime_id)
     {
 
         Connector connector = Connector.getInstance();
@@ -32,6 +34,7 @@ public class Seat
         this.row = row;
         this.column = column;
         this.hallID = hallID;
+        this.playtime_id = playtime_id;
 
     }
 
@@ -135,7 +138,7 @@ public class Seat
             PreparedStatement preparedStatement = conn.prepareStatement(query);
 
             preparedStatement.setInt(1, hallID);
-            preparedStatement.setInt(2, 1);
+            preparedStatement.setInt(2, playtime_id);
 
             //seat..
             preparedStatement.setInt(3,  row); //row
