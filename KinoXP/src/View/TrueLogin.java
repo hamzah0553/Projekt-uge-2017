@@ -117,36 +117,6 @@ public class TrueLogin
 
         button.setOnAction(event -> {
 
-
-
-            /*
-            Platform.runLater(new Runnable()
-            {
-
-
-                @Override
-                public void run()
-                {
-
-                    System.out.println("30");
-
-                    VBox bx = new VBox();
-                    bx.setAlignment(Pos.CENTER);
-
-                    ProgressIndicator pi = new ProgressIndicator();
-                    VBox box = new VBox(pi);
-                    box.setAlignment(Pos.CENTER);
-
-                    // Grey Background
-                    bx.setDisable(true);
-                    layout.getChildren().add(box);
-
-
-                }
-
-            }).start();*/
-
-
             scene.setCursor(Cursor.WAIT);
 
 

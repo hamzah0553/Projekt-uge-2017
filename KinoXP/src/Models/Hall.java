@@ -3,7 +3,6 @@ package Models;
 import DataAccessObject.Connector;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class Hall
 {
@@ -21,8 +20,6 @@ public class Hall
     private int seats_column;
 
     private String hallName;
-
-
 
     public Hall (){
 
@@ -62,10 +59,7 @@ public class Hall
             System.out.println(e.getMessage());
         }
 
-
     }
-
-
 
     public int getHallID()
     {
@@ -78,9 +72,7 @@ public class Hall
      */
     public int getSeatsRow()
     {
-
         return seats_row;
-
     }
 
     /**
@@ -89,9 +81,7 @@ public class Hall
      */
     public int getSeatsColumn()
     {
-
         return seats_row;
-
     }
 
     /**
@@ -100,9 +90,7 @@ public class Hall
      */
     public int amountOfSeats()
     {
-
         return seats_column * seats_row;
-
     }
 
     public void setHallID(int hallID)

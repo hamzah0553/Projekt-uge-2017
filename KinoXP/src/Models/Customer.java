@@ -6,9 +6,6 @@ import java.sql.*;
 
 public class Customer
 {
-
-
-
     Statement st;
     Connection conn;
 

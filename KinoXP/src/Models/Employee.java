@@ -6,8 +6,6 @@ public class Employee
     private String name;
     private String role;
 
-
-
     public Employee(int employeeId,String name, String role){
         this.name=name;
         this.EmployeeId=employeeId;

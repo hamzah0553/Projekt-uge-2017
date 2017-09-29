@@ -55,7 +55,6 @@ public class CreateMovies extends View {
 
         primaryStage.setTitle("CRUD Movies");
 
-
         BorderPane borderPane = new BorderPane();
         GridPane pane = new GridPane();
 
@@ -108,7 +107,6 @@ public class CreateMovies extends View {
         pane.setPadding(new Insets(25, 25, 0, 10));
         pane.setHgap(15);
         pane.setVgap(25);
-
 
         TableColumn movieIDCol = new TableColumn("Movie ID");
         movieIDCol.setMinWidth(200);
@@ -166,9 +164,6 @@ public class CreateMovies extends View {
                 event.consume();
             }
 
-
-
-
                 //Shows "YES" or "NO" if you insert 0/1 in movie runs
                 if (movieRun.getText().equalsIgnoreCase("0")) {
                     movieRunning = "No";
@@ -222,6 +217,4 @@ public class CreateMovies extends View {
             updateMovieAge.clear();
         });
     }
-
-
 }

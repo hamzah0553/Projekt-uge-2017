@@ -117,44 +117,31 @@ public class Login extends View
                                     sæder.setText("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
                                     seatsChosen.remove(i1);
                                     break;
-
                                 }
-
                             }
-
                             //set button style..
                             button.setStyle("-fx-border-color: #2ecc71; -fx-border-width: 1px; -fx-background-color: #2ecc71");
-
                         }
-
                         seat.updateHasBeenClicked();
-
                     });
-
                 } else {
                     amountOfReservedSeats++;
                     sæder.setText("sæder ledige: " + amountOfReservedSeats + "/" + amountOfSeats);
                     button.setStyle("-fx-border-color: #e74c3c; -fx-border-width: 1px; -fx-background-color: #e74c3c");
                 }
-
                 layout.setAlignment(Pos.CENTER);
                 layout.add(button, column, row);
-
             }
-
             //if columnsPerRow == column, go to next row and reset column.
             if(columnsPerRow == column)
             {
-
                 row++;
                 column = 1;
 
             } else {
 
                 column++;
-
             }
-
         }
 
         HBox hBox = new HBox(15);
