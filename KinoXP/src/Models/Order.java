@@ -33,7 +33,7 @@ public class Order
     public void createOrder(int customerID, int movie_playtime_id, double order_price)
     {
 
-        String query = "INSERT INTO `order`(customer_id, movie_playtime_id, order_price) " +
+        String query = "INSERT INTO `order`(customer_id, movie_playtime_id, order_price)" +
                 "VALUES ('" + customerID + "', '" + movie_playtime_id + "', '" + order_price + "')";
 
         try
