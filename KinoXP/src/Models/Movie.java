@@ -89,7 +89,7 @@ public class Movie
         //New dataacces objekt
         DAOmovie newMovie = new DAOmovie();
 
-        //try catch for the dataacces objekt.
+        //try catch for the dataaccess objekt.
         try {
             newMovie.Createmovie(movie_name, movie_length, movie_age, movie_run, hall_id);
         } catch (SQLException e) {
